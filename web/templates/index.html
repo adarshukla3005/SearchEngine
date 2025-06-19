@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Blog Search Engine</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="search-container">
+            <h1>Google Blog Search</h1>
+            <p class="tagline">Find authentic blogs and articles using Google search with Gemini AI validation</p>
+            
+            <form action="/search" method="get" class="search-form">
+                <input type="text" name="q" id="search-input" placeholder="Search for blogs and articles..." required>
+                <button type="submit" id="search-button">Search</button>
+            </form>
+            
+            <div class="examples">
+                <p>Try searching for:</p>
+                <ul>
+                    <li><a href="/search?q=how+to+become+a+product+manager">how to become a product manager</a></li>
+                    <li><a href="/search?q=why+procrastinators+procrastinate">why procrastinators procrastinate</a></li>
+                    <li><a href="/search?q=learning+to+code">learning to code</a></li>
+                    <li><a href="/search?q=productivity+tips+for+developers">productivity tips for developers</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="about">
+            <h2>About this Search Engine</h2>
+            <p>This search engine uses Google search with Gemini AI validation to find high-quality blogs and articles.</p>
+            <p>When you search:</p>
+            <ol>
+                <li>Gemini AI enhances your query to focus on blogs and articles</li>
+                <li>Google search finds relevant results</li>
+                <li>Gemini AI validates each result to ensure it's a blog/article</li>
+                <li>Results are ranked by relevance and displayed with explanations</li>
+            </ol>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Google Blog Search Engine - Using Google search with Gemini AI to find relevant blogs and articles</p>
+    </footer>
+    
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html> 

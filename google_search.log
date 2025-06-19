@@ -1,0 +1,300 @@
+2025-06-19 22:26:12,410 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.81.82.193:5000
+2025-06-19 22:26:12,410 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-19 22:26:12,412 - werkzeug - INFO -  * Restarting with stat
+2025-06-19 22:26:13,513 - werkzeug - WARNING -  * Debugger is active!
+2025-06-19 22:26:13,519 - werkzeug - INFO -  * Debugger PIN: 153-890-472
+2025-06-19 22:26:18,908 - werkzeug - INFO - 127.0.0.1 - - [19/Jun/2025 22:26:18] "GET / HTTP/1.1" 200 -
+2025-06-19 22:26:18,952 - werkzeug - INFO - 127.0.0.1 - - [19/Jun/2025 22:26:18] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-06-19 22:26:18,953 - werkzeug - INFO - 127.0.0.1 - - [19/Jun/2025 22:26:18] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-06-19 22:26:19,317 - werkzeug - INFO - 127.0.0.1 - - [19/Jun/2025 22:26:19] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-06-19 22:26:36,901 - google_search - INFO - Searching Google for: Learning python from basics
+2025-06-19 22:26:36,901 - google_search - INFO - Enhanced query: 'Learning python from basics' -> 'Learning python from basics blogs articles'
+2025-06-19 22:26:37,591 - google_search - ERROR - Error searching Google: 429 Client Error: Too Many Requests for url: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DLearning%2Bpython%2Bfrom%2Bbasics%2Bblogs%2Barticles%26num%3D62%26hl%3Den%26start%3D0%26safe%3Dactive&hl=en&q=EgRnJcniGMOC0cIGIjDxOsOamgpLS23o5xLiBEvNd5ztCcenVErXeY81cmB-zdqQGlvCMc8p-o6WudCjWqUyAnJSWgFD
+2025-06-19 22:26:37,592 - google_search_web - INFO - Google search query: 'Learning python from basics', found 0 results
+2025-06-19 22:26:37,598 - werkzeug - INFO - 127.0.0.1 - - [19/Jun/2025 22:26:37] "GET /search?q=Learning+python+from+basics HTTP/1.1" 200 -
+2025-06-19 22:26:37,632 - werkzeug - INFO - 127.0.0.1 - - [19/Jun/2025 22:26:37] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-19 22:26:37,633 - werkzeug - INFO - 127.0.0.1 - - [19/Jun/2025 22:26:37] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-19 22:26:40,537 - google_search - INFO - Searching Google for: Learning python from basics
+2025-06-19 22:26:40,538 - google_search - INFO - Enhanced query: 'Learning python from basics' -> 'Learning python from basics blogs articles'
+2025-06-19 22:26:40,780 - google_search - INFO - Searching Google for: Learning python from basics
+2025-06-19 22:26:40,781 - google_search - INFO - Enhanced query: 'Learning python from basics' -> 'Learning python from basics blogs articles'
+2025-06-19 22:26:40,992 - google_search - INFO - Searching Google for: Learning python from basics
+2025-06-19 22:26:40,992 - google_search - INFO - Enhanced query: 'Learning python from basics' -> 'Learning python from basics blogs articles'
+2025-06-19 22:26:41,115 - google_search - ERROR - Error searching Google: 429 Client Error: Too Many Requests for url: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DLearning%2Bpython%2Bfrom%2Bbasics%2Bblogs%2Barticles%26num%3D62%26hl%3Den%26start%3D0%26safe%3Dactive&hl=en&q=EgRnJcniGMaC0cIGIjACa4ME7D-uvLWyQuicdzqgpsHQjQrxTnTJ4XQAtCBKCo4xycTChnZXnBqEsDoNw1QyAnJSWgFD
+2025-06-19 22:26:41,116 - google_search_web - INFO - Google search query: 'Learning python from basics', found 0 results
+2025-06-19 22:26:41,117 - werkzeug - INFO - 127.0.0.1 - - [19/Jun/2025 22:26:41] "GET /search?q=Learning+python+from+basics HTTP/1.1" 200 -
+2025-06-19 22:26:41,554 - google_search - ERROR - Error searching Google: 429 Client Error: Too Many Requests for url: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DLearning%2Bpython%2Bfrom%2Bbasics%2Bblogs%2Barticles%26num%3D62%26hl%3Den%26start%3D0%26safe%3Dactive&hl=en&q=EgRnJcniGMeC0cIGIjAnqhIKj2C4220culbdopIlnrS8axiEA_WzBzhGDLtKOTjC07qOTCYeNA9xoOgeIM8yAnJSWgFD
+2025-06-19 22:26:41,555 - google_search_web - INFO - Google search query: 'Learning python from basics', found 0 results
+2025-06-19 22:26:41,556 - werkzeug - INFO - 127.0.0.1 - - [19/Jun/2025 22:26:41] "GET /search?q=Learning+python+from+basics HTTP/1.1" 200 -
+2025-06-19 22:26:41,786 - google_search - ERROR - Error searching Google: 429 Client Error: Too Many Requests for url: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3DLearning%2Bpython%2Bfrom%2Bbasics%2Bblogs%2Barticles%26num%3D62%26hl%3Den%26start%3D0%26safe%3Dactive&hl=en&q=EgRnJcniGMeC0cIGIjAnqhIKj2C4220culbdopIlnrS8axiEA_WzBzhGDLtKOTjC07qOTCYeNA9xoOgeIM8yAnJSWgFD
+2025-06-19 22:26:41,787 - google_search_web - INFO - Google search query: 'Learning python from basics', found 0 results
+2025-06-19 22:26:41,788 - werkzeug - INFO - 127.0.0.1 - - [19/Jun/2025 22:26:41] "GET /search?q=Learning+python+from+basics HTTP/1.1" 200 -
+2025-06-19 22:26:41,814 - werkzeug - INFO - 127.0.0.1 - - [19/Jun/2025 22:26:41] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-19 22:26:41,815 - werkzeug - INFO - 127.0.0.1 - - [19/Jun/2025 22:26:41] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-19 23:22:07,056 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.81.82.193:5000
+2025-06-19 23:22:07,056 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-19 23:22:07,057 - werkzeug - INFO -  * Restarting with stat
+2025-06-19 23:22:08,100 - werkzeug - WARNING -  * Debugger is active!
+2025-06-19 23:22:08,104 - werkzeug - INFO -  * Debugger PIN: 896-124-457
+2025-06-19 23:48:30,977 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.81.82.193:5000
+2025-06-19 23:48:30,977 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-19 23:48:30,979 - werkzeug - INFO -  * Restarting with stat
+2025-06-19 23:48:31,876 - werkzeug - WARNING -  * Debugger is active!
+2025-06-19 23:48:31,880 - werkzeug - INFO -  * Debugger PIN: 594-678-028
+2025-06-19 23:48:37,076 - werkzeug - INFO - 127.0.0.1 - - [19/Jun/2025 23:48:37] "GET / HTTP/1.1" 200 -
+2025-06-19 23:48:37,232 - werkzeug - INFO - 127.0.0.1 - - [19/Jun/2025 23:48:37] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-06-19 23:48:37,233 - werkzeug - INFO - 127.0.0.1 - - [19/Jun/2025 23:48:37] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-06-19 23:48:37,282 - werkzeug - INFO - 127.0.0.1 - - [19/Jun/2025 23:48:37] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-06-19 23:48:46,927 - google_search - INFO - Searching Google for: python for beginners
+2025-06-19 23:48:46,927 - google_search - INFO - Enhanced query: 'python for beginners' -> 'python for beginners blogs articles'
+2025-06-19 23:49:04,774 - google_search_web - INFO - Google search query: 'python for beginners', found 30 results
+2025-06-19 23:49:04,774 - google_search_web - INFO - Result 1: Python For Beginners | Python.org - https://www.python.org/about/gettingstarted/
+2025-06-19 23:49:04,774 - google_search_web - INFO - Result 2: www.datacamp.com - https://www.datacamp.com/blog/category/python
+2025-06-19 23:49:04,774 - google_search_web - INFO - Result 3: Our Blogs | Python.org - https://www.python.org/blogs/
+2025-06-19 23:49:04,775 - google_search_web - INFO - Result 4: Top 14 Blogs to Get You Started on Python - https://www.stxnext.com/blog/top-10-blogs-python
+2025-06-19 23:49:04,775 - google_search_web - INFO - Result 5: Python Articles | Codecademy - https://www.codecademy.com/articles/language/python
+2025-06-19 23:49:04,783 - werkzeug - INFO - 127.0.0.1 - - [19/Jun/2025 23:49:04] "GET /search?q=python+for+beginners HTTP/1.1" 200 -
+2025-06-19 23:49:04,797 - werkzeug - INFO - 127.0.0.1 - - [19/Jun/2025 23:49:04] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-19 23:49:04,800 - werkzeug - INFO - 127.0.0.1 - - [19/Jun/2025 23:49:04] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-20 00:00:34,007 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.81.82.193:5000
+2025-06-20 00:00:34,007 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-20 00:00:34,017 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-06-20 00:00:34,662 - werkzeug - WARNING -  * Debugger is active!
+2025-06-20 00:00:34,665 - werkzeug - INFO -  * Debugger PIN: 989-234-245
+2025-06-20 00:00:37,971 - werkzeug - INFO - 127.0.0.1 - - [20/Jun/2025 00:00:37] "GET / HTTP/1.1" 200 -
+2025-06-20 00:00:38,019 - werkzeug - INFO - 127.0.0.1 - - [20/Jun/2025 00:00:38] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-20 00:00:38,026 - werkzeug - INFO - 127.0.0.1 - - [20/Jun/2025 00:00:38] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-20 00:00:50,383 - fast_tfidf_search - INFO - Searching Google for: Real estate property
+2025-06-20 00:00:50,384 - fast_tfidf_search - INFO - Enhanced query: 'Real estate property' -> 'Real estate property blogs articles'
+2025-06-20 00:00:54,201 - fast_tfidf_search - ERROR - Error fetching metadata for https://www.adanirealty.com/blogs?srsltid=AfmBOoon1MhHdRkCpzAlr2UYbiB1SwznhF0tOw1_h6Ya0E3q7H0dk6oi: HTTPSConnectionPool(host='www.adanirealty.com', port=443): Read timed out. (read timeout=3)
+2025-06-20 00:00:58,001 - fast_tfidf_search - ERROR - Error fetching metadata for https://www.southdelhifloors.com/blog/: HTTPSConnectionPool(host='www.southdelhifloors.com', port=443): Read timed out. (read timeout=3)
+2025-06-20 00:00:58,753 - fast_tfidf_search - ERROR - Error fetching metadata for https://www.theamaryllis.in/blog: HTTPSConnectionPool(host='www.theamaryllis.in', port=443): Max retries exceeded with url: /blog (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1018)')))
+2025-06-20 00:01:00,189 - fast_tfidf_search - ERROR - Error fetching metadata for https://feather.so/blog/real-estate-blog-post-ideas: HTTPSConnectionPool(host='feather.so', port=443): Read timed out. (read timeout=3)
+2025-06-20 00:01:02,860 - urllib3.connection - WARNING - Failed to parse headers (url=https://www.homes247.in:443/blogs/indian-realestate-articles-17): [MissingHeaderBodySeparatorDefect()], unparsed data: 'Expire Headers: Tue, 19 Jan 2038 03:14:07 GMT\r\nDate: Thu, 19 Jun 2025 18:31:00 GMT\r\n\r\n'
+Traceback (most recent call last):
+  File "C:\Users\adars\AppData\Roaming\Python\Python313\site-packages\urllib3\connection.py", line 519, in getresponse
+    assert_header_parsing(httplib_response.msg)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\adars\AppData\Roaming\Python\Python313\site-packages\urllib3\util\response.py", line 88, in assert_header_parsing
+    raise HeaderParsingError(defects=defects, unparsed_data=unparsed_data)
+urllib3.exceptions.HeaderParsingError: [MissingHeaderBodySeparatorDefect()], unparsed data: 'Expire Headers: Tue, 19 Jan 2038 03:14:07 GMT\r\nDate: Thu, 19 Jun 2025 18:31:00 GMT\r\n\r\n'
+2025-06-20 00:01:03,135 - fast_tfidf_search - ERROR - Error fetching metadata for https://www.piramalrealty.com/blogs: HTTPSConnectionPool(host='www.piramalrealty.com', port=443): Max retries exceeded with url: /blogs (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1018)')))
+2025-06-20 00:01:06,327 - fast_tfidf_search - INFO - Searching Google for: Real estate property
+2025-06-20 00:01:06,327 - fast_tfidf_search - INFO - Enhanced query: 'Real estate property' -> 'Real estate property blogs articles'
+2025-06-20 00:01:08,156 - fast_tfidf_search - ERROR - Error fetching metadata for https://www.savills.in/insight-and-opinion/the-savills-blog.aspx: HTTPSConnectionPool(host='www.savills.in', port=443): Read timed out. (read timeout=3)
+2025-06-20 00:01:08,165 - fast_tfidf_search - INFO - TF-IDF validation completed in 0.01 seconds
+2025-06-20 00:01:08,167 - google_search_web - INFO - Google search query: 'Real estate property', found 30 results
+2025-06-20 00:01:08,168 - google_search_web - INFO - Result 1: How To Start a Real Estate Blog In 6 Simple Steps - https://www.wix.com/blog/how-to-start-a-real-estate-blog
+2025-06-20 00:01:08,168 - google_search_web - INFO - Result 2: 80+ Ever-Lasting Real Estate Blog Post Ideas List [+ Title Ideas] - https://bowwe.com/blog/real-estate-blog-post-ideas
+2025-06-20 00:01:08,168 - google_search_web - INFO - Result 3: Ghar.tv Blog - Indian Real Estate News, Trends & Market Insights - https://www.ghar.tv/blog/
+2025-06-20 00:01:08,168 - google_search_web - INFO - Result 4: Real Estate Property Blog India, Property Investment India Advice Tips Trends - https://www.guptasen.com/blog/
+2025-06-20 00:01:08,168 - google_search_web - INFO - Result 5: Real Estate Industry News & Insights - https://www.magicbricks.com/blog/
+2025-06-20 00:01:08,177 - werkzeug - INFO - 127.0.0.1 - - [20/Jun/2025 00:01:08] "GET /search?q=Real+estate+property HTTP/1.1" 200 -
+2025-06-20 00:01:09,892 - fast_tfidf_search - ERROR - Error fetching metadata for https://www.adanirealty.com/blogs?srsltid=AfmBOooGNByYYloiSlh7FTmjNn8XII2Cx2FF5GU18uLLFyPpYb_cpJuI: HTTPSConnectionPool(host='www.adanirealty.com', port=443): Read timed out. (read timeout=3)
+2025-06-20 00:01:10,311 - fast_tfidf_search - ERROR - Error fetching metadata for https://www.southdelhifloors.com/blog/: HTTPSConnectionPool(host='www.southdelhifloors.com', port=443): Read timed out. (read timeout=3)
+2025-06-20 00:01:13,266 - fast_tfidf_search - ERROR - Error fetching metadata for https://www.theamaryllis.in/blog: HTTPSConnectionPool(host='www.theamaryllis.in', port=443): Max retries exceeded with url: /blog (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1018)')))
+2025-06-20 00:01:18,336 - fast_tfidf_search - ERROR - Error fetching metadata for https://www.piramalrealty.com/blogs: HTTPSConnectionPool(host='www.piramalrealty.com', port=443): Max retries exceeded with url: /blogs (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1018)')))
+2025-06-20 00:01:18,376 - urllib3.connection - WARNING - Failed to parse headers (url=https://www.homes247.in:443/blogs/indian-realestate-articles-17): [MissingHeaderBodySeparatorDefect()], unparsed data: 'Expire Headers: Tue, 19 Jan 2038 03:14:07 GMT\r\nDate: Thu, 19 Jun 2025 18:31:16 GMT\r\n\r\n'
+Traceback (most recent call last):
+  File "C:\Users\adars\AppData\Roaming\Python\Python313\site-packages\urllib3\connection.py", line 519, in getresponse
+    assert_header_parsing(httplib_response.msg)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\adars\AppData\Roaming\Python\Python313\site-packages\urllib3\util\response.py", line 88, in assert_header_parsing
+    raise HeaderParsingError(defects=defects, unparsed_data=unparsed_data)
+urllib3.exceptions.HeaderParsingError: [MissingHeaderBodySeparatorDefect()], unparsed data: 'Expire Headers: Tue, 19 Jan 2038 03:14:07 GMT\r\nDate: Thu, 19 Jun 2025 18:31:16 GMT\r\n\r\n'
+2025-06-20 00:01:22,318 - fast_tfidf_search - ERROR - Error fetching metadata for https://www.savills.in/insight-and-opinion/the-savills-blog.aspx: HTTPSConnectionPool(host='www.savills.in', port=443): Read timed out. (read timeout=3)
+2025-06-20 00:01:22,324 - fast_tfidf_search - INFO - TF-IDF validation completed in 0.01 seconds
+2025-06-20 00:01:22,326 - google_search_web - INFO - Google search query: 'Real estate property', found 30 results
+2025-06-20 00:01:22,326 - google_search_web - INFO - Result 1: How To Start a Real Estate Blog In 6 Simple Steps - https://www.wix.com/blog/how-to-start-a-real-estate-blog
+2025-06-20 00:01:22,327 - google_search_web - INFO - Result 2: 80+ Ever-Lasting Real Estate Blog Post Ideas List [+ Title Ideas] - https://bowwe.com/blog/real-estate-blog-post-ideas
+2025-06-20 00:01:22,327 - google_search_web - INFO - Result 3: Ghar.tv Blog - Indian Real Estate News, Trends & Market Insights - https://www.ghar.tv/blog/
+2025-06-20 00:01:22,327 - google_search_web - INFO - Result 4: 120 Best Real Estate Blog Post Ideas For Real Estate Businesses - https://feather.so/blog/real-estate-blog-post-ideas
+2025-06-20 00:01:22,328 - google_search_web - INFO - Result 5: Real Estate Property Blog India, Property Investment India Advice Tips Trends - https://www.guptasen.com/blog/
+2025-06-20 00:01:22,329 - werkzeug - INFO - 127.0.0.1 - - [20/Jun/2025 00:01:22] "GET /search?q=Real+estate+property HTTP/1.1" 200 -
+2025-06-20 00:01:22,351 - werkzeug - INFO - 127.0.0.1 - - [20/Jun/2025 00:01:22] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-20 00:01:22,352 - werkzeug - INFO - 127.0.0.1 - - [20/Jun/2025 00:01:22] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-20 00:02:20,400 - fast_tfidf_search - INFO - Using cached results for query: Real estate property
+2025-06-20 00:02:20,400 - google_search_web - INFO - Google search query: 'Real estate property', found 30 results
+2025-06-20 00:02:20,400 - google_search_web - INFO - Result 1: How To Start a Real Estate Blog In 6 Simple Steps - https://www.wix.com/blog/how-to-start-a-real-estate-blog
+2025-06-20 00:02:20,401 - google_search_web - INFO - Result 2: 80+ Ever-Lasting Real Estate Blog Post Ideas List [+ Title Ideas] - https://bowwe.com/blog/real-estate-blog-post-ideas
+2025-06-20 00:02:20,401 - google_search_web - INFO - Result 3: Ghar.tv Blog - Indian Real Estate News, Trends & Market Insights - https://www.ghar.tv/blog/
+2025-06-20 00:02:20,401 - google_search_web - INFO - Result 4: 120 Best Real Estate Blog Post Ideas For Real Estate Businesses - https://feather.so/blog/real-estate-blog-post-ideas
+2025-06-20 00:02:20,401 - google_search_web - INFO - Result 5: Real Estate Property Blog India, Property Investment India Advice Tips Trends - https://www.guptasen.com/blog/
+2025-06-20 00:02:20,402 - werkzeug - INFO - 127.0.0.1 - - [20/Jun/2025 00:02:20] "GET /search?q=Real%20estate%20property&page=2 HTTP/1.1" 200 -
+2025-06-20 00:02:20,414 - werkzeug - INFO - 127.0.0.1 - - [20/Jun/2025 00:02:20] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-20 00:02:20,417 - werkzeug - INFO - 127.0.0.1 - - [20/Jun/2025 00:02:20] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-20 00:02:39,348 - fast_tfidf_search - INFO - Using cached results for query: python for beginners
+2025-06-20 00:02:39,348 - google_search_web - INFO - Google search query: 'python for beginners', found 30 results
+2025-06-20 00:02:39,348 - google_search_web - INFO - Result 1: Python For Beginners | Python.org - https://www.python.org/about/gettingstarted/
+2025-06-20 00:02:39,349 - google_search_web - INFO - Result 2: www.datacamp.com - https://www.datacamp.com/blog/category/python
+2025-06-20 00:02:39,349 - google_search_web - INFO - Result 3: Our Blogs | Python.org - https://www.python.org/blogs/
+2025-06-20 00:02:39,349 - google_search_web - INFO - Result 4: Top 14 Blogs to Get You Started on Python - https://www.stxnext.com/blog/top-10-blogs-python
+2025-06-20 00:02:39,349 - google_search_web - INFO - Result 5: Python Articles | Codecademy - https://www.codecademy.com/articles/language/python
+2025-06-20 00:02:39,350 - werkzeug - INFO - 127.0.0.1 - - [20/Jun/2025 00:02:39] "GET /search?q=python+for+beginners HTTP/1.1" 200 -
+2025-06-20 00:02:39,362 - werkzeug - INFO - 127.0.0.1 - - [20/Jun/2025 00:02:39] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-20 00:02:39,366 - werkzeug - INFO - 127.0.0.1 - - [20/Jun/2025 00:02:39] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-20 00:08:51,206 - werkzeug - INFO -  * Detected change in 'D:\\cpp\\search_engine\\config.py', reloading
+2025-06-20 00:08:51,206 - werkzeug - INFO -  * Detected change in 'D:\\cpp\\search_engine\\config.py', reloading
+2025-06-20 00:08:51,206 - werkzeug - INFO -  * Detected change in 'D:\\cpp\\search_engine\\config.py', reloading
+2025-06-20 00:08:51,414 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-06-20 00:08:52,144 - werkzeug - WARNING -  * Debugger is active!
+2025-06-20 00:08:52,148 - werkzeug - INFO -  * Debugger PIN: 989-234-245
+2025-06-20 00:10:20,061 - werkzeug - INFO -  * Detected change in 'D:\\cpp\\search_engine\\scripts\\blog_crawler.py', reloading
+2025-06-20 00:10:20,070 - werkzeug - INFO -  * Detected change in 'D:\\cpp\\search_engine\\scripts\\blog_crawler.py', reloading
+2025-06-20 00:10:20,071 - werkzeug - INFO -  * Detected change in 'D:\\cpp\\search_engine\\scripts\\blog_crawler.py', reloading
+2025-06-20 00:10:20,206 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-06-20 00:10:20,893 - werkzeug - WARNING -  * Debugger is active!
+2025-06-20 00:10:20,896 - werkzeug - INFO -  * Debugger PIN: 989-234-245
+2025-06-20 00:10:22,085 - werkzeug - INFO -  * Detected change in 'D:\\cpp\\search_engine\\scripts\\blog_crawler.py', reloading
+2025-06-20 00:10:22,093 - werkzeug - INFO -  * Detected change in 'D:\\cpp\\search_engine\\scripts\\blog_crawler.py', reloading
+2025-06-20 00:10:22,093 - werkzeug - INFO -  * Detected change in 'D:\\cpp\\search_engine\\scripts\\blog_crawler.py', reloading
+2025-06-20 00:10:22,341 - werkzeug - INFO -  * Detected change in 'D:\\cpp\\search_engine\\scripts\\blog_crawler.py', reloading
+2025-06-20 00:10:22,350 - werkzeug - INFO -  * Detected change in 'D:\\cpp\\search_engine\\scripts\\blog_crawler.py', reloading
+2025-06-20 00:10:22,350 - werkzeug - INFO -  * Detected change in 'D:\\cpp\\search_engine\\scripts\\blog_crawler.py', reloading
+2025-06-20 00:10:22,990 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-06-20 00:10:23,598 - werkzeug - WARNING -  * Debugger is active!
+2025-06-20 00:10:23,602 - werkzeug - INFO -  * Debugger PIN: 989-234-245
+2025-06-20 00:11:38,453 - werkzeug - INFO -  * Detected change in 'D:\\cpp\\search_engine\\config.py', reloading
+2025-06-20 00:11:38,454 - werkzeug - INFO -  * Detected change in 'D:\\cpp\\search_engine\\config.py', reloading
+2025-06-20 00:11:38,520 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-06-20 00:11:39,209 - werkzeug - WARNING -  * Debugger is active!
+2025-06-20 00:11:39,213 - werkzeug - INFO -  * Debugger PIN: 989-234-245
+2025-06-20 00:12:05,082 - werkzeug - INFO -  * Detected change in 'D:\\cpp\\search_engine\\scripts\\fast_tfidf_search.py', reloading
+2025-06-20 00:12:05,083 - werkzeug - INFO -  * Detected change in 'D:\\cpp\\search_engine\\scripts\\fast_tfidf_search.py', reloading
+2025-06-20 00:12:05,208 - werkzeug - INFO -  * Detected change in 'D:\\cpp\\search_engine\\scripts\\fast_tfidf_search.py', reloading
+2025-06-20 00:12:05,208 - werkzeug - INFO -  * Detected change in 'D:\\cpp\\search_engine\\scripts\\fast_tfidf_search.py', reloading
+2025-06-20 00:12:05,581 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-06-20 00:12:06,193 - fast_tfidf_search - INFO - Loaded 31 seed URLs from seed_urls.txt
+2025-06-20 00:12:06,193 - fast_tfidf_search - INFO - Starting background crawl of seed URLs
+2025-06-20 00:12:06,194 - blog_crawler - INFO - Starting crawl of 31 seed URLs
+2025-06-20 00:12:06,227 - werkzeug - WARNING -  * Debugger is active!
+2025-06-20 00:12:06,230 - werkzeug - INFO -  * Debugger PIN: 989-234-245
+2025-06-20 00:12:12,384 - blog_crawler - ERROR - Error fetching https://www.swyx.io/: HTTPSConnectionPool(host='www.swyx.io', port=443): Read timed out. (read timeout=3)
+2025-06-20 00:12:23,873 - blog_crawler - ERROR - Error fetching https://blog.beeminder.com/tag/rationality/: HTTPSConnectionPool(host='blog.beeminder.com', port=443): Max retries exceeded with url: /tag/rationality/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x00000247D528F390>, 'Connection to blog.beeminder.com timed out. (connect timeout=3)'))
+2025-06-20 00:12:31,682 - blog_crawler - ERROR - Error fetching https://www.sacbee.com/news/california/article245534855.html: HTTPSConnectionPool(host='www.sacbee.com', port=443): Read timed out. (read timeout=3)
+2025-06-20 00:13:59,409 - werkzeug - INFO -  * Detected change in 'D:\\cpp\\search_engine\\web\\app.py', reloading
+2025-06-20 00:13:59,424 - werkzeug - INFO -  * Detected change in 'D:\\cpp\\search_engine\\web\\app.py', reloading
+2025-06-20 00:13:59,566 - werkzeug - INFO -  * Detected change in 'D:\\cpp\\search_engine\\web\\app.py', reloading
+2025-06-20 00:23:37,728 - fast_tfidf_search - INFO - Loaded 31 seed URLs from seed_urls.txt
+2025-06-20 00:23:37,728 - fast_tfidf_search - INFO - Starting background crawl of seed URLs
+2025-06-20 00:23:37,729 - blog_crawler - INFO - Starting crawl of 31 seed URLs
+2025-06-20 00:23:37,780 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.81.82.193:5000
+2025-06-20 00:23:37,780 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-20 00:23:37,792 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-06-20 00:23:38,470 - fast_tfidf_search - INFO - Loaded 31 seed URLs from seed_urls.txt
+2025-06-20 00:23:38,470 - fast_tfidf_search - INFO - Starting background crawl of seed URLs
+2025-06-20 00:23:38,471 - blog_crawler - INFO - Starting crawl of 31 seed URLs
+2025-06-20 00:23:38,508 - werkzeug - WARNING -  * Debugger is active!
+2025-06-20 00:23:38,512 - werkzeug - INFO -  * Debugger PIN: 989-234-245
+2025-06-20 00:23:44,467 - blog_crawler - ERROR - Error fetching https://www.swyx.io/: HTTPSConnectionPool(host='www.swyx.io', port=443): Read timed out. (read timeout=3)
+2025-06-20 00:23:45,873 - blog_crawler - ERROR - Error fetching https://www.swyx.io/: HTTPSConnectionPool(host='www.swyx.io', port=443): Read timed out. (read timeout=3)
+2025-06-20 00:23:49,520 - blog_crawler - ERROR - Error fetching https://waitbutwhy.com/2013/12/how-to-name-baby.html: HTTPSConnectionPool(host='waitbutwhy.com', port=443): Read timed out. (read timeout=3)
+2025-06-20 00:23:54,910 - blog_crawler - ERROR - Error fetching https://blog.beeminder.com/tag/rationality/: HTTPSConnectionPool(host='blog.beeminder.com', port=443): Max retries exceeded with url: /tag/rationality/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001AF54CB5450>, 'Connection to blog.beeminder.com timed out. (connect timeout=3)'))
+2025-06-20 00:23:58,990 - blog_crawler - ERROR - Error fetching https://blog.beeminder.com/tag/rationality/: HTTPSConnectionPool(host='blog.beeminder.com', port=443): Max retries exceeded with url: /tag/rationality/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x00000265232F39D0>, 'Connection to blog.beeminder.com timed out. (connect timeout=3)'))
+2025-06-20 00:24:00,480 - blog_crawler - ERROR - Error fetching https://www.sacbee.com/news/california/article245534855.html: HTTPSConnectionPool(host='www.sacbee.com', port=443): Read timed out. (read timeout=3)
+2025-06-20 00:24:02,533 - werkzeug - INFO -  * Detected change in 'D:\\cpp\\search_engine\\scripts\\tfidf_validator.py', reloading
+2025-06-20 00:24:02,563 - blog_crawler - ERROR - Error fetching https://www.sacbee.com/news/california/article245534855.html: HTTPSConnectionPool(host='www.sacbee.com', port=443): Read timed out. (read timeout=3)
+2025-06-20 00:24:02,828 - werkzeug - INFO -  * Detected change in 'D:\\cpp\\search_engine\\scripts\\tfidf_validator.py', reloading
+2025-06-20 00:24:12,571 - blog_crawler - ERROR - Error fetching https://www.mrmoneymustache.com/blog: HTTPSConnectionPool(host='www.mrmoneymustache.com', port=443): Read timed out. (read timeout=3)
+2025-06-20 00:24:35,280 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-06-20 00:24:36,015 - blog_crawler - ERROR - Error loading discovered blogs: Expecting value: line 1 column 1 (char 0)
+2025-06-20 00:24:36,016 - fast_tfidf_search - INFO - Loaded 31 seed URLs from seed_urls.txt
+2025-06-20 00:24:36,016 - fast_tfidf_search - INFO - Starting background crawl of seed URLs
+2025-06-20 00:24:36,017 - blog_crawler - INFO - Starting crawl of 31 seed URLs
+2025-06-20 00:24:36,056 - werkzeug - WARNING -  * Debugger is active!
+2025-06-20 00:24:36,059 - werkzeug - INFO -  * Debugger PIN: 989-234-245
+2025-06-20 00:24:36,094 - werkzeug - INFO - 127.0.0.1 - - [20/Jun/2025 00:24:36] "GET / HTTP/1.1" 200 -
+2025-06-20 00:24:36,160 - werkzeug - INFO - 127.0.0.1 - - [20/Jun/2025 00:24:36] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-20 00:24:36,162 - werkzeug - INFO - 127.0.0.1 - - [20/Jun/2025 00:24:36] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-20 00:24:41,605 - blog_crawler - ERROR - Error fetching https://www.swyx.io/: HTTPSConnectionPool(host='www.swyx.io', port=443): Read timed out. (read timeout=3)
+2025-06-20 00:24:52,916 - blog_crawler - ERROR - Error fetching https://danluu.com/postmortem-lessons/: HTTPSConnectionPool(host='danluu.com', port=443): Read timed out. (read timeout=3)
+2025-06-20 00:24:57,972 - blog_crawler - ERROR - Error fetching https://blog.beeminder.com/tag/rationality/: HTTPSConnectionPool(host='blog.beeminder.com', port=443): Max retries exceeded with url: /tag/rationality/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x00000168FEEB8910>, 'Connection to blog.beeminder.com timed out. (connect timeout=3)'))
+2025-06-20 00:25:02,762 - blog_crawler - ERROR - Error fetching https://www.sacbee.com/news/california/article245534855.html: HTTPSConnectionPool(host='www.sacbee.com', port=443): Read timed out. (read timeout=3)
+2025-06-20 00:25:34,569 - blog_crawler - ERROR - Error fetching https://danluu.com/julialang/: HTTPSConnectionPool(host='danluu.com', port=443): Read timed out.
+2025-06-20 00:27:23,957 - blog_crawler - ERROR - Error loading discovered blogs: Expecting value: line 1 column 1 (char 0)
+2025-06-20 00:27:23,958 - fast_tfidf_search - INFO - Loaded 31 seed URLs from seed_urls.txt
+2025-06-20 00:27:23,958 - fast_tfidf_search - INFO - Starting background crawl of seed URLs
+2025-06-20 00:27:23,959 - blog_crawler - INFO - Starting crawl of 31 seed URLs
+2025-06-20 00:27:24,007 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.81.82.193:5000
+2025-06-20 00:27:24,008 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-20 00:27:24,016 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2025-06-20 00:27:24,700 - blog_crawler - ERROR - Error loading discovered blogs: Expecting value: line 1 column 1 (char 0)
+2025-06-20 00:27:24,700 - fast_tfidf_search - INFO - Loaded 31 seed URLs from seed_urls.txt
+2025-06-20 00:27:24,700 - fast_tfidf_search - INFO - Starting background crawl of seed URLs
+2025-06-20 00:27:24,701 - blog_crawler - INFO - Starting crawl of 31 seed URLs
+2025-06-20 00:27:24,737 - werkzeug - WARNING -  * Debugger is active!
+2025-06-20 00:27:24,741 - werkzeug - INFO -  * Debugger PIN: 989-234-245
+2025-06-20 00:27:27,802 - werkzeug - INFO - 127.0.0.1 - - [20/Jun/2025 00:27:27] "GET / HTTP/1.1" 200 -
+2025-06-20 00:27:28,129 - werkzeug - INFO - 127.0.0.1 - - [20/Jun/2025 00:27:28] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-20 00:27:28,407 - werkzeug - INFO - 127.0.0.1 - - [20/Jun/2025 00:27:28] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-20 00:27:30,402 - blog_crawler - ERROR - Error fetching https://www.swyx.io/: HTTPSConnectionPool(host='www.swyx.io', port=443): Read timed out. (read timeout=3)
+2025-06-20 00:27:30,620 - blog_crawler - ERROR - Error fetching https://www.swyx.io/: HTTPSConnectionPool(host='www.swyx.io', port=443): Read timed out. (read timeout=3)
+2025-06-20 00:27:40,469 - blog_crawler - ERROR - Error fetching https://blog.beeminder.com/tag/rationality/: HTTPSConnectionPool(host='blog.beeminder.com', port=443): Max retries exceeded with url: /tag/rationality/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000021740947750>, 'Connection to blog.beeminder.com timed out. (connect timeout=3)'))
+2025-06-20 00:27:43,125 - blog_crawler - ERROR - Error fetching https://blog.beeminder.com/tag/rationality/: HTTPSConnectionPool(host='blog.beeminder.com', port=443): Max retries exceeded with url: /tag/rationality/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000022614D9A210>, 'Connection to blog.beeminder.com timed out. (connect timeout=3)'))
+2025-06-20 00:27:46,564 - fast_tfidf_search - INFO - Searching Google for: python 
+2025-06-20 00:27:46,625 - fast_tfidf_search - INFO - Enhanced query: 'python ' -> 'python  blogs articles'
+2025-06-20 00:27:48,793 - blog_crawler - ERROR - Error fetching https://www.sacbee.com/news/california/article245534855.html: HTTPSConnectionPool(host='www.sacbee.com', port=443): Read timed out. (read timeout=3)
+2025-06-20 00:27:49,759 - blog_crawler - ERROR - Error fetching https://www.sacbee.com/news/california/article245534855.html: HTTPSConnectionPool(host='www.sacbee.com', port=443): Read timed out. (read timeout=3)
+2025-06-20 00:27:50,739 - fast_tfidf_search - INFO - Using cached results for query: python for beginners
+2025-06-20 00:27:50,785 - google_search_web - INFO - Google search query: 'python for beginners', found 30 results
+2025-06-20 00:27:50,863 - google_search_web - INFO - Result 1: Python For Beginners | Python.org - https://www.python.org/about/gettingstarted/ - Google Search
+2025-06-20 00:27:50,926 - google_search_web - INFO - Result 2: www.datacamp.com - https://www.datacamp.com/blog/category/python - Google Search
+2025-06-20 00:27:50,956 - google_search_web - INFO - Result 3: Our Blogs | Python.org - https://www.python.org/blogs/ - Google Search
+2025-06-20 00:27:50,972 - google_search_web - INFO - Result 4: Top 14 Blogs to Get You Started on Python - https://www.stxnext.com/blog/top-10-blogs-python - Google Search
+2025-06-20 00:27:51,128 - google_search_web - INFO - Result 5: Python Articles | Codecademy - https://www.codecademy.com/articles/language/python - Google Search
+2025-06-20 00:27:51,512 - werkzeug - INFO - 127.0.0.1 - - [20/Jun/2025 00:27:51] "GET /search?q=python+for+beginners HTTP/1.1" 200 -
+2025-06-20 00:27:51,990 - werkzeug - INFO - 127.0.0.1 - - [20/Jun/2025 00:27:51] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-20 00:27:52,051 - werkzeug - INFO - 127.0.0.1 - - [20/Jun/2025 00:27:52] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-20 00:28:01,774 - fast_tfidf_search - INFO - Searching Google for: typescript learning
+2025-06-20 00:28:01,806 - fast_tfidf_search - INFO - Enhanced query: 'typescript learning' -> 'typescript learning blogs articles'
+2025-06-20 00:28:10,154 - fast_tfidf_search - ERROR - Error fetching metadata for https://jonathansexton.me/blog/learn-typescript-data-types-from-zero-to-hero/: HTTPSConnectionPool(host='jonathansexton.me', port=443): Max retries exceeded with url: /blog/learn-typescript-data-types-from-zero-to-hero/ (Caused by SSLError(SSLCertVerificationError(1, "[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'jonathansexton.me'. (_ssl.c:1018)")))
+2025-06-20 00:28:11,393 - fast_tfidf_search - INFO - TF-IDF validation completed in 0.02 seconds
+2025-06-20 00:28:12,191 - google_search_web - INFO - Google search query: 'python ', found 30 results
+2025-06-20 00:28:12,315 - google_search_web - INFO - Result 1: Python Blog | LearnPython.com - https://learnpython.com/blog/ - Google Search
+2025-06-20 00:28:12,471 - google_search_web - INFO - Result 2: Blog - The Python Coding Book - https://thepythoncodingbook.com/blog/ - Google Search
+2025-06-20 00:28:12,563 - google_search_web - INFO - Result 3: Python Blogs - PW Skills Blog - https://pwskills.com/blog/python/ - Google Search
+2025-06-20 00:28:12,611 - google_search_web - INFO - Result 4: Best Python Blogs to Follow | LearnPython.com - https://learnpython.com/blog/python-blogs/ - Google Search
+2025-06-20 00:28:12,667 - google_search_web - INFO - Result 5: Blog &#8226; Python Land - https://python.land/blog - Google Search
+2025-06-20 00:28:12,847 - werkzeug - INFO - 127.0.0.1 - - [20/Jun/2025 00:28:12] "GET /search?q=python+ HTTP/1.1" 200 -
+2025-06-20 00:28:37,544 - fast_tfidf_search - INFO - TF-IDF validation completed in 0.03 seconds
+2025-06-20 00:28:37,967 - google_search_web - INFO - Google search query: 'typescript learning', found 30 results
+2025-06-20 00:28:38,124 - google_search_web - INFO - Result 1: Learning TypeScript | Blog - https://selfmadedev.com/blog/2019-09/learning-typescript/ - Google Search
+2025-06-20 00:28:38,170 - google_search_web - INFO - Result 2: Blog: TypeScript - https://serokell.io/blog/typescript - Google Search
+2025-06-20 00:28:38,263 - google_search_web - INFO - Result 3: What is TypeScript? A Beginner&#039;s Guide [2025] - https://www.guvi.in/blog/what-is-typescript/ - Google Search
+2025-06-20 00:28:38,311 - google_search_web - INFO - Result 4: Articles about typescript | Barbarian Meets Coding - https://www.barbarianmeetscoding.com/blog/categories/typescript/ - Google Search
+2025-06-20 00:28:38,343 - google_search_web - INFO - Result 5: Learn TypeScript: Why Should I Use It? - Snipcart - https://snipcart.com/blog/learn-typescript-why-use-ts - Google Search
+2025-06-20 00:28:38,436 - werkzeug - INFO - 127.0.0.1 - - [20/Jun/2025 00:28:38] "GET /search?q=typescript+learning HTTP/1.1" 200 -
+2025-06-20 00:28:38,824 - werkzeug - INFO - 127.0.0.1 - - [20/Jun/2025 00:28:38] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-20 00:28:38,856 - werkzeug - INFO - 127.0.0.1 - - [20/Jun/2025 00:28:38] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-20 00:28:57,315 - fast_tfidf_search - INFO - Searching Google for: AI Agents
+2025-06-20 00:28:57,376 - fast_tfidf_search - INFO - Enhanced query: 'AI Agents' -> 'AI Agents blogs articles'
+2025-06-20 00:29:15,457 - fast_tfidf_search - ERROR - Error fetching metadata for https://redblink.com/ai-agents-for-content-creation/: HTTPSConnectionPool(host='redblink.com', port=443): Read timed out. (read timeout=3)
+2025-06-20 00:29:18,263 - fast_tfidf_search - ERROR - Error fetching metadata for https://www.servicenow.com/blogs/2025/unlock-productivity-ai-agent-solutions: HTTPSConnectionPool(host='www.servicenow.com', port=443): Read timed out. (read timeout=3)
+2025-06-20 00:29:31,290 - fast_tfidf_search - INFO - TF-IDF validation completed in 0.01 seconds
+2025-06-20 00:29:32,013 - google_search_web - INFO - Google search query: 'AI Agents', found 30 results
+2025-06-20 00:29:32,060 - google_search_web - INFO - Result 1: Blog | AI Agents - https://www.akira.ai/blog/tag/ai-agents - Google Search
+2025-06-20 00:29:36,066 - google_search_web - INFO - Result 3: Top 14 AI Agents Use Cases | Miquido Blog - https://www.miquido.com/blog/ai-agents-use-cases/ - Google Search
+2025-06-20 00:29:36,144 - google_search_web - INFO - Result 4: AI Agents - Definition and Types of AI Agents - https://www.xenonstack.com/blog/ai-agents - Google Search
+2025-06-20 00:29:36,191 - google_search_web - INFO - Result 5: AI Agents Explained: The Essential Guide for Enterprise Success - https://yellow.ai/blog/ai-agents/ - Google Search
+2025-06-20 00:29:36,269 - werkzeug - INFO - 127.0.0.1 - - [20/Jun/2025 00:29:36] "GET /search?q=AI+Agents HTTP/1.1" 200 -
+2025-06-20 00:29:36,596 - werkzeug - INFO - 127.0.0.1 - - [20/Jun/2025 00:29:36] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-20 00:29:36,628 - werkzeug - INFO - 127.0.0.1 - - [20/Jun/2025 00:29:36] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-20 00:29:45,134 - blog_crawler - ERROR - Error fetching https://www.lesswrong.com/posts/bJ2haLkcGeLtTWaD5/welcome-to-lesswrong: HTTPSConnectionPool(host='www.lesswrong.com', port=443): Read timed out. (read timeout=3)

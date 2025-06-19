@@ -1,0 +1,7 @@
+flask
+python-dotenv
+googlesearch-python
+google-generativeai
+requests
+numpy
+beautifulsoup4 
