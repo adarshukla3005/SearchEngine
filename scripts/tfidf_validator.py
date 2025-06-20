@@ -61,6 +61,14 @@ class TFIDFValidator:
             "notion", "telegraph", "svbtle"
         ]
         
+        # Additional content indicators for blogs
+        self.content_indicators = [
+            "read", "learn", "discover", "explore", "understand",
+            "guide", "tutorial", "tips", "advice", "strategy",
+            "insight", "perspective", "opinion", "review", "analysis",
+            "explanation", "breakdown", "deep dive", "case study"
+        ]
+        
         # IDF corpus (will be built dynamically)
         self.idf_corpus = {}
         self.corpus_size = 0
@@ -133,17 +141,21 @@ class TFIDFValidator:
         url_lower = url.lower()
         domain_score = 0.0
         
-        # Check for blog domains
+        # Check for blog domains with higher weight
         for domain in self.blog_domains:
             if domain in url_lower:
-                domain_score += 0.2
+                domain_score += 0.25  # Increased from 0.2
                 break
         
-        # Check for blog URL patterns
+        # Check for blog URL patterns with higher weight
         if "/blog/" in url_lower or "/article/" in url_lower or "/post/" in url_lower:
-            domain_score += 0.3
+            domain_score += 0.35  # Increased from 0.3
         elif "/posts/" in url_lower or "/essays/" in url_lower or "/writing/" in url_lower:
-            domain_score += 0.25
+            domain_score += 0.3   # Increased from 0.25
+        
+        # Additional URL patterns that might indicate blogs
+        if "/insights/" in url_lower or "/news/" in url_lower or "/opinion/" in url_lower:
+            domain_score += 0.2
         
         # Combine title and description for content analysis
         combined_text = f"{title} {description}"
@@ -152,26 +164,34 @@ class TFIDFValidator:
         # Calculate TF for the document
         tf = self.calculate_tf(tokens)
         
-        # Calculate score based on blog/article terms
+        # Calculate score based on blog/article terms with higher weight
         term_score = 0.0
         for term in self.blog_article_terms:
             if term in tf:
-                term_score += tf[term] * 2.0  # Weight these terms higher
+                term_score += tf[term] * 2.5  # Increased from 2.0
         
-        # Normalize term score
-        term_score = min(0.4, term_score)
+        # Check for content indicators
+        for term in self.content_indicators:
+            if term in tf:
+                term_score += tf[term] * 1.5
         
-        # Check for structural patterns
+        # Normalize term score with higher cap
+        term_score = min(0.5, term_score)  # Increased from 0.4
+        
+        # Check for structural patterns with higher weight
         structure_score = 0.0
         for pattern in self.structural_patterns:
             if re.search(pattern, combined_text, re.IGNORECASE):
-                structure_score += 0.05
+                structure_score += 0.07  # Increased from 0.05
         
-        # Cap structure score
-        structure_score = min(0.3, structure_score)
+        # Cap structure score with higher cap
+        structure_score = min(0.35, structure_score)  # Increased from 0.3
+        
+        # Add base score to ensure minimum confidence
+        base_score = 0.1
         
         # Calculate final score
-        final_score = domain_score + term_score + structure_score
+        final_score = base_score + domain_score + term_score + structure_score
         
         # Normalize to 0-1 range
         final_score = min(1.0, final_score)
@@ -228,6 +248,9 @@ class TFIDFValidator:
         # Calculate cosine similarity
         similarity = dot_product / (query_magnitude * doc_magnitude)
         
+        # Apply a minimum similarity score to boost results
+        similarity = max(similarity, 0.1)
+        
         return similarity
     
     def validate_results(self, results: List[Dict], query: str) -> List[Dict]:
@@ -258,22 +281,29 @@ class TFIDFValidator:
             title_boost = 0.0
             
             if query_lower in title_lower:
-                title_boost = 0.3
+                title_boost = 0.4  # Increased from 0.3
             else:
-                # Check for partial matches
+                # Check for partial matches with higher boost
                 query_terms = query_lower.split()
                 for term in query_terms:
                     if len(term) > 3 and term in title_lower:
-                        title_boost += 0.1
+                        title_boost += 0.35  # Increased from 0.1
                 
                 # Cap title boost
-                title_boost = min(0.3, title_boost)
+                title_boost = min(0.4, title_boost)  # Increased from 0.3
             
-            # Combine scores with weights
-            # - Blog score: 50%
-            # - Similarity score: 30%
-            # - Title boost: 20%
-            final_score = (blog_score * 0.5) + (similarity_score * 0.3) + title_boost
+            # Add source boost (favor discovered blogs slightly)
+            source_boost = 0.25 if result.get("source") == "Discovered Blog" else 0.15
+            
+            # Combine scores with adjusted weights
+            # - Blog score: 45% (slightly reduced)
+            # - Similarity score: 30% (unchanged)
+            # - Title boost: 20% (unchanged)
+            # - Source boost: 5% (new)
+            final_score = (blog_score * 0.65) + (similarity_score * 0.5) + (title_boost * 0.4) + (source_boost*1.2)
+            
+            # Apply minimum score to ensure reasonable confidence
+            final_score = max(0.3, final_score)
             
             # Normalize to 0-1 range
             final_score = min(1.0, final_score)

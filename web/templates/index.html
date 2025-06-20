@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google Blog Search Engine</title>
+    <title>Custom Blog Search Engine</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <div class="container">
         <div class="search-container">
-            <h1>Google Blog Search</h1>
-            <p class="tagline">Find authentic blogs and articles using Google search with Gemini AI validation</p>
+            <h1>Custom Blog Search</h1>
+            <p class="tagline">Find authentic blogs and articles using Google search with Validation</p>
             
             <form action="/search" method="get" class="search-form">
                 <input type="text" name="q" id="search-input" placeholder="Search for blogs and articles..." required>
@@ -30,19 +30,22 @@
         
         <div class="about">
             <h2>About this Search Engine</h2>
-            <p>This search engine uses Google search with Gemini AI validation to find high-quality blogs and articles.</p>
+            <p>This search engine uses Google search with TF-IDF Validation to find high-quality blogs and articles.</p>
             <p>When you search:</p>
             <ol>
-                <li>Gemini AI enhances your query to focus on blogs and articles</li>
+                <li>The engine enhances your query to focus on blogs and articles</li>
                 <li>Google search finds relevant results</li>
-                <li>Gemini AI validates each result to ensure it's a blog/article</li>
+                <li>TF-IDF validation ensures each result is a blog/article</li>
                 <li>Results are ranked by relevance and displayed with explanations</li>
+                <li>Pre-crawled blog data is used to supplement Google results</li>
             </ol>
+            <p><strong>Running the search engine:</strong> <code>python app.py</code></p>
+            <p><strong>Running the crawler separately:</strong> <code>python precrawl.py</code></p>
         </div>
     </div>
     
     <footer>
-        <p>Google Blog Search Engine - Using Google search with Gemini AI to find relevant blogs and articles</p>
+        <p>Custom Blog/Article Search Engine - Using Google search with TF-IDF validation to find relevant blogs and articles</p>
     </footer>
     
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>

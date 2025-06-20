@@ -10,6 +10,9 @@ from typing import Dict, List, Optional
 import requests
 from googlesearch import search
 from dotenv import load_dotenv
+import threading
+import re
+from bs4 import BeautifulSoup
 
 # Import TF-IDF validator
 from scripts.tfidf_validator import TFIDFValidator
@@ -60,36 +63,30 @@ class FastTFIDFSearchIntegration:
         # Initialize Blog Crawler
         self.crawler = BlogCrawler(config)
         
-        # Load seed URLs
-        self.seed_urls = self._load_seed_urls()
+        # Get seed URLs from config
+        self.seed_urls = config.get("seed_urls", [])
+        logger.info(f"Loaded {len(self.seed_urls)} seed URLs from config")
+        
+        # Session for connection pooling
+        self.session = requests.Session()
+        self.session.headers.update({
+            "User-Agent": config.get("user_agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
+        })
             
         # Performance settings
-        self.request_timeout = config.get("request_timeout", 3)
-        self.max_workers = config.get("max_workers", 10)
+        self.request_timeout = config.get("request_timeout", 10)  # Increased from 5
+        self.max_workers = config.get("max_workers", 15)
         self.skip_validation = config.get("skip_validation", False)
         self.results_per_query = config.get("results_per_query", 30)
         
-        # Crawl seed URLs in the background if not already crawled
-        self._ensure_blogs_crawled()
-    
-    def _load_seed_urls(self) -> List[str]:
-        """
-        Load seed URLs from seed_urls.txt
-        """
-        seed_urls = []
-        try:
-            # Try to load from seed_urls.txt
-            with open("seed_urls.txt", 'r', encoding='utf-8') as f:
-                content = f.read()
-                # Parse the JSON-like format
-                import re
-                urls = re.findall(r'"(https?://[^"]+)"', content)
-                seed_urls.extend(urls)
-            logger.info(f"Loaded {len(seed_urls)} seed URLs from seed_urls.txt")
-        except Exception as e:
-            logger.error(f"Error loading seed URLs: {e}")
+        # Cache locks to prevent race conditions
+        self.cache_lock = threading.RLock()
         
-        return seed_urls
+        # Pre-load discovered blogs
+        self.discovered_blogs = self.crawler.get_discovered_blogs()
+        if not self.discovered_blogs:
+            # Start background crawl only if no blogs are discovered yet
+            self._ensure_blogs_crawled()
     
     def _ensure_blogs_crawled(self):
         """
@@ -100,7 +97,6 @@ class FastTFIDFSearchIntegration:
         # If no discovered blogs, start a background crawl
         if not discovered_blogs and self.seed_urls:
             logger.info("Starting background crawl of seed URLs")
-            import threading
             thread = threading.Thread(target=self.crawler.crawl_seed_urls, args=(self.seed_urls,))
             thread.daemon = True
             thread.start()
@@ -111,8 +107,9 @@ class FastTFIDFSearchIntegration:
         """
         cache_file = os.path.join(self.cache_dir, "search_cache.json")
         try:
-            with open(cache_file, 'w', encoding='utf-8') as f:
-                json.dump(self.cache, f)
+            with self.cache_lock:
+                with open(cache_file, 'w', encoding='utf-8') as f:
+                    json.dump(self.cache, f)
         except Exception as e:
             logger.error(f"Error saving cache: {e}")
     
@@ -121,77 +118,161 @@ class FastTFIDFSearchIntegration:
         Fetch metadata for a URL (title and description) in one function for parallel processing
         """
         try:
-            # Make a request with a reduced timeout
-            response = requests.get(url, timeout=self.request_timeout, headers={
-                "User-Agent": self.config.get("user_agent", "Mozilla/5.0")
-            })
+            # Validate URL format first
+            if not url.startswith(('http://', 'https://')):
+                logger.error(f"Invalid URL format: {url}")
+                return {
+                    "url": url,
+                    "title": url,
+                    "description": "",
+                    "is_likely_blog": False
+                }
+                
+            # Make a request with a timeout using the session with retry logic
+            try:
+                response = self.session.get(url, timeout=self.request_timeout)
+                response.raise_for_status()  # Raise exception for 4XX/5XX status codes
+            except requests.exceptions.RequestException as e:
+                logger.error(f"Request error fetching {url}: {e}")
+                return {
+                    "url": url,
+                    "title": url.split('//')[1].split('/')[0] if '//' in url else url,
+                    "description": "",
+                    "is_likely_blog": False
+                }
             
-            title = url.split('//')[1].split('/')[0]  # Default title is domain
+            title = url.split('//')[1].split('/')[0] if '//' in url else url  # Default title is domain
             description = ""
             
             # Check if successful
             if response.status_code == 200:
-                # Extract content using simple regex
-                import re
-                
-                # Get title
-                title_match = re.search(r'<title[^>]*>(.*?)</title>', response.text, re.IGNORECASE | re.DOTALL)
-                if title_match:
-                    title = title_match.group(1).strip()
-                    # Clean up title (remove special chars, etc.)
-                    title = re.sub(r'\s+', ' ', title)
-                
-                # Try to get meta description
-                meta_match = re.search(r'<meta[^>]*name="description"[^>]*content="([^"]*)"', 
-                                    response.text, re.IGNORECASE)
-                if not meta_match:
-                    meta_match = re.search(r'<meta[^>]*content="([^"]*)"[^>]*name="description"', 
-                                        response.text, re.IGNORECASE)
-                
-                if meta_match:
-                    description = meta_match.group(1).strip()
-                else:
-                    # Try to get first paragraph for snippet
-                    body_content = re.search(r'<body[^>]*>(.*?)</body>', response.text, re.IGNORECASE | re.DOTALL)
-                    if body_content:
-                        # Remove script and style tags
-                        content = re.sub(r'<script[^>]*>.*?</script>', '', body_content.group(1), flags=re.DOTALL)
-                        content = re.sub(r'<style[^>]*>.*?</style>', '', content, flags=re.DOTALL)
+                # Try to parse with BeautifulSoup for better extraction
+                try:
+                    soup = BeautifulSoup(response.text, 'html.parser')
+                    
+                    # Get title
+                    if soup.title and soup.title.string:
+                        title = soup.title.string.strip()
+                    
+                    # Try to get meta description
+                    meta_desc = soup.find("meta", {"name": "description"})
+                    if meta_desc and meta_desc.get("content"):
+                        description = meta_desc["content"].strip()
+                    else:
+                        # Try Open Graph description
+                        og_desc = soup.find("meta", {"property": "og:description"})
+                        if og_desc and og_desc.get("content"):
+                            description = og_desc["content"].strip()
+                    
+                    # If no description yet, try to get first paragraph
+                    if not description:
+                        first_p = soup.find("p")
+                        if first_p:
+                            description = first_p.get_text().strip()
+                            # Limit description length
+                            description = description[:300] + "..." if len(description) > 300 else description
+                    
+                    # Clean up title and description
+                    title = re.sub(r'\s+', ' ', title) if title else url.split('//')[1].split('/')[0]
+                    description = re.sub(r'\s+', ' ', description) if description else ""
+                    
+                except Exception as e:
+                    logger.debug(f"BeautifulSoup parsing error for {url}: {e}")
+                    # Fallback to regex-based extraction
+                    try:
+                        # Get title
+                        title_match = re.search(r'<title[^>]*>(.*?)</title>', response.text, re.IGNORECASE | re.DOTALL)
+                        if title_match:
+                            title = title_match.group(1).strip()
+                            # Clean up title (remove special chars, etc.)
+                            title = re.sub(r'\s+', ' ', title)
                         
-                        # Get first paragraph
-                        paragraph = re.search(r'<p[^>]*>(.*?)</p>', content, re.IGNORECASE | re.DOTALL)
-                        if paragraph:
-                            # Remove HTML tags
-                            text = re.sub(r'<[^>]+>', ' ', paragraph.group(1))
-                            # Remove extra whitespace
-                            text = re.sub(r'\s+', ' ', text).strip()
-                            description = text[:200] + "..." if len(text) > 200 else text
+                        # Try to get meta description
+                        meta_match = re.search(r'<meta[^>]*name="description"[^>]*content="([^"]*)"', 
+                                            response.text, re.IGNORECASE)
+                        if not meta_match:
+                            meta_match = re.search(r'<meta[^>]*content="([^"]*)"[^>]*name="description"', 
+                                                response.text, re.IGNORECASE)
+                        
+                        if meta_match:
+                            description = meta_match.group(1).strip()
+                        else:
+                            # Try to get first paragraph for snippet
+                            body_content = re.search(r'<body[^>]*>(.*?)</body>', response.text, re.IGNORECASE | re.DOTALL)
+                            if body_content:
+                                # Remove script and style tags
+                                content = re.sub(r'<script[^>]*>.*?</script>', '', body_content.group(1), flags=re.DOTALL)
+                                content = re.sub(r'<style[^>]*>.*?</style>', '', content, flags=re.DOTALL)
+                                
+                                # Get first paragraph
+                                paragraph = re.search(r'<p[^>]*>(.*?)</p>', content, re.IGNORECASE | re.DOTALL)
+                                if paragraph:
+                                    # Remove HTML tags
+                                    text = re.sub(r'<[^>]+>', ' ', paragraph.group(1))
+                                    # Remove extra whitespace
+                                    text = re.sub(r'\s+', ' ', text).strip()
+                                    description = text[:300] + "..." if len(text) > 300 else text
+                    except Exception as regex_error:
+                        logger.debug(f"Regex parsing error for {url}: {regex_error}")
+            
+            # Determine if URL is likely a blog from the URL itself
+            is_likely_blog = False
+            url_lower = url.lower()
+            
+            # Check for blog URL patterns
+            blog_patterns = [
+                "/blog/", "/article/", "/post/", "/posts/", "/essays/", "/writing/", 
+                "/insights/", "/news/", "/opinion/", "/views/", "/stories/"
+            ]
+            
+            for pattern in blog_patterns:
+                if pattern in url_lower:
+                    is_likely_blog = True
+                    break
+            
+            # Check for common blog domains
+            blog_domains = [
+                "wordpress", "blogspot", "medium", "substack", "tumblr", 
+                "blogger", "ghost", "wix", "squarespace", "typepad",
+                "hashnode", "dev.to", "mirror.xyz", "beehiiv"
+            ]
+            
+            for domain in blog_domains:
+                if domain in url_lower:
+                    is_likely_blog = True
+                    break
             
             return {
                 "url": url,
-                "title": title,
-                "description": description
+                "title": title or url.split('//')[1].split('/')[0] if '//' in url else url,
+                "description": description,
+                "is_likely_blog": is_likely_blog
             }
             
         except Exception as e:
             logger.error(f"Error fetching metadata for {url}: {e}")
+            # Return minimal information
+            domain = url.split('//')[1].split('/')[0] if '//' in url else url
             return {
                 "url": url,
-                "title": url.split('//')[1].split('/')[0],
-                "description": ""
+                "title": domain,
+                "description": "",
+                "is_likely_blog": False
             }
     
     def _get_discovered_blog_results(self, query: str, num_results: int) -> List[Dict]:
         """
         Get results from discovered blogs that match the query
         """
-        discovered_blogs = self.crawler.get_discovered_blogs()
-        if not discovered_blogs:
+        # Refresh discovered blogs
+        self.discovered_blogs = self.crawler.get_discovered_blogs()
+        
+        if not self.discovered_blogs:
             return []
         
         # Create results from discovered blogs
         results = []
-        for url, blog_data in discovered_blogs.items():
+        for url, blog_data in self.discovered_blogs.items():
             title = blog_data.get("title", url.split('//')[1].split('/')[0])
             description = blog_data.get("description", "")
             
@@ -202,7 +283,7 @@ class FastTFIDFSearchIntegration:
                 "description": description,
                 "content_snippet": description,
                 "is_blog_article": True,
-                "score": 0.7,  # Default score for discovered blogs
+                "score": 0.75,  # Increased from 0.7 for discovered blogs
                 "source": "Discovered Blog"
             }
             
@@ -225,9 +306,10 @@ class FastTFIDFSearchIntegration:
         """
         # Check cache first
         cache_key = f"{query}_{num_results}"
-        if cache_key in self.cache:
-            logger.info(f"Using cached results for query: {query}")
-            return self.cache[cache_key]
+        with self.cache_lock:
+            if cache_key in self.cache:
+                logger.info(f"Using cached results for query: {query}")
+                return self.cache[cache_key]
         
         logger.info(f"Searching Google for: {query}")
         
@@ -236,37 +318,63 @@ class FastTFIDFSearchIntegration:
             enhanced_query = f"{query} blogs articles"
             logger.info(f"Enhanced query: '{query}' -> '{enhanced_query}'")
             
-            # Use googlesearch-python to search
-            search_results = list(search(enhanced_query, num_results=num_results * 2))  # Get more results for filtering
+            # Use googlesearch-python to search with error handling
+            try:
+                # Wrap the search call in a try-except block to catch any errors
+                try:
+                    search_results = list(search(enhanced_query, num_results=num_results * 2))  # Get more results for filtering
+                except IndexError:
+                    logger.error("IndexError in googlesearch-python. Using alternative approach.")
+                    # Try with a different number of results
+                    search_results = list(search(enhanced_query, num_results=10))
+                
+                if not search_results:
+                    logger.warning(f"No search results found for query: {enhanced_query}")
+                    # Return discovered blog results as fallback
+                    return self._get_discovered_blog_results(query, num_results)
+            except Exception as e:
+                logger.error(f"Error during Google search: {e}")
+                # Return discovered blog results as fallback
+                return self._get_discovered_blog_results(query, num_results)
             
             # Fetch metadata in parallel for faster processing
             google_results = []
             with concurrent.futures.ThreadPoolExecutor(max_workers=self.max_workers) as executor:
-                # Submit all URLs for metadata fetching
-                future_to_url = {executor.submit(self._fetch_metadata, url): url for url in search_results[:num_results * 2]}
-                
-                # Process results as they complete
-                for future in concurrent.futures.as_completed(future_to_url):
-                    metadata = future.result()
+                # Submit all URLs for metadata fetching, with safety checks
+                if search_results and len(search_results) > 0:
+                    max_urls = min(num_results * 2, len(search_results))
+                    future_to_url = {executor.submit(self._fetch_metadata, url): url for url in search_results[:max_urls] if url and isinstance(url, str)}
                     
-                    # Create result object
-                    result = {
-                        "url": metadata["url"],
-                        "title": metadata["title"],
-                        "description": metadata["description"],
-                        "content_snippet": metadata["description"],
-                        "is_blog_article": True,  # Default to True if validation is skipped
-                        "score": 0.8,  # Default score if validation is skipped
-                        "source": "Google Search"
-                    }
-                    
-                    google_results.append(result)
+                    # Process results as they complete
+                    for future in concurrent.futures.as_completed(future_to_url):
+                        metadata = future.result()
+                        
+                        # Set initial score based on URL pattern
+                        initial_score = 0.85 if metadata.get("is_likely_blog", False) else 0.7
+                        
+                        # Create result object
+                        result = {
+                            "url": metadata["url"],
+                            "title": metadata["title"],
+                            "description": metadata["description"],
+                            "content_snippet": metadata["description"],
+                            "is_blog_article": True,  # Default to True if validation is skipped
+                            "score": initial_score,  # Improved default score
+                            "source": "Google Search"
+                        }
+                        
+                        google_results.append(result)
             
             # Get results from discovered blogs
             discovered_results = self._get_discovered_blog_results(query, num_results)
             
             # Combine results
             all_results = google_results + discovered_results
+            
+            # If no results found, return empty list
+            if not all_results:
+                logger.warning(f"No results found for query: {query}")
+                return []
             
             # Skip validation if configured to do so
             if self.skip_validation:
@@ -294,14 +402,17 @@ class FastTFIDFSearchIntegration:
                     blog_results.extend(non_blog_results[:num_results - len(blog_results)])
                 
                 # Limit to requested number
-                final_results = blog_results[:num_results]
+                final_results = blog_results[:num_results] if blog_results else []
             
             # Cache results
-            self.cache[cache_key] = final_results
-            self._save_cache()
+            with self.cache_lock:
+                self.cache[cache_key] = final_results
+                # Save cache in a background thread to avoid blocking
+                threading.Thread(target=self._save_cache).start()
             
             return final_results
             
         except Exception as e:
             logger.error(f"Error searching Google: {e}")
-            return [] 
+            # Return discovered blog results as fallback
+            return self._get_discovered_blog_results(query, num_results) 

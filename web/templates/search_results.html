@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ query }} - Google Blog Search Results</title>
+    <title>{{ query }} - Blog/Article Search Results</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
         <header>
             <div class="header-content">
-                <h1><a href="/">Google Blog Search</a></h1>
+                <h1><a href="/">Blog Search</a></h1>
                 <form action="/search" method="get" class="search-form header-search">
                     <input type="text" name="q" id="search-input" value="{{ query }}" required>
                     <button type="submit" id="search-button">Search</button>
@@ -20,13 +21,25 @@
         
         <main>
             <div class="results-info">
-                <p>Found {{ total_results }} results for <strong>"{{ query }}"</strong> via <span class="search-source">{{ search_source }}</span></p>
+                <p>Found <strong>{{ total_results }}</strong> results for <strong>"{{ query }}"</strong> <span class="search-time">({{ "%.2f"|format(search_time) }} seconds)</span></p>
+                <!-- <div class="actions">
+                    <div class="dropdown">
+                        <button class="action-button dropdown-toggle">Pre-crawl Options ▼</button>
+                        <div class="dropdown-content">
+                            <a href="/crawl?depth=1&timeout=10&workers=15">Quick Crawl (Depth 1)</a>
+                            <a href="/crawl?depth=2&timeout=10&workers=15">Standard Crawl (Depth 2)</a>
+                            <a href="/crawl?depth=3&timeout=10&workers=15">Deep Crawl (Depth 3)</a>
+                            <a href="/" class="dropdown-divider"></a>
+                            <a href="/">Return to Home</a>
+                        </div>
+                    </div>
+                </div> -->
             </div>
             
             <div class="search-results">
                 {% if results %}
                     {% for result in results %}
-                        <div class="result-item">
+                        <div class="result-item" style="--item-index: {{ loop.index }}">
                             <h2><a href="{{ result.url }}" target="_blank">{{ result.title }}</a></h2>
                             <p class="result-url">{{ result.url }}</p>
                             
@@ -73,14 +86,29 @@
                     <div class="no-results">
                         <p>No blog results found for your query.</p>
                         <p>Try a different search term or check out our <a href="/">example searches</a>.</p>
+                        <p>You can also <a href="/crawl?depth=2&timeout=10&workers=15">pre-crawl more blogs</a> to improve search results.</p>
                     </div>
                 {% endif %}
             </div>
         </main>
+        
+        <div class="search-history-container">
+            <button class="history-toggle">
+                <span>Search History</span>
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="search-history">
+                <h3>Recent Searches</h3>
+                <ul class="history-list" id="search-history-list">
+                    <!-- Search history will be populated by JavaScript -->
+                </ul>
+                <button class="clear-history" id="clear-history">Clear History</button>
+            </div>
+        </div>
     </div>
     
     <footer>
-        <p>Google Blog Search Engine - Using Google search with Gemini AI to find relevant blogs and articles</p>
+        <p>Custom Blog Search Engine - Using Google search and Web Crawling with TF-IDF validation to find relevant blogs and articles</p>
     </footer>
     
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
