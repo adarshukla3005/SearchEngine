@@ -1,5 +1,5 @@
 """
-Fast Google search integration with TF-IDF validation for the search engine
+Fast Google search integration with Enhanced BM25 validation for the search engine
 """
 import os
 import json
@@ -36,12 +36,12 @@ load_dotenv()
 
 class FastTFIDFSearchIntegration:
     """
-    Fast Google search integration with TF-IDF validation
+    Fast Google search integration with BM25 and semantic validation
     """
     
     def __init__(self, config: Dict):
         """
-        Initialize the Google search integration with TF-IDF validation
+        Initialize the Google search integration with enhanced validation
         """
         self.config = config
         self.cache_dir = os.path.join(config.get("cache_dir", "data/google_cache"))
@@ -74,7 +74,7 @@ class FastTFIDFSearchIntegration:
         })
             
         # Performance settings
-        self.request_timeout = config.get("request_timeout", 10)  # Increased from 5
+        self.request_timeout = config.get("request_timeout", 10)
         self.max_workers = config.get("max_workers", 15)
         self.skip_validation = config.get("skip_validation", False)
         self.results_per_query = config.get("results_per_query", 30)
@@ -87,6 +87,44 @@ class FastTFIDFSearchIntegration:
         if not self.discovered_blogs:
             # Start background crawl only if no blogs are discovered yet
             self._ensure_blogs_crawled()
+
+        # Initialize query expansion terms
+        self._init_query_expansion_terms()
+    
+    def _init_query_expansion_terms(self):
+        """
+        Initialize query expansion terms categorized by topic domains
+        """
+        # Technology related terms
+        self.tech_terms = {
+            "programming": ["code", "developer", "software", "engineering", "algorithm"],
+            "web": ["website", "frontend", "backend", "ui", "ux", "design"],
+            "data": ["database", "analytics", "big data", "machine learning", "ai"],
+            "mobile": ["app", "android", "ios", "mobile development"],
+            "devops": ["cloud", "kubernetes", "docker", "deployment", "ci/cd"]
+        }
+        
+        # Business related terms
+        self.business_terms = {
+            "marketing": ["strategy", "campaign", "branding", "audience"],
+            "startup": ["venture", "funding", "growth", "entrepreneur"],
+            "management": ["leadership", "team", "organization", "strategy"],
+            "finance": ["investment", "market", "analysis", "financial"]
+        }
+        
+        # Personal development terms
+        self.personal_terms = {
+            "productivity": ["habits", "efficiency", "workflow", "tips"],
+            "learning": ["skills", "education", "growth", "study"],
+            "wellness": ["health", "mental", "balance", "mindfulness"]
+        }
+        
+        # Content type qualifiers
+        self.content_qualifiers = [
+            "blog", "article", "guide", "tutorial", "explained", 
+            "review", "analysis", "deep dive", "comparison",
+            "best practices", "tips", "techniques", "strategies"
+        ]
     
     def _ensure_blogs_crawled(self):
         """
@@ -112,7 +150,7 @@ class FastTFIDFSearchIntegration:
                     json.dump(self.cache, f)
         except Exception as e:
             logger.error(f"Error saving cache: {e}")
-    
+
     def _fetch_metadata(self, url):
         """
         Fetch metadata for a URL (title and description) in one function for parallel processing
@@ -175,6 +213,16 @@ class FastTFIDFSearchIntegration:
                     # Clean up title and description
                     title = re.sub(r'\s+', ' ', title) if title else url.split('//')[1].split('/')[0]
                     description = re.sub(r'\s+', ' ', description) if description else ""
+                    
+                    # Extract publication date if available - for freshness scoring
+                    pub_date = None
+                    date_meta = soup.find("meta", {"property": "article:published_time"}) or \
+                               soup.find("meta", {"name": "article:published_time"}) or \
+                               soup.find("meta", {"name": "date"}) or \
+                               soup.find("meta", {"property": "og:published_time"})
+                    
+                    if date_meta and date_meta.get("content"):
+                        pub_date = date_meta.get("content")
                     
                 except Exception as e:
                     logger.debug(f"BeautifulSoup parsing error for {url}: {e}")
@@ -246,7 +294,8 @@ class FastTFIDFSearchIntegration:
                 "url": url,
                 "title": title or url.split('//')[1].split('/')[0] if '//' in url else url,
                 "description": description,
-                "is_likely_blog": is_likely_blog
+                "is_likely_blog": is_likely_blog,
+                "pub_date": pub_date
             }
             
         except Exception as e:
@@ -283,13 +332,13 @@ class FastTFIDFSearchIntegration:
                 "description": description,
                 "content_snippet": description,
                 "is_blog_article": True,
-                "score": 0.75,  # Increased from 0.7 for discovered blogs
+                "score": 0.75,
                 "source": "Discovered Blog"
             }
             
             results.append(result)
         
-        # Validate results with TF-IDF to calculate relevance to query
+        # Validate results with BM25 to calculate relevance to query
         if not self.skip_validation:
             results = self.validator.validate_results(results, query)
             
@@ -299,10 +348,126 @@ class FastTFIDFSearchIntegration:
         # Return top results
         return results[:num_results]
     
+    def _expand_query(self, query: str) -> str:
+        """
+        Expand query with relevant terms based on content analysis
+        """
+        query_lower = query.lower()
+        expansion_terms = []
+        
+        # Basic detection of query domain/category to add relevant expansion terms
+        for category, terms in self.tech_terms.items():
+            if any(term in query_lower for term in terms):
+                # Add 2 random terms from this category
+                import random
+                expansion_terms.extend(random.sample(terms, min(2, len(terms))))
+                break
+        
+        for category, terms in self.business_terms.items():
+            if any(term in query_lower for term in terms):
+                # Add 1 random term from this category
+                import random
+                expansion_terms.extend(random.sample(terms, min(1, len(terms))))
+                break
+                
+        for category, terms in self.personal_terms.items():
+            if any(term in query_lower for term in terms):
+                # Add 1 random term from this category
+                import random
+                expansion_terms.extend(random.sample(terms, min(1, len(terms))))
+                break
+        
+        # Always add content qualifiers for better blog/article targeting
+        import random
+        qualifiers = random.sample(self.content_qualifiers, min(2, len(self.content_qualifiers)))
+        expansion_terms.extend(qualifiers)
+        
+        # Filter out terms that are already in the query
+        expansion_terms = [term for term in expansion_terms if term not in query_lower]
+        
+        # Limit to max 3 expansion terms to avoid diluting the query too much
+        expansion_terms = expansion_terms[:3]
+        
+        if expansion_terms:
+            expanded_query = f"{query} {' '.join(expansion_terms)}"
+            logger.info(f"Expanded query: '{query}' -> '{expanded_query}'")
+            return expanded_query
+        
+        return query
+    
+    def _apply_result_diversity(self, results: List[Dict], top_n: int) -> List[Dict]:
+        """
+        Apply result diversity to avoid similar results from same domains
+        """
+        # If we have fewer results than top_n, return all results
+        if len(results) <= top_n:
+            return results
+        
+        # Extract domains
+        for result in results:
+            url = result["url"]
+            try:
+                domain = url.split("//")[1].split("/")[0] if "//" in url else url.split("/")[0]
+                result["domain"] = domain
+            except Exception:
+                result["domain"] = url
+        
+        # Group by domain
+        from collections import defaultdict
+        domain_results = defaultdict(list)
+        for result in results:
+            domain_results[result["domain"]].append(result)
+        
+        # Apply diversity algorithm
+        diverse_results = []
+        domains_used = set()
+        
+        # First pass: include top result from each domain
+        for domain, domain_list in domain_results.items():
+            # Sort by score within domain
+            domain_list.sort(key=lambda x: x["score"], reverse=True)
+            
+            # Include top result from domain
+            diverse_results.append(domain_list[0])
+            domains_used.add(domain)
+            
+            # If we have enough results, stop
+            if len(diverse_results) >= top_n:
+                break
+        
+        # Second pass: fill in remaining slots with best results not yet included
+        if len(diverse_results) < top_n:
+            # Create flat list of results not yet included
+            remaining = [
+                result for domain_list in domain_results.values() 
+                for result in domain_list 
+                if result not in diverse_results
+            ]
+            
+            # Sort by score
+            remaining.sort(key=lambda x: x["score"], reverse=True)
+            
+            # Add top results up to top_n
+            for result in remaining:
+                if len(diverse_results) < top_n:
+                    diverse_results.append(result)
+                else:
+                    break
+        
+        # Sort final list by score
+        diverse_results.sort(key=lambda x: x["score"], reverse=True)
+        
+        # Cleanup: remove domain field as it was just for internal use
+        for result in diverse_results:
+            if "domain" in result:
+                del result["domain"]
+        
+        return diverse_results
+    
     def search_google(self, query: str, num_results: int = 10) -> List[Dict]:
         """
-        Search Google for the given query and validate with TF-IDF
-        Also includes results from discovered blogs
+        Search Google for the given query and validate with BM25
+        Also includes results from discovered blogs with improved ranking
         """
         # Check cache first
         cache_key = f"{query}_{num_results}"
@@ -314,15 +479,15 @@ class FastTFIDFSearchIntegration:
         logger.info(f"Searching Google for: {query}")
         
         try:
-            # Enhance query with keywords for blogs and articles
-            enhanced_query = f"{query} blogs articles"
-            logger.info(f"Enhanced query: '{query}' -> '{enhanced_query}'")
+            # Expand query with keywords for blogs and articles
+            enhanced_query = self._expand_query(query)
             
             # Use googlesearch-python to search with error handling
             try:
                 # Wrap the search call in a try-except block to catch any errors
                 try:
-                    search_results = list(search(enhanced_query, num_results=num_results * 2))  # Get more results for filtering
+                    # Get more results for better filtering and diversity
+                    search_results = list(search(enhanced_query, num_results=num_results * 3))
                 except IndexError:
                     logger.error("IndexError in googlesearch-python. Using alternative approach.")
                     # Try with a different number of results
@@ -342,8 +507,12 @@ class FastTFIDFSearchIntegration:
             with concurrent.futures.ThreadPoolExecutor(max_workers=self.max_workers) as executor:
                 # Submit all URLs for metadata fetching, with safety checks
                 if search_results and len(search_results) > 0:
-                    max_urls = min(num_results * 2, len(search_results))
-                    future_to_url = {executor.submit(self._fetch_metadata, url): url for url in search_results[:max_urls] if url and isinstance(url, str)}
+                    max_urls = min(num_results * 3, len(search_results))
+                    future_to_url = {
+                        executor.submit(self._fetch_metadata, url): url 
+                        for url in search_results[:max_urls] 
+                        if url and isinstance(url, str)
+                    }
                     
                     # Process results as they complete
                     for future in concurrent.futures.as_completed(future_to_url):
@@ -359,9 +528,13 @@ class FastTFIDFSearchIntegration:
                             "description": metadata["description"],
                             "content_snippet": metadata["description"],
                             "is_blog_article": True,  # Default to True if validation is skipped
-                            "score": initial_score,  # Improved default score
+                            "score": initial_score,
                             "source": "Google Search"
                         }
+                        
+                        # Add publication date if available for freshness scoring
+                        if "pub_date" in metadata and metadata["pub_date"]:
+                            result["pub_date"] = metadata["pub_date"]
                         
                         google_results.append(result)
             
@@ -383,26 +556,29 @@ class FastTFIDFSearchIntegration:
                 all_results.sort(key=lambda x: 0 if x["source"] == "Google Search" else 1)
                 final_results = all_results[:num_results]
             else:
-                # Validate results with TF-IDF
+                # Validate results with enhanced algorithms
                 start_time = time.time()
                 validated_results = self.validator.validate_results(all_results, query)
                 validation_time = time.time() - start_time
-                logger.info(f"TF-IDF validation completed in {validation_time:.2f} seconds")
+                logger.info(f"BM25 validation completed in {validation_time:.2f} seconds")
                 
-                # Filter to only blog/article results and limit to requested number
+                # Filter to only blog/article results
                 blog_results = [r for r in validated_results if r["is_blog_article"]]
                 
                 # Sort by score
                 blog_results.sort(key=lambda x: x["score"], reverse=True)
                 
+                # Apply diversity for better result quality
+                diverse_results = self._apply_result_diversity(blog_results, num_results)
+                
                 # If we don't have enough blog results, include some non-blog results
-                if len(blog_results) < num_results:
+                if len(diverse_results) < num_results:
                     non_blog_results = [r for r in validated_results if not r["is_blog_article"]]
                     non_blog_results.sort(key=lambda x: x["score"], reverse=True)
-                    blog_results.extend(non_blog_results[:num_results - len(blog_results)])
+                    diverse_results.extend(non_blog_results[:num_results - len(diverse_results)])
                 
                 # Limit to requested number
-                final_results = blog_results[:num_results] if blog_results else []
+                final_results = diverse_results[:num_results] if diverse_results else []
             
             # Cache results
             with self.cache_lock:

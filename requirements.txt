@@ -4,4 +4,7 @@ googlesearch-python
 google-generativeai
 requests
 numpy
-beautifulsoup4 
+beautifulsoup4
+sentence-transformers
+scikit-learn
+torch 
