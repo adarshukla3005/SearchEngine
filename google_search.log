@@ -1672,3 +1672,693 @@ urllib3.exceptions.HeaderParsingError: [MissingHeaderBodySeparatorDefect()], unp
 2025-06-20 07:07:21,396 - werkzeug - INFO - 127.0.0.1 - - [20/Jun/2025 07:07:21] "GET /search?q=how+to+become+a+SDE2 HTTP/1.1" 200 -
 2025-06-20 07:07:21,430 - werkzeug - INFO - 127.0.0.1 - - [20/Jun/2025 07:07:21] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
 2025-06-20 07:07:21,431 - werkzeug - INFO - 127.0.0.1 - - [20/Jun/2025 07:07:21] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-21 12:40:00,880 - fast_tfidf_search - INFO - Loaded 36 seed URLs from config
+2025-06-21 12:40:00,882 - search_engine - INFO - Starting search engine on 0.0.0.0:5000
+2025-06-21 12:40:00,883 - google_search_web - INFO - Found 34 pre-crawled blogs in cache
+2025-06-21 12:40:00,883 - google_search_web - INFO - Starting web server on 0.0.0.0:5000 (debug=False)
+2025-06-21 12:40:00,910 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.81.81.231:5000
+2025-06-21 12:40:00,910 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-21 12:40:05,039 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 12:40:05] "GET / HTTP/1.1" 200 -
+2025-06-21 12:40:05,149 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 12:40:05] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-06-21 12:40:05,152 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 12:40:05] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-06-21 12:40:05,355 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 12:40:05] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-06-21 12:40:11,294 - fast_tfidf_search - INFO - Searching Google for: Astro Physics
+2025-06-21 12:40:11,294 - fast_tfidf_search - INFO - Enhanced query: 'Astro Physics' -> 'Astro Physics blogs articles'
+2025-06-21 12:40:11,977 - fast_tfidf_search - ERROR - Invalid URL format: /search?num=62
+2025-06-21 12:40:12,979 - fast_tfidf_search - ERROR - Request error fetching https://astrobites.org/: 403 Client Error: Forbidden for url: https://astrobites.org/
+2025-06-21 12:40:13,375 - fast_tfidf_search - ERROR - Request error fetching https://phys.org/tags/astrophysics/: 422 Client Error: Unprocessable Content for url: https://phys.org/tags/astrophysics/
+2025-06-21 12:40:13,381 - fast_tfidf_search - ERROR - Request error fetching https://journals.aas.org/astrophysical-journal/: 403 Client Error: Forbidden for url: https://journals.aas.org/astrophysical-journal/
+2025-06-21 12:40:13,575 - fast_tfidf_search - ERROR - Request error fetching https://warwick.ac.uk/fac/sci/physics/research/astro/outreach/blog/: 400 Client Error: Bad Request for url: https://warwick.ac.uk/fac/sci/physics/research/astro/outreach/blog/
+2025-06-21 12:40:14,995 - fast_tfidf_search - ERROR - Request error fetching https://skyandtelescope.org/astronomy-blogs/: 403 Client Error: Forbidden for url: https://skyandtelescope.org/astronomy-blogs/
+2025-06-21 12:40:15,263 - fast_tfidf_search - ERROR - Request error fetching https://www.newscientist.com/article-topic/astrophysics/: 503 Server Error: Max restarts limit reached for url: https://www.newscientist.com/article-topic/astrophysics/
+2025-06-21 12:40:15,625 - fast_tfidf_search - ERROR - Request error fetching https://blog.oup.com/2022/11/looking-into-space-how-astronomy-and-astrophysics-are-teaching-us-more-than-ever-before/: 403 Client Error: Forbidden for url: https://blog.oup.com/2022/11/looking-into-space-how-astronomy-and-astrophysics-are-teaching-us-more-than-ever-before/
+2025-06-21 12:40:15,786 - fast_tfidf_search - ERROR - Request error fetching https://www.researchgate.net/topic/Astrophysics/publications: 403 Client Error: Forbidden for url: https://www.researchgate.net/topic/Astrophysics/publications
+2025-06-21 12:40:15,938 - fast_tfidf_search - ERROR - Request error fetching https://www.sciencedirect.com/journal/astroparticle-physics: 400 Client Error: Bad Request for url: https://www.sciencedirect.com/unsupported_browser
+2025-06-21 12:40:16,197 - fast_tfidf_search - ERROR - Request error fetching https://www.annualreviews.org/content/journals/astro: 403 Client Error: Forbidden for url: https://www.annualreviews.org/content/journals/astro
+2025-06-21 12:40:29,409 - fast_tfidf_search - INFO - TF-IDF validation completed in 0.01 seconds
+2025-06-21 12:40:29,410 - google_search_web - INFO - Google search query: 'Astro Physics', found 30 results in 18.12 seconds
+2025-06-21 12:40:29,410 - google_search_web - INFO - Result 1: TAT Blog - interesting astrophysics stories - https://www.tat.physik.uni-tuebingen.de/~tat/blog/ - Google Search
+2025-06-21 12:40:29,411 - google_search_web - INFO - Result 2: Blog - Astro-Physics - https://www.astro-physics.com/blog/ - Google Search
+2025-06-21 12:40:29,411 - google_search_web - INFO - Result 3: Mission Astro Blog: Latest in Astronomy & Space Exploration - https://missionastro.org/blog/ - Google Search
+2025-06-21 12:40:29,412 - google_search_web - INFO - Result 4: Scott H Young - Learn faster, achieve more - https://www.scotthyoung.com/blog/ - Discovered Blog
+2025-06-21 12:40:29,413 - google_search_web - INFO - Result 5: Home | Journal of Astrophysics and Astronomy - https://link.springer.com/journal/12036 - Google Search
+2025-06-21 12:40:29,423 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 12:40:29] "GET /search?q=Astro+Physics HTTP/1.1" 200 -
+2025-06-21 12:40:29,449 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 12:40:29] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-21 12:40:29,450 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 12:40:29] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-21 12:40:47,287 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 12:40:47] "GET / HTTP/1.1" 200 -
+2025-06-21 12:40:47,310 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 12:40:47] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-21 12:40:47,310 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 12:40:47] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-21 12:48:06,854 - fast_tfidf_search - INFO - Loaded 36 seed URLs from config
+2025-06-21 12:48:06,857 - search_engine - INFO - Starting search engine on 0.0.0.0:5000
+2025-06-21 12:48:06,858 - google_search_web - INFO - Found 34 pre-crawled blogs in cache
+2025-06-21 12:48:06,858 - google_search_web - INFO - Starting web server on 0.0.0.0:5000 (debug=False)
+2025-06-21 12:48:06,871 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.81.81.231:5000
+2025-06-21 12:48:06,871 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-21 12:48:10,291 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 12:48:10] "GET / HTTP/1.1" 200 -
+2025-06-21 12:48:10,378 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 12:48:10] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-21 12:48:10,380 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 12:48:10] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-21 12:48:20,360 - fast_tfidf_search - INFO - Searching Google for: EEG Brain
+2025-06-21 12:48:20,360 - fast_tfidf_search - INFO - Enhanced query: 'EEG Brain' -> 'EEG Brain blog article'
+2025-06-21 12:48:21,429 - fast_tfidf_search - ERROR - Invalid URL format: /search?num=52
+2025-06-21 12:48:21,554 - fast_tfidf_search - ERROR - Request error fetching https://www.mdpi.com/2076-3417/10/21/7453: 403 Client Error: Forbidden for url: https://www.mdpi.com/2076-3417/10/21/7453
+2025-06-21 12:48:21,777 - fast_tfidf_search - ERROR - Request error fetching https://www.sciencedirect.com/science/article/pii/S0960982218315513: 400 Client Error: Bad Request for url: https://www.sciencedirect.com/unsupported_browser
+2025-06-21 12:48:21,780 - fast_tfidf_search - ERROR - Request error fetching https://www.sciencedirect.com/science/article/pii/S1388245725006571: 400 Client Error: Bad Request for url: https://www.sciencedirect.com/unsupported_browser
+2025-06-21 12:48:30,134 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='openneurologyjournal.com', port=443): Read timed out. (read timeout=8)")': /VOLUME/16/ELOCATOR/e1874205X2206100/FULLTEXT/
+2025-06-21 12:48:39,713 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='openneurologyjournal.com', port=443): Read timed out. (read timeout=8)")': /VOLUME/16/ELOCATOR/e1874205X2206100/FULLTEXT/
+2025-06-21 12:48:43,730 - fast_tfidf_search - ERROR - Error searching Google: 1 (of 20) futures unfinished
+2025-06-21 12:48:43,730 - google_search_web - INFO - Google search query: 'EEG Brain', found 34 results in 23.37 seconds
+2025-06-21 12:48:43,730 - google_search_web - INFO - Result 1: Manas J. Saloi | Hi, I am Manas J Saloi. As an engineer turned product manager and now head of product, I’ve built products used by millions of people across South East Asia. I am based out of Bengaluru. - https://manassaloi.com/ - Discovered Blog
+2025-06-21 12:48:43,739 - google_search_web - INFO - Result 2: Think better. Decide better. Live better. - https://fs.blog/ - Discovered Blog
+2025-06-21 12:48:43,739 - google_search_web - INFO - Result 3: Kalzumeus Software - https://www.kalzumeus.com/ - Discovered Blog
+2025-06-21 12:48:43,739 - google_search_web - INFO - Result 4: Wait But Why - https://waitbutwhy.com/ - Discovered Blog
+2025-06-21 12:48:43,740 - google_search_web - INFO - Result 5: Essays - https://paulgraham.com/articles.html - Discovered Blog
+2025-06-21 12:48:43,745 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 12:48:43] "GET /search?q=EEG+Brain HTTP/1.1" 200 -
+2025-06-21 12:48:43,798 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 12:48:43] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-21 12:48:43,799 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 12:48:43] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-21 12:48:58,644 - fast_tfidf_search - INFO - Searching Google for: EEG Brain
+2025-06-21 12:48:58,645 - fast_tfidf_search - INFO - Enhanced query: 'EEG Brain' -> 'EEG Brain blog article'
+2025-06-21 12:48:59,208 - fast_tfidf_search - ERROR - Request error fetching https://www.mdpi.com/2076-3417/10/21/7453: 403 Client Error: Forbidden for url: https://www.mdpi.com/2076-3417/10/21/7453
+2025-06-21 12:48:59,349 - fast_tfidf_search - ERROR - Request error fetching https://www.sciencedirect.com/science/article/pii/S1388245725006571: 400 Client Error: Bad Request for url: https://www.sciencedirect.com/unsupported_browser
+2025-06-21 12:48:59,400 - fast_tfidf_search - ERROR - Request error fetching https://www.sciencedirect.com/science/article/pii/S0960982218315513: 400 Client Error: Bad Request for url: https://www.sciencedirect.com/unsupported_browser
+2025-06-21 12:49:00,035 - fast_tfidf_search - ERROR - Request error fetching https://journals.sagepub.com/home/eeg: 403 Client Error: Forbidden for url: https://journals.sagepub.com/home/eeg
+2025-06-21 12:49:00,045 - fast_tfidf_search - ERROR - Request error fetching https://www.researchgate.net/publication/377182531_A_Review_of_Electroencephalogram_EEG_Patterns_on_Cognitive_Processes_Based_on_Brain_Waves: 403 Client Error: Forbidden for url: https://www.researchgate.net/publication/377182531_A_Review_of_Electroencephalogram_EEG_Patterns_on_Cognitive_Processes_Based_on_Brain_Waves
+2025-06-21 12:49:00,112 - fast_tfidf_search - ERROR - Request error fetching https://direct.mit.edu/imag/article/doi/10.1162/imag_a_00210/122334/Brain-age-revisited-Investigating-the-state-vs: 403 Client Error: Forbidden for url: https://direct.mit.edu/imag/article/doi/10.1162/imag_a_00210/122334/Brain-age-revisited-Investigating-the-state-vs
+2025-06-21 12:49:00,129 - fast_tfidf_search - ERROR - Request error fetching https://academic.oup.com/sleep/article/44/Supplement_2/A214/6260205: 403 Client Error: Forbidden for url: https://academic.oup.com/sleep/article/44/Supplement_2/A214/6260205
+2025-06-21 12:49:00,149 - fast_tfidf_search - ERROR - Request error fetching https://academic.oup.com/brain/article/139/10/2809/2196694: 403 Client Error: Forbidden for url: https://academic.oup.com/brain/article/139/10/2809/2196694
+2025-06-21 12:49:00,178 - fast_tfidf_search - ERROR - Request error fetching https://www.mdpi.com/1424-8220/20/12/3346: 403 Client Error: Forbidden for url: https://www.mdpi.com/1424-8220/20/12/3346
+2025-06-21 12:49:00,605 - fast_tfidf_search - ERROR - Request error fetching https://www.resuscitationjournal.com/article/S0300-9572(23)00213-7/fulltext: 403 Client Error: Forbidden for url: https://www.resuscitationjournal.com/article/S0300-9572(23)00213-7/fulltext
+2025-06-21 12:49:00,951 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'RemoteDisconnected('Remote end closed connection without response')': /blog/
+2025-06-21 12:49:02,968 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'RemoteDisconnected('Remote end closed connection without response')': /blog/
+2025-06-21 12:49:03,960 - fast_tfidf_search - ERROR - Request error fetching https://neuron-connect.com/blog/: HTTPSConnectionPool(host='neuron-connect.com', port=443): Max retries exceeded with url: /blog/ (Caused by ProtocolError('Connection aborted.', RemoteDisconnected('Remote end closed connection without response')))
+2025-06-21 12:49:03,962 - fast_tfidf_search - INFO - Skipping validation for faster response
+2025-06-21 12:49:03,962 - google_search_web - INFO - Google search query: 'EEG Brain', found 40 results in 5.32 seconds
+2025-06-21 12:49:03,962 - google_search_web - INFO - Result 1: The Evolution of EEG: A Journey Through Time - https://www.neuroelectrics.com/blog/the-evolution-of-eeg-a-journey-through-time - Google Search
+2025-06-21 12:49:03,963 - google_search_web - INFO - Result 2: What is EEG (Electroencephalography) and How Does it Work? - iMotions - https://imotions.com/blog/learning/research-fundamentals/what-is-eeg/ - Google Search
+2025-06-21 12:49:03,963 - google_search_web - INFO - Result 3: What is EEG and what is it used for? | Bitbrain - https://www.bitbrain.com/blog/what-is-an-eeg - Google Search
+2025-06-21 12:49:03,964 - google_search_web - INFO - Result 4: Top 5 EEG Research Articles - iMotions - https://imotions.com/blog/insights/research-insights/top-5-eeg-research-articles/ - Google Search
+2025-06-21 12:49:03,964 - google_search_web - INFO - Result 5: Zeto EEG Blogs - Technology Insights, Articles, Whitepaper, Research & More - https://zeto-inc.com/blog/ - Google Search
+2025-06-21 12:49:03,966 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 12:49:03] "GET /search?q=EEG%20Brain&page=2 HTTP/1.1" 200 -
+2025-06-21 12:49:03,992 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 12:49:03] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-21 12:49:03,993 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 12:49:03] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-21 12:49:14,742 - fast_tfidf_search - INFO - Searching Google for: Astro Physics
+2025-06-21 12:49:14,742 - fast_tfidf_search - INFO - Enhanced query: 'Astro Physics' -> 'Astro Physics blog article'
+2025-06-21 12:49:15,671 - fast_tfidf_search - ERROR - Request error fetching https://blog.oup.com/2022/11/looking-into-space-how-astronomy-and-astrophysics-are-teaching-us-more-than-ever-before/: 403 Client Error: Forbidden for url: https://blog.oup.com/2022/11/looking-into-space-how-astronomy-and-astrophysics-are-teaching-us-more-than-ever-before/
+2025-06-21 12:49:15,911 - fast_tfidf_search - ERROR - Request error fetching https://warwick.ac.uk/fac/sci/physics/research/astro/outreach/blog/: 400 Client Error: Bad Request for url: https://warwick.ac.uk/fac/sci/physics/research/astro/outreach/blog/
+2025-06-21 12:49:19,622 - fast_tfidf_search - ERROR - Request error fetching https://www.newscientist.com/article-topic/astrophysics/: HTTPSConnectionPool(host='www.newscientist.com', port=443): Max retries exceeded with url: /article-topic/astrophysics/ (Caused by ResponseError('too many 503 error responses'))
+2025-06-21 12:49:19,703 - fast_tfidf_search - ERROR - Request error fetching https://www.researchgate.net/topic/Astrophysics/publications: 403 Client Error: Forbidden for url: https://www.researchgate.net/topic/Astrophysics/publications
+2025-06-21 12:49:19,933 - fast_tfidf_search - ERROR - Request error fetching https://physics.stackexchange.com/questions/3432/your-favorite-physics-astrophysics-blogs: 403 Client Error: Forbidden for url: https://physics.stackexchange.com/questions/3432/your-favorite-physics-astrophysics-blogs
+2025-06-21 12:49:19,998 - fast_tfidf_search - ERROR - Request error fetching https://www.annualreviews.org/content/journals/astro: 403 Client Error: Forbidden for url: https://www.annualreviews.org/content/journals/astro
+2025-06-21 12:49:20,070 - fast_tfidf_search - ERROR - Request error fetching https://journals.aas.org/astrophysical-journal/: 403 Client Error: Forbidden for url: https://journals.aas.org/astrophysical-journal/
+2025-06-21 12:49:20,154 - fast_tfidf_search - ERROR - Request error fetching https://www.sciencedirect.com/journal/astroparticle-physics: 400 Client Error: Bad Request for url: https://www.sciencedirect.com/unsupported_browser
+2025-06-21 12:49:23,066 - fast_tfidf_search - INFO - Skipping validation for faster response
+2025-06-21 12:49:23,066 - google_search_web - INFO - Google search query: 'Astro Physics', found 40 results in 8.32 seconds
+2025-06-21 12:49:23,067 - google_search_web - INFO - Result 1: Blog - Astro-Physics - https://www.astro-physics.com/blog/ - Google Search
+2025-06-21 12:49:23,067 - google_search_web - INFO - Result 2: The Zen of Astrophysics | ChandraBlog | Fresh Chandra News - https://chandra.harvard.edu/blog/node/60 - Google Search
+2025-06-21 12:49:23,068 - google_search_web - INFO - Result 3: A Brief History of Astronomy, Astrophysics and Cosmology 1945-2000 | Royal Society - https://royalsociety.org/blog/2022/06/brief-history-of-astronomy-astrophysics-and-cosmology-1945-2000/ - Google Search
+2025-06-21 12:49:23,068 - google_search_web - INFO - Result 4: Astronomy and space Archives – Physics World - https://physicsworld.com/c/astronomy-space/?utm_source=pw&utm_medium=box - Google Search
+2025-06-21 12:49:23,068 - google_search_web - INFO - Result 5: The most insightful stories about Astrophysics - Medium - https://medium.com/tag/astrophysics - Google Search
+2025-06-21 12:49:23,070 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 12:49:23] "GET /search?q=Astro%20Physics HTTP/1.1" 200 -
+2025-06-21 12:49:23,095 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 12:49:23] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-21 12:49:23,096 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 12:49:23] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-21 12:49:35,885 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 12:49:35] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-21 12:49:35,886 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 12:49:35] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-21 12:49:42,264 - fast_tfidf_search - INFO - Searching Google for: AI and advancements
+2025-06-21 12:49:42,264 - fast_tfidf_search - INFO - Enhanced query: 'AI and advancements' -> 'AI and advancements blog article'
+2025-06-21 12:49:43,043 - fast_tfidf_search - ERROR - Request error fetching https://www.tableau.com/learn/articles/blogs-about-machine-learning-artificial-intelligence: 403 Client Error: Forbidden for url: https://www.tableau.com/learn/articles/blogs-about-machine-learning-artificial-intelligence
+2025-06-21 12:49:43,218 - fast_tfidf_search - ERROR - Request error fetching https://www.sciencedirect.com/science/article/pii/S2773207X24001386: 400 Client Error: Bad Request for url: https://www.sciencedirect.com/unsupported_browser
+2025-06-21 12:49:43,442 - fast_tfidf_search - ERROR - Request error fetching https://ai.meta.com/blog/: 400 Client Error: Bad Request for url: https://ai.meta.com/blog/
+2025-06-21 12:49:44,067 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'RemoteDisconnected('Remote end closed connection without response')': /the-ai-impact-are-blogs-still-relevant-in-the-age-of-artificial-intelligence/?srsltid=AfmBOopIKGN5mOb7GORdR4HsL6HfP17Zc4BiONHCWgKpUIdCMDPfYcLU
+2025-06-21 12:49:46,222 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'RemoteDisconnected('Remote end closed connection without response')': /the-ai-impact-are-blogs-still-relevant-in-the-age-of-artificial-intelligence/?srsltid=AfmBOopIKGN5mOb7GORdR4HsL6HfP17Zc4BiONHCWgKpUIdCMDPfYcLU
+2025-06-21 12:49:47,354 - fast_tfidf_search - ERROR - Request error fetching https://www.commercient.com/the-ai-impact-are-blogs-still-relevant-in-the-age-of-artificial-intelligence/?srsltid=AfmBOopIKGN5mOb7GORdR4HsL6HfP17Zc4BiONHCWgKpUIdCMDPfYcLU: HTTPSConnectionPool(host='www.commercient.com', port=443): Max retries exceeded with url: /the-ai-impact-are-blogs-still-relevant-in-the-age-of-artificial-intelligence/?srsltid=AfmBOopIKGN5mOb7GORdR4HsL6HfP17Zc4BiONHCWgKpUIdCMDPfYcLU (Caused by ProtocolError('Connection aborted.', RemoteDisconnected('Remote end closed connection without response')))
+2025-06-21 12:49:48,175 - fast_tfidf_search - ERROR - Request error fetching https://blogs.microsoft.com/blog/2025/04/22/https-blogs-microsoft-com-blog-2024-11-12-how-real-world-businesses-are-transforming-with-ai/: 403 Client Error: Forbidden for url: https://blogs.microsoft.com/blog/2025/04/22/https-blogs-microsoft-com-blog-2024-11-12-how-real-world-businesses-are-transforming-with-ai/
+2025-06-21 12:49:48,297 - fast_tfidf_search - ERROR - Request error fetching https://onlinedegrees.sandiego.edu/ai-blogs/: 403 Client Error: Forbidden for url: https://onlinedegrees.sandiego.edu/ai-blogs/
+2025-06-21 12:49:48,505 - fast_tfidf_search - ERROR - Request error fetching https://aimagazine.com/articles/top-10-ai-blogs-covering-the-latest-developments: 403 Client Error: Forbidden for url: https://aimagazine.com/articles/top-10-ai-blogs-covering-the-latest-developments
+2025-06-21 12:49:48,568 - fast_tfidf_search - ERROR - Request error fetching https://vengreso.com/blog/ai-blog-writer: 520 Server Error:  for url: https://vengreso.com/blog/ai-blog-writer
+2025-06-21 12:49:48,893 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)': /en/artificial-intelligence
+2025-06-21 12:49:56,516 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='aiforgood.itu.int', port=443): Read timed out. (read timeout=8)")': /ai-for-good-blog/
+2025-06-21 12:50:05,879 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='aiforgood.itu.int', port=443): Read timed out. (read timeout=8)")': /ai-for-good-blog/
+2025-06-21 12:50:12,571 - fast_tfidf_search - ERROR - Error searching Google: 1 (of 20) futures unfinished
+2025-06-21 12:50:12,571 - google_search_web - INFO - Google search query: 'AI and advancements', found 34 results in 30.31 seconds
+2025-06-21 12:50:12,572 - google_search_web - INFO - Result 1: Manas J. Saloi | Hi, I am Manas J Saloi. As an engineer turned product manager and now head of product, I’ve built products used by millions of people across South East Asia. I am based out of Bengaluru. - https://manassaloi.com/ - Discovered Blog
+2025-06-21 12:50:12,572 - google_search_web - INFO - Result 2: Think better. Decide better. Live better. - https://fs.blog/ - Discovered Blog
+2025-06-21 12:50:12,572 - google_search_web - INFO - Result 3: Kalzumeus Software - https://www.kalzumeus.com/ - Discovered Blog
+2025-06-21 12:50:12,572 - google_search_web - INFO - Result 4: Wait But Why - https://waitbutwhy.com/ - Discovered Blog
+2025-06-21 12:50:12,573 - google_search_web - INFO - Result 5: Essays - https://paulgraham.com/articles.html - Discovered Blog
+2025-06-21 12:50:12,574 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 12:50:12] "GET /search?q=AI+and+advancements HTTP/1.1" 200 -
+2025-06-21 12:50:12,613 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 12:50:12] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-21 12:50:12,613 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 12:50:12] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-21 12:50:59,310 - fast_tfidf_search - INFO - Loaded 36 seed URLs from config
+2025-06-21 12:50:59,312 - search_engine - INFO - Starting search engine on 0.0.0.0:5000
+2025-06-21 12:50:59,313 - google_search_web - INFO - Found 34 pre-crawled blogs in cache
+2025-06-21 12:50:59,313 - google_search_web - INFO - Starting web server on 0.0.0.0:5000 (debug=False)
+2025-06-21 12:50:59,323 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.81.81.231:5000
+2025-06-21 12:50:59,323 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-21 12:51:02,273 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 12:51:02] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-21 12:51:02,274 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 12:51:02] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-21 12:51:07,911 - fast_tfidf_search - INFO - Searching Google for: why procrastinators procrastinate
+2025-06-21 12:51:07,911 - fast_tfidf_search - INFO - Enhanced query: 'why procrastinators procrastinate' -> 'why procrastinators procrastinate blogs articles'
+2025-06-21 12:51:08,724 - fast_tfidf_search - ERROR - Request error fetching https://mcgraw.princeton.edu/undergraduates/resources/resource-library/understanding-and-overcoming-procrastination: 403 Client Error: Forbidden for url: https://mcgraw.princeton.edu/undergraduates/resources/resource-library/understanding-and-overcoming-procrastination
+2025-06-21 12:51:08,813 - fast_tfidf_search - ERROR - Request error fetching https://www.mcleanhospital.org/essential/procrastination: 403 Client Error: Forbidden for url: https://www.mcleanhospital.org/essential/procrastination
+2025-06-21 12:51:08,850 - fast_tfidf_search - ERROR - Request error fetching https://www.nytimes.com/2019/03/25/smarter-living/why-you-procrastinate-it-has-nothing-to-do-with-self-control.html: 403 Client Error: Forbidden for url: https://www.nytimes.com/2019/03/25/smarter-living/why-you-procrastinate-it-has-nothing-to-do-with-self-control.html
+2025-06-21 12:51:10,306 - fast_tfidf_search - ERROR - Request error fetching https://www.nytimes.com/2016/01/17/opinion/sunday/why-i-taught-myself-to-procrastinate.html: 403 Client Error: Forbidden for url: https://www.nytimes.com/2016/01/17/opinion/sunday/why-i-taught-myself-to-procrastinate.html
+2025-06-21 12:51:10,325 - fast_tfidf_search - ERROR - Request error fetching https://emmadarwin.typepad.com/thisitchofwriting/2014/04/procrastinating-again-and-again-and-again.html: 403 Client Error: Forbidden for url: https://emmadarwin.typepad.com/thisitchofwriting/2014/04/procrastinating-again-and-again-and-again.html
+2025-06-21 12:51:11,237 - fast_tfidf_search - ERROR - Request error fetching https://www.psychologicalscience.org/observer/why-wait-the-science-behind-procrastination: 403 Client Error: Forbidden for url: https://www.psychologicalscience.org/observer/why-wait-the-science-behind-procrastination
+2025-06-21 12:51:11,651 - fast_tfidf_search - ERROR - Request error fetching https://coachsimona.com/blog/beating-procrastination/: 403 Client Error: Forbidden for url: https://coachsimona.com/blog/beating-procrastination/
+2025-06-21 12:51:12,605 - fast_tfidf_search - ERROR - Request error fetching https://www.peak-resilience.com/blog/procrastination: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2025-06-21 12:51:13,044 - fast_tfidf_search - ERROR - Request error fetching https://www.sciencedirect.com/topics/medicine-and-dentistry/procrastination: 400 Client Error: Bad Request for url: https://www.sciencedirect.com/unsupported_browser
+2025-06-21 12:51:13,428 - fast_tfidf_search - ERROR - Request error fetching https://www.stickk.com/blogs/article?articleId=28: 403 Client Error: Forbidden for url: https://www.stickk.com/blogs/article?articleId=28
+2025-06-21 12:51:13,714 - fast_tfidf_search - ERROR - Request error fetching https://foundr.com/articles/leadership/personal-growth/why-we-procrastinate: 403 Client Error: Forbidden for url: https://foundr.com/articles/leadership/personal-growth/why-we-procrastinate
+2025-06-21 12:51:28,275 - fast_tfidf_search - ERROR - Request error fetching https://www.ted.com/talks/tim_urban_inside_the_mind_of_a_master_procrastinator: HTTPSConnectionPool(host='www.ted.com', port=443): Read timed out.
+2025-06-21 12:51:28,285 - fast_tfidf_search - INFO - TF-IDF validation completed in 0.01 seconds
+2025-06-21 12:51:28,286 - google_search_web - INFO - Google search query: 'why procrastinators procrastinate', found 30 results in 20.37 seconds
+2025-06-21 12:51:28,286 - google_search_web - INFO - Result 1: Scott H Young - Learn faster, achieve more - https://www.scotthyoung.com/blog/ - Discovered Blog
+2025-06-21 12:51:28,286 - google_search_web - INFO - Result 2: How to Stop Procrastinating Right Now | Schoolhouse Blog - https://schoolhouse.world/blog/stop-procrastinating - Google Search
+2025-06-21 12:51:28,286 - google_search_web - INFO - Result 3: Procrastination: An Ex-Procrastinators Guide on How to Stop Procrastinating - https://www.peterlunch.com/blog/procrastination - Google Search
+2025-06-21 12:51:28,287 - google_search_web - INFO - Result 4: Collab Blog · Collaborative Fund - https://www.collaborativefund.com/blog/ - Discovered Blog
+2025-06-21 12:51:28,287 - google_search_web - INFO - Result 5: Scott Hanselman - Scott Hanselman's Blog - https://www.hanselman.com/blog/ - Discovered Blog
+2025-06-21 12:51:28,295 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 12:51:28] "GET /search?q=why+procrastinators+procrastinate HTTP/1.1" 200 -
+2025-06-21 12:51:28,317 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 12:51:28] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-21 12:51:28,318 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 12:51:28] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-21 13:01:28,217 - fast_tfidf_search - INFO - Loaded 36 seed URLs from config
+2025-06-21 13:01:28,219 - search_engine - INFO - Starting search engine on 0.0.0.0:5000
+2025-06-21 13:01:28,220 - google_search_web - INFO - Found 34 pre-crawled blogs in cache
+2025-06-21 13:01:28,220 - google_search_web - INFO - Starting web server on 0.0.0.0:5000 (debug=False)
+2025-06-21 13:01:28,231 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.81.81.231:5000
+2025-06-21 13:01:28,231 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-21 13:01:30,005 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:01:30] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-06-21 13:01:30,011 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:01:30] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-06-21 13:01:49,791 - fast_tfidf_search - INFO - Searching Google for: Rise of Colonism in India
+2025-06-21 13:01:49,791 - fast_tfidf_search - INFO - Search query: 'Rise of Colonism in India' -> 'Rise of Colonism in India'
+2025-06-21 13:01:50,764 - fast_tfidf_search - ERROR - Invalid URL format: /search?num=92
+2025-06-21 13:01:51,008 - fast_tfidf_search - ERROR - Request error fetching https://www.asianstudies.org/publications/eaa/archives/the-british-impact-on-india-1700-1900/: 403 Client Error: Forbidden for url: https://www.asianstudies.org/publications/eaa/archives/the-british-impact-on-india-1700-1900/
+2025-06-21 13:01:51,116 - fast_tfidf_search - ERROR - Request error fetching https://en.wikipedia.org/wiki/Colonial_India: 429 Client Error: Too Many Requests for url: https://en.wikipedia.org/wiki/Colonial_India
+2025-06-21 13:01:51,393 - fast_tfidf_search - ERROR - Request error fetching https://www.business-standard.com/india-news/india-s-rise-from-colonialism-worth-in-depth-analysis-s-africa-minister-123072000009_1.html: 403 Client Error: Forbidden for url: https://www.business-standard.com/india-news/india-s-rise-from-colonialism-worth-in-depth-analysis-s-africa-minister-123072000009_1.html
+2025-06-21 13:01:51,939 - fast_tfidf_search - ERROR - Request error fetching https://blogs.lse.ac.uk/humanrights/2023/07/12/beyond-the-raj-how-british-colonialism-continues-to-impact-human-rights-in-india/: 405 Client Error: Not Allowed for url: https://blogs.lse.ac.uk/humanrights/2023/07/12/beyond-the-raj-how-british-colonialism-continues-to-impact-human-rights-in-india/
+2025-06-21 13:01:52,020 - fast_tfidf_search - ERROR - Request error fetching https://www.jstor.org/stable/25764217: 403 Client Error: Forbidden for url: https://www.jstor.org/stable/25764217
+2025-06-21 13:01:52,503 - fast_tfidf_search - ERROR - Request error fetching https://pluralism.org/the-rise-of-european-colonialism: 403 Client Error: Forbidden for url: https://pluralism.org/the-rise-of-european-colonialism
+2025-06-21 13:01:53,182 - fast_tfidf_search - ERROR - Request error fetching https://www.tandfonline.com/doi/full/10.1080/03086534.2020.1783113: 403 Client Error: Forbidden for url: https://www.tandfonline.com/doi/full/10.1080/03086534.2020.1783113
+2025-06-21 13:01:53,285 - fast_tfidf_search - ERROR - Request error fetching https://www.core-econ.org/the-economy/microeconomics/01-prosperity-inequality-11-british-colonization-india.html: 520 Server Error: <none> for url: https://www.core-econ.org/the-economy/microeconomics/01-prosperity-inequality-11-british-colonization-india.html
+2025-06-21 13:01:53,377 - fast_tfidf_search - ERROR - Request error fetching https://egyankosh.ac.in/bitstream/123456789/21039/1/Unit-1.pdf: HTTPSConnectionPool(host='egyankosh.ac.in', port=443): Max retries exceeded with url: /bitstream/123456789/21039/1/Unit-1.pdf (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1018)')))
+2025-06-21 13:01:53,595 - fast_tfidf_search - ERROR - Request error fetching https://www.newsclick.in/Colonial-Modernity-Indian-Renaissance: 403 Client Error: Forbidden for url: https://www.newsclick.in/Colonial-Modernity-Indian-Renaissance
+2025-06-21 13:01:54,324 - fast_tfidf_search - ERROR - Request error fetching https://hwpi.harvard.edu/files/pluralism/files/the_rise_of_european_colonialism_1.pdf: 403 Client Error: Forbidden for url: https://hwpi.harvard.edu/files/pluralism/files/the_rise_of_european_colonialism_1.pdf
+2025-06-21 13:01:54,544 - fast_tfidf_search - ERROR - Request error fetching https://sde.uoc.ac.in/sites/default/files/sde_videos/HIS3C01.pdf: HTTPSConnectionPool(host='sde.uoc.ac.in', port=443): Max retries exceeded with url: /sites/default/files/sde_videos/HIS3C01.pdf (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1018)')))
+2025-06-21 13:01:54,563 - fast_tfidf_search - ERROR - Request error fetching https://journals.sagepub.com/doi/10.1177/0260107920907196: 403 Client Error: Forbidden for url: https://journals.sagepub.com/doi/10.1177/0260107920907196
+2025-06-21 13:01:54,754 - fast_tfidf_search - ERROR - Request error fetching https://kuey.net/index.php/kuey/article/download/7215/5367/14167: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+2025-06-21 13:01:55,138 - fast_tfidf_search - ERROR - Request error fetching https://www.oneyoungindia.com/class-12-history/colonialism-and-countryside-notes: 404 Client Error: Not Found for url: https://www.oneyoungindia.com/class-12-history/colonialism-and-countryside-notes
+2025-06-21 13:01:57,705 - fast_tfidf_search - ERROR - Request error fetching https://www.iwm.org.uk/history/the-end-of-the-british-empire-after-the-second-world-war: 403 Client Error: Forbidden for url: https://www.iwm.org.uk/history/the-end-of-the-british-empire-after-the-second-world-war
+2025-06-21 13:02:03,796 - fast_tfidf_search - INFO - TF-IDF validation completed in 0.02 seconds
+2025-06-21 13:02:03,796 - google_search_web - INFO - Google search query: 'Rise of Colonism in India', found 0 results in 14.01 seconds
+2025-06-21 13:02:03,797 - google_search_web - INFO - Filtered to 0 results with relevance >= 0.4
+2025-06-21 13:02:03,809 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:02:03] "GET /search?q=Rise+of+Colonism+in+India HTTP/1.1" 200 -
+2025-06-21 13:02:03,850 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:02:03] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-21 13:02:03,851 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:02:03] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-21 13:02:07,729 - fast_tfidf_search - INFO - Using cached results for query: Rise of Colonism in India
+2025-06-21 13:02:07,730 - google_search_web - INFO - Google search query: 'Rise of Colonism in India', found 0 results in 0.00 seconds
+2025-06-21 13:02:07,730 - google_search_web - INFO - Filtered to 0 results with relevance >= 0.2
+2025-06-21 13:02:07,731 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:02:07] "GET /search?q=Rise+of+Colonism+in+India&relevance=0.2 HTTP/1.1" 200 -
+2025-06-21 13:02:07,754 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:02:07] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-21 13:02:07,755 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:02:07] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-21 13:02:09,460 - fast_tfidf_search - INFO - Using cached results for query: Rise of Colonism in India
+2025-06-21 13:02:09,460 - google_search_web - INFO - Google search query: 'Rise of Colonism in India', found 0 results in 0.00 seconds
+2025-06-21 13:02:09,460 - google_search_web - INFO - Filtered to 0 results with relevance >= 0.4
+2025-06-21 13:02:09,461 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:02:09] "GET /search?q=Rise+of+Colonism+in+India HTTP/1.1" 200 -
+2025-06-21 13:02:09,484 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:02:09] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-21 13:02:09,484 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:02:09] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-21 13:02:11,705 - fast_tfidf_search - INFO - Using cached results for query: Rise of Colonism in India
+2025-06-21 13:02:11,705 - google_search_web - INFO - Google search query: 'Rise of Colonism in India', found 0 results in 0.00 seconds
+2025-06-21 13:02:11,706 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:02:11] "GET /search?q=Rise+of+Colonism+in+India&relevance=0 HTTP/1.1" 200 -
+2025-06-21 13:02:11,732 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:02:11] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-21 13:02:11,733 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:02:11] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-21 13:02:13,343 - fast_tfidf_search - INFO - Using cached results for query: Rise of Colonism in India
+2025-06-21 13:02:13,343 - google_search_web - INFO - Google search query: 'Rise of Colonism in India', found 0 results in 0.00 seconds
+2025-06-21 13:02:13,343 - google_search_web - INFO - Filtered to 0 results with relevance >= 0.2
+2025-06-21 13:02:13,344 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:02:13] "GET /search?q=Rise+of+Colonism+in+India&relevance=0.2 HTTP/1.1" 200 -
+2025-06-21 13:02:13,368 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:02:13] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-21 13:02:13,369 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:02:13] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-21 13:02:13,921 - fast_tfidf_search - INFO - Using cached results for query: Rise of Colonism in India
+2025-06-21 13:02:13,921 - google_search_web - INFO - Google search query: 'Rise of Colonism in India', found 0 results in 0.00 seconds
+2025-06-21 13:02:13,921 - google_search_web - INFO - Filtered to 0 results with relevance >= 0.4
+2025-06-21 13:02:13,922 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:02:13] "GET /search?q=Rise+of+Colonism+in+India&relevance=0.4 HTTP/1.1" 200 -
+2025-06-21 13:02:13,947 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:02:13] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-21 13:02:13,947 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:02:13] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-21 13:02:14,345 - fast_tfidf_search - INFO - Using cached results for query: Rise of Colonism in India
+2025-06-21 13:02:14,346 - google_search_web - INFO - Google search query: 'Rise of Colonism in India', found 0 results in 0.00 seconds
+2025-06-21 13:02:14,346 - google_search_web - INFO - Filtered to 0 results with relevance >= 0.6
+2025-06-21 13:02:14,346 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:02:14] "GET /search?q=Rise+of+Colonism+in+India&relevance=0.6 HTTP/1.1" 200 -
+2025-06-21 13:02:14,372 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:02:14] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-21 13:02:14,373 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:02:14] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-21 13:02:14,800 - fast_tfidf_search - INFO - Using cached results for query: Rise of Colonism in India
+2025-06-21 13:02:14,801 - google_search_web - INFO - Google search query: 'Rise of Colonism in India', found 0 results in 0.00 seconds
+2025-06-21 13:02:14,801 - google_search_web - INFO - Filtered to 0 results with relevance >= 0.8
+2025-06-21 13:02:14,802 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:02:14] "GET /search?q=Rise+of+Colonism+in+India&relevance=0.8 HTTP/1.1" 200 -
+2025-06-21 13:02:14,829 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:02:14] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-21 13:02:14,830 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:02:14] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-21 13:02:16,946 - fast_tfidf_search - INFO - Using cached results for query: Rise of Colonism in India
+2025-06-21 13:02:16,946 - google_search_web - INFO - Google search query: 'Rise of Colonism in India', found 0 results in 0.00 seconds
+2025-06-21 13:02:16,947 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:02:16] "GET /search?q=Rise+of+Colonism+in+India&relevance=0 HTTP/1.1" 200 -
+2025-06-21 13:02:16,973 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:02:16] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-21 13:02:16,973 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:02:16] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-21 13:02:19,014 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:02:19] "[32mGET /crawl?depth=2&timeout=10&workers=15 HTTP/1.1[0m" 302 -
+2025-06-21 13:02:19,015 - crawl_seed_urls - INFO - Starting crawl of 36 seed URLs with depth 2
+2025-06-21 13:02:19,016 - blog_crawler - INFO - Starting crawl of 36 seed URLs
+2025-06-21 13:02:19,045 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:02:19] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-21 13:02:19,046 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:02:19] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-21 13:02:19,511 - blog_crawler - ERROR - Request error fetching https://www.ribbonfarm.com/: 403 Client Error: Forbidden for url: https://www.ribbonfarm.com/
+2025-06-21 13:02:25,085 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000171EEB5EAD0>: Failed to resolve 'nealpasricha.com' ([Errno 11001] getaddrinfo failed)")': /
+2025-06-21 13:02:26,180 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000171EEB5EC10>: Failed to resolve 'nealpasricha.com' ([Errno 11001] getaddrinfo failed)")': /
+2025-06-21 13:02:28,184 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000171EEB5D090>: Failed to resolve 'nealpasricha.com' ([Errno 11001] getaddrinfo failed)")': /
+2025-06-21 13:02:28,200 - blog_crawler - ERROR - Request error fetching https://nealpasricha.com/: HTTPSConnectionPool(host='nealpasricha.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000171EE8ACF50>: Failed to resolve 'nealpasricha.com' ([Errno 11001] getaddrinfo failed)"))
+2025-06-21 13:02:29,707 - blog_crawler - ERROR - Request error fetching https://fs.blog/?memberful_endpoint=auth: 401 Client Error: Unauthorized for url: https://farnamstreet.memberful.com/oauth?response_type=code&client_id=tpTN2TsHx7KijiM6hm2792Wa&redirect_to=https%3A%2F%2Ffs.blog
+2025-06-21 13:02:34,463 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:02:34] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-21 13:02:34,463 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:02:34] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-21 13:02:36,217 - fast_tfidf_search - INFO - Using cached results for query: why procrastinators procrastinate
+2025-06-21 13:02:36,248 - google_search_web - INFO - Google search query: 'why procrastinators procrastinate', found 30 results in 0.03 seconds
+2025-06-21 13:02:36,294 - google_search_web - INFO - Filtered to 30 results with relevance >= 0.4
+2025-06-21 13:02:36,325 - google_search_web - INFO - Result 1: Scott H Young - Learn faster, achieve more - 0.8375000000000001 - https://www.scotthyoung.com/blog/ - Discovered Blog
+2025-06-21 13:02:36,356 - google_search_web - INFO - Result 2: How to Stop Procrastinating Right Now | Schoolhouse Blog - 0.8041666666666667 - https://schoolhouse.world/blog/stop-procrastinating - Google Search
+2025-06-21 13:02:36,388 - google_search_web - INFO - Result 3: Procrastination: An Ex-Procrastinators Guide on How to Stop Procrastinating - 0.7708333333333333 - https://www.peterlunch.com/blog/procrastination - Google Search
+2025-06-21 13:02:36,420 - google_search_web - INFO - Result 4: Collab Blog · Collaborative Fund - 0.7508333333333332 - https://www.collaborativefund.com/blog/ - Discovered Blog
+2025-06-21 13:02:36,451 - google_search_web - INFO - Result 5: Scott Hanselman - Scott Hanselman's Blog - 0.7508333333333332 - https://www.hanselman.com/blog/ - Discovered Blog
+2025-06-21 13:02:36,485 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:02:36] "GET /search?q=why+procrastinators+procrastinate HTTP/1.1" 200 -
+2025-06-21 13:02:36,749 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:02:36] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-21 13:02:36,827 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:02:36] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-21 13:02:48,450 - blog_crawler - ERROR - Request error fetching https://www.facebook.com/share.php?u=https%3A%2F%2Fwww.raptitude.com%2F2025%2F04%2Fhow-to-stop-eating-candy-for-breakfast%2F: 400 Client Error: Bad Request for url: https://www.facebook.com/share.php?u=https%3A%2F%2Fwww.raptitude.com%2F2025%2F04%2Fhow-to-stop-eating-candy-for-breakfast%2F
+2025-06-21 13:02:48,512 - blog_crawler - ERROR - Request error fetching https://www.facebook.com/share.php?u=https%3A%2F%2Fwww.raptitude.com%2F2025%2F05%2Fhow-to-walk-through-walls%2F: 400 Client Error: Bad Request for url: https://www.facebook.com/share.php?u=https%3A%2F%2Fwww.raptitude.com%2F2025%2F05%2Fhow-to-walk-through-walls%2F
+2025-06-21 13:02:49,243 - blog_crawler - ERROR - Request error fetching https://www.facebook.com/share.php?u=https%3A%2F%2Fwww.raptitude.com%2F2025%2F03%2Fhow-to-start-doing-the-things-you-daydream-about%2F: 400 Client Error: Bad Request for url: https://www.facebook.com/share.php?u=https%3A%2F%2Fwww.raptitude.com%2F2025%2F03%2Fhow-to-start-doing-the-things-you-daydream-about%2F
+2025-06-21 13:03:02,935 - blog_crawler - ERROR - Request error fetching https://blog.samaltman.com/posthaven/xd/logout: 404 Client Error: Not Found for url: https://blog.samaltman.com/posthaven/xd/logout
+2025-06-21 13:17:18,945 - fast_tfidf_search - INFO - Loaded 31 seed URLs from config
+2025-06-21 13:17:18,945 - fast_tfidf_search - INFO - Clearing search cache to apply new seed URL filtering
+2025-06-21 13:17:18,946 - fast_tfidf_search - INFO - Search cache cleared successfully
+2025-06-21 13:17:18,948 - search_engine - INFO - Starting search engine on 0.0.0.0:5000
+2025-06-21 13:17:18,948 - google_search_web - INFO - Found 80 pre-crawled blogs in cache
+2025-06-21 13:17:18,948 - google_search_web - INFO - Starting web server on 0.0.0.0:5000 (debug=False)
+2025-06-21 13:17:18,963 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.81.81.231:5000
+2025-06-21 13:17:18,963 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-21 13:17:20,985 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:17:20] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-06-21 13:17:20,987 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:17:20] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-06-21 13:17:22,618 - fast_tfidf_search - INFO - Searching Google for: why procrastinators procrastinate
+2025-06-21 13:17:22,619 - fast_tfidf_search - INFO - Enhanced query: 'why procrastinators procrastinate' -> 'why procrastinators procrastinate blogs articles'
+2025-06-21 13:17:23,421 - fast_tfidf_search - ERROR - Request error fetching https://mcgraw.princeton.edu/undergraduates/resources/resource-library/understanding-and-overcoming-procrastination: 403 Client Error: Forbidden for url: https://mcgraw.princeton.edu/undergraduates/resources/resource-library/understanding-and-overcoming-procrastination
+2025-06-21 13:17:23,662 - fast_tfidf_search - ERROR - Request error fetching https://www.mcleanhospital.org/essential/procrastination: 403 Client Error: Forbidden for url: https://www.mcleanhospital.org/essential/procrastination
+2025-06-21 13:17:24,681 - fast_tfidf_search - ERROR - Request error fetching https://emmadarwin.typepad.com/thisitchofwriting/2014/04/procrastinating-again-and-again-and-again.html: 403 Client Error: Forbidden for url: https://emmadarwin.typepad.com/thisitchofwriting/2014/04/procrastinating-again-and-again-and-again.html
+2025-06-21 13:17:25,101 - fast_tfidf_search - ERROR - Request error fetching https://www.psychologicalscience.org/observer/why-wait-the-science-behind-procrastination: 403 Client Error: Forbidden for url: https://www.psychologicalscience.org/observer/why-wait-the-science-behind-procrastination
+2025-06-21 13:17:25,344 - fast_tfidf_search - ERROR - Request error fetching https://coachsimona.com/blog/beating-procrastination/: 403 Client Error: Forbidden for url: https://coachsimona.com/blog/beating-procrastination/
+2025-06-21 13:17:26,200 - fast_tfidf_search - ERROR - Request error fetching https://www.sciencedirect.com/topics/medicine-and-dentistry/procrastination: 400 Client Error: Bad Request for url: https://www.sciencedirect.com/unsupported_browser
+2025-06-21 13:17:26,241 - fast_tfidf_search - ERROR - Request error fetching https://www.peak-resilience.com/blog/procrastination: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2025-06-21 13:17:26,739 - fast_tfidf_search - ERROR - Request error fetching https://foundr.com/articles/leadership/personal-growth/why-we-procrastinate: 403 Client Error: Forbidden for url: https://foundr.com/articles/leadership/personal-growth/why-we-procrastinate
+2025-06-21 13:17:26,900 - fast_tfidf_search - ERROR - Request error fetching https://www.stickk.com/blogs/article?articleId=28: 403 Client Error: Forbidden for url: https://www.stickk.com/blogs/article?articleId=28
+2025-06-21 13:17:29,797 - fast_tfidf_search - INFO - Filtered results from 60 to 3 based on allowed domains
+2025-06-21 13:17:29,798 - fast_tfidf_search - INFO - Filtered results from 80 to 54 based on allowed domains
+2025-06-21 13:17:29,809 - fast_tfidf_search - INFO - TF-IDF validation completed in 0.00 seconds
+2025-06-21 13:17:29,809 - google_search_web - INFO - Google search query: 'why procrastinators procrastinate', found 30 results in 7.19 seconds
+2025-06-21 13:17:29,810 - google_search_web - INFO - Result 1: 3-2-1 Thursday newsletter - James Clear - https://jamesclear.com/3-2-1 - Discovered Blog
+2025-06-21 13:17:29,810 - google_search_web - INFO - Result 2: Farnam Street Blog (Articles) - https://fs.blog/blog/ - Discovered Blog
+2025-06-21 13:17:29,810 - google_search_web - INFO - Result 3: Blog | Manas J. Saloi - https://manassaloi.com/posts/ - Discovered Blog
+2025-06-21 13:17:29,811 - google_search_web - INFO - Result 4: The Beginner's Guide to Deliberate Practice - James Clear - https://jamesclear.com/beginners-guide-deliberate-practice - Discovered Blog
+2025-06-21 13:17:29,811 - google_search_web - INFO - Result 5: The Clear Habit Journal - James Clear - https://jamesclear.com/habit-journal - Discovered Blog
+2025-06-21 13:17:29,823 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:17:29] "GET /search?q=why+procrastinators+procrastinate HTTP/1.1" 200 -
+2025-06-21 13:17:29,847 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:17:29] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-21 13:17:29,848 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:17:29] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-21 13:17:56,218 - fast_tfidf_search - INFO - Using cached results for query: why procrastinators procrastinate
+2025-06-21 13:17:56,218 - google_search_web - INFO - Google search query: 'why procrastinators procrastinate', found 30 results in 0.00 seconds
+2025-06-21 13:17:56,218 - google_search_web - INFO - Result 1: 3-2-1 Thursday newsletter - James Clear - https://jamesclear.com/3-2-1 - Discovered Blog
+2025-06-21 13:17:56,219 - google_search_web - INFO - Result 2: Farnam Street Blog (Articles) - https://fs.blog/blog/ - Discovered Blog
+2025-06-21 13:17:56,219 - google_search_web - INFO - Result 3: Blog | Manas J. Saloi - https://manassaloi.com/posts/ - Discovered Blog
+2025-06-21 13:17:56,219 - google_search_web - INFO - Result 4: The Beginner's Guide to Deliberate Practice - James Clear - https://jamesclear.com/beginners-guide-deliberate-practice - Discovered Blog
+2025-06-21 13:17:56,219 - google_search_web - INFO - Result 5: The Clear Habit Journal - James Clear - https://jamesclear.com/habit-journal - Discovered Blog
+2025-06-21 13:17:56,220 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:17:56] "GET /search?q=why%20procrastinators%20procrastinate&page=2 HTTP/1.1" 200 -
+2025-06-21 13:17:56,248 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:17:56] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-21 13:17:56,249 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:17:56] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-21 13:27:54,776 - fast_tfidf_search - INFO - Loaded 12 seed URLs from config
+2025-06-21 13:27:54,776 - blog_crawler - INFO - Filtered blogs: 29 of 80 blogs match seed domains
+2025-06-21 13:27:54,778 - search_engine - INFO - Starting search engine on 0.0.0.0:5000
+2025-06-21 13:27:54,778 - google_search_web - INFO - Found 80 pre-crawled blogs in cache
+2025-06-21 13:27:54,779 - google_search_web - INFO - Starting web server on 0.0.0.0:5000 (debug=False)
+2025-06-21 13:27:54,793 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.81.81.231:5000
+2025-06-21 13:27:54,793 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-21 13:27:59,493 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:27:59] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-21 13:27:59,493 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:27:59] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-06-21 13:28:03,260 - fast_tfidf_search - INFO - Searching Google for: productivity tips for developers
+2025-06-21 13:28:03,260 - fast_tfidf_search - INFO - Enhanced query: 'productivity tips for developers' -> 'productivity tips for developers blogs articles'
+2025-06-21 13:28:08,615 - fast_tfidf_search - ERROR - Request error fetching https://itenterprise.co.uk/productivity-tips/: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2025-06-21 13:28:17,583 - fast_tfidf_search - INFO - Filtered results from 60 to 0 based on allowed domains
+2025-06-21 13:28:17,584 - fast_tfidf_search - INFO - Filtered results from 80 to 54 based on allowed domains
+2025-06-21 13:28:17,596 - fast_tfidf_search - INFO - TF-IDF validation completed in 0.00 seconds
+2025-06-21 13:28:17,596 - google_search_web - INFO - Google search query: 'productivity tips for developers', found 30 results in 14.34 seconds
+2025-06-21 13:28:17,597 - google_search_web - INFO - Result 1: 3-2-1 Thursday newsletter - James Clear - https://jamesclear.com/3-2-1 - Discovered Blog
+2025-06-21 13:28:17,597 - google_search_web - INFO - Result 2: Farnam Street Blog (Articles) - https://fs.blog/blog/ - Discovered Blog
+2025-06-21 13:28:17,598 - google_search_web - INFO - Result 3: Blog | Manas J. Saloi - https://manassaloi.com/posts/ - Discovered Blog
+2025-06-21 13:28:17,598 - google_search_web - INFO - Result 4: The Beginner's Guide to Deliberate Practice - James Clear - https://jamesclear.com/beginners-guide-deliberate-practice - Discovered Blog
+2025-06-21 13:28:17,598 - google_search_web - INFO - Result 5: The Clear Habit Journal - James Clear - https://jamesclear.com/habit-journal - Discovered Blog
+2025-06-21 13:28:17,600 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:28:17] "GET /search?q=productivity+tips+for+developers HTTP/1.1" 200 -
+2025-06-21 13:28:17,624 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:28:17] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-21 13:28:17,624 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:28:17] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-21 13:33:42,181 - crawl_seed_urls - INFO - Starting crawl of 12 seed URLs with depth 2
+2025-06-21 13:33:42,181 - blog_crawler - INFO - Starting crawl of 12 seed URLs
+2025-06-21 13:33:42,516 - blog_crawler - ERROR - Request error fetching https://www.ribbonfarm.com/: 403 Client Error: Forbidden for url: https://www.ribbonfarm.com/
+2025-06-21 13:33:42,701 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x0000020D64310190>: Failed to resolve 'nealpasricha.com' ([Errno 11001] getaddrinfo failed)")': /
+2025-06-21 13:33:43,710 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x0000020D64313B10>: Failed to resolve 'nealpasricha.com' ([Errno 11001] getaddrinfo failed)")': /
+2025-06-21 13:33:45,741 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x0000020D648D5310>: Failed to resolve 'nealpasricha.com' ([Errno 11001] getaddrinfo failed)")': /
+2025-06-21 13:33:45,743 - blog_crawler - ERROR - Request error fetching https://nealpasricha.com/: HTTPSConnectionPool(host='nealpasricha.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x0000020D64310050>: Failed to resolve 'nealpasricha.com' ([Errno 11001] getaddrinfo failed)"))
+2025-06-21 13:33:46,306 - blog_crawler - ERROR - Request error fetching https://fs.blog/?memberful_endpoint=auth: 401 Client Error: Unauthorized for url: https://farnamstreet.memberful.com/oauth?response_type=code&client_id=tpTN2TsHx7KijiM6hm2792Wa&redirect_to=https%3A%2F%2Ffs.blog
+2025-06-21 13:33:48,555 - blog_crawler - ERROR - Request error fetching https://thekidshouldseethis.com/post/yawns-video-everynone-mercadante: 403 Client Error: Forbidden for url: https://thekidshouldseethis.com/post/yawns-video-everynone-mercadante
+2025-06-21 13:33:49,828 - blog_crawler - ERROR - Request error fetching https://www.juliensauctions.com/en/auctions/julien-s-auctions-turner-classic-movies-present-the-david-lynch-collection: 403 Client Error: Forbidden for url: https://www.juliensauctions.com/en/auctions/julien-s-auctions-turner-classic-movies-present-the-david-lynch-collection
+2025-06-21 13:33:58,431 - blog_crawler - ERROR - Request error fetching https://www.facebook.com/share.php?u=https%3A%2F%2Fwww.raptitude.com%2F2025%2F05%2Fhow-to-walk-through-walls%2F: 400 Client Error: Bad Request for url: https://www.facebook.com/share.php?u=https%3A%2F%2Fwww.raptitude.com%2F2025%2F05%2Fhow-to-walk-through-walls%2F
+2025-06-21 13:33:58,739 - blog_crawler - ERROR - Request error fetching https://www.facebook.com/share.php?u=https%3A%2F%2Fwww.raptitude.com%2F2025%2F04%2Fhow-to-stop-eating-candy-for-breakfast%2F: 400 Client Error: Bad Request for url: https://www.facebook.com/share.php?u=https%3A%2F%2Fwww.raptitude.com%2F2025%2F04%2Fhow-to-stop-eating-candy-for-breakfast%2F
+2025-06-21 13:34:00,457 - blog_crawler - ERROR - Request error fetching https://www.facebook.com/share.php?u=https%3A%2F%2Fwww.raptitude.com%2F2025%2F03%2Fhow-to-start-doing-the-things-you-daydream-about%2F: 400 Client Error: Bad Request for url: https://www.facebook.com/share.php?u=https%3A%2F%2Fwww.raptitude.com%2F2025%2F03%2Fhow-to-start-doing-the-things-you-daydream-about%2F
+2025-06-21 13:34:42,027 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='www.sacbee.com', port=443): Read timed out. (read timeout=15)")': /news/california/article245534855.html
+2025-06-21 13:34:48,980 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000020D65253D90>, 'Connection to blog.beeminder.com timed out. (connect timeout=15)')': /tag/rationality/
+2025-06-21 13:34:59,228 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='www.sacbee.com', port=443): Read timed out. (read timeout=15)")': /news/california/article245534855.html
+2025-06-21 13:35:16,849 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='www.sacbee.com', port=443): Read timed out. (read timeout=15)")': /news/california/article245534855.html
+2025-06-21 13:35:20,197 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000020D68714050>, 'Connection to blog.beeminder.com timed out. (connect timeout=15)')': /tag/rationality/
+2025-06-21 13:35:32,283 - blog_crawler - ERROR - Request error fetching https://www.sacbee.com/news/california/article245534855.html: HTTPSConnectionPool(host='www.sacbee.com', port=443): Max retries exceeded with url: /news/california/article245534855.html (Caused by ReadTimeoutError("HTTPSConnectionPool(host='www.sacbee.com', port=443): Read timed out. (read timeout=15)"))
+2025-06-21 13:35:52,390 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000020D64312350>, 'Connection to blog.beeminder.com timed out. (connect timeout=15)')': /tag/rationality/
+2025-06-21 13:36:22,574 - blog_crawler - ERROR - Request error fetching https://blog.beeminder.com/tag/rationality/: HTTPSConnectionPool(host='blog.beeminder.com', port=443): Max retries exceeded with url: /tag/rationality/ (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000020D64311090>, 'Connection to blog.beeminder.com timed out. (connect timeout=15)'))
+2025-06-21 13:38:02,019 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPConnection object at 0x0000020D65665950>: Failed to resolve 'blog.markwill.com' ([Errno 11001] getaddrinfo failed)")': /
+2025-06-21 13:38:03,021 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPConnection object at 0x0000020D7220C450>: Failed to resolve 'blog.markwill.com' ([Errno 11001] getaddrinfo failed)")': /
+2025-06-21 13:38:03,483 - blog_crawler - ERROR - Request error fetching http://www.salient.org.nz/blog/a-question-for-the-electoral-commission: 404 Client Error: Not Found for url: https://www.salient.org.nz/blog/a-question-for-the-electoral-commission
+2025-06-21 13:38:05,023 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPConnection object at 0x0000020D7220C150>: Failed to resolve 'blog.markwill.com' ([Errno 11001] getaddrinfo failed)")': /
+2025-06-21 13:38:05,025 - blog_crawler - ERROR - Request error fetching http://blog.markwill.com: HTTPConnectionPool(host='blog.markwill.com', port=80): Max retries exceeded with url: / (Caused by NameResolutionError("<urllib3.connection.HTTPConnection object at 0x0000020D6D534150>: Failed to resolve 'blog.markwill.com' ([Errno 11001] getaddrinfo failed)"))
+2025-06-21 13:38:08,371 - blog_crawler - INFO - Crawl completed in 266.19 seconds
+2025-06-21 13:38:08,371 - blog_crawler - INFO - Discovered 143 blogs
+2025-06-21 13:38:08,371 - blog_crawler - INFO - Visited 173 URLs
+2025-06-21 13:38:08,372 - crawl_seed_urls - INFO - Crawl completed in 266.19 seconds
+2025-06-21 13:38:08,372 - crawl_seed_urls - INFO - Discovered 143 blogs
+2025-06-21 13:38:08,372 - precrawl - INFO - Pre-crawl completed successfully in 266.19 seconds. Cache is ready for faster searches.
+2025-06-21 13:40:07,128 - fast_tfidf_search - INFO - Loaded 12 seed URLs from config
+2025-06-21 13:40:07,130 - search_engine - INFO - Starting search engine on 0.0.0.0:5000
+2025-06-21 13:40:07,131 - google_search_web - INFO - Found 143 pre-crawled blogs in cache
+2025-06-21 13:40:07,131 - google_search_web - INFO - Starting web server on 0.0.0.0:5000 (debug=False)
+2025-06-21 13:40:07,144 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.81.81.231:5000
+2025-06-21 13:40:07,145 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-21 13:40:09,291 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:40:09] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-21 13:40:09,291 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:40:09] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-06-21 13:40:33,259 - fast_tfidf_search - INFO - Using cached results for query: productivity tips for developers
+2025-06-21 13:40:33,260 - google_search_web - INFO - Google search query: 'productivity tips for developers', found 30 results in 0.00 seconds
+2025-06-21 13:40:33,260 - google_search_web - INFO - Result 1: 3-2-1 Thursday newsletter - James Clear - https://jamesclear.com/3-2-1 - Discovered Blog
+2025-06-21 13:40:33,260 - google_search_web - INFO - Result 2: Farnam Street Blog (Articles) - https://fs.blog/blog/ - Discovered Blog
+2025-06-21 13:40:33,260 - google_search_web - INFO - Result 3: Blog | Manas J. Saloi - https://manassaloi.com/posts/ - Discovered Blog
+2025-06-21 13:40:33,260 - google_search_web - INFO - Result 4: The Beginner's Guide to Deliberate Practice - James Clear - https://jamesclear.com/beginners-guide-deliberate-practice - Discovered Blog
+2025-06-21 13:40:33,261 - google_search_web - INFO - Result 5: The Clear Habit Journal - James Clear - https://jamesclear.com/habit-journal - Discovered Blog
+2025-06-21 13:40:33,262 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:40:33] "GET /search?q=productivity+tips+for+developers HTTP/1.1" 200 -
+2025-06-21 13:40:33,288 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:40:33] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-21 13:40:33,288 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:40:33] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-21 13:40:37,345 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:40:37] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-21 13:40:37,346 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:40:37] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-21 13:40:45,408 - fast_tfidf_search - INFO - Using cached results for query: productivity tips for developers
+2025-06-21 13:40:45,408 - google_search_web - INFO - Google search query: 'productivity tips for developers', found 30 results in 0.00 seconds
+2025-06-21 13:40:45,408 - google_search_web - INFO - Result 1: 3-2-1 Thursday newsletter - James Clear - https://jamesclear.com/3-2-1 - Discovered Blog
+2025-06-21 13:40:45,408 - google_search_web - INFO - Result 2: Farnam Street Blog (Articles) - https://fs.blog/blog/ - Discovered Blog
+2025-06-21 13:40:45,409 - google_search_web - INFO - Result 3: Blog | Manas J. Saloi - https://manassaloi.com/posts/ - Discovered Blog
+2025-06-21 13:40:45,409 - google_search_web - INFO - Result 4: The Beginner's Guide to Deliberate Practice - James Clear - https://jamesclear.com/beginners-guide-deliberate-practice - Discovered Blog
+2025-06-21 13:40:45,409 - google_search_web - INFO - Result 5: The Clear Habit Journal - James Clear - https://jamesclear.com/habit-journal - Discovered Blog
+2025-06-21 13:40:45,410 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:40:45] "GET /search?q=productivity+tips+for+developers HTTP/1.1" 200 -
+2025-06-21 13:40:45,434 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:40:45] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-21 13:40:45,435 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:40:45] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-21 13:40:46,518 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:40:46] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-21 13:40:46,519 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:40:46] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-21 13:47:45,242 - fast_tfidf_search - INFO - Loaded 12 seed URLs from config
+2025-06-21 13:47:45,243 - fast_tfidf_search - INFO - Starting background crawl of seed URLs
+2025-06-21 13:47:45,244 - blog_crawler - INFO - Starting crawl of 12 seed URLs
+2025-06-21 13:47:45,246 - search_engine - INFO - Starting search engine on 0.0.0.0:5000
+2025-06-21 13:47:45,247 - google_search_web - WARNING - No pre-crawled data found. Search results may be limited.
+2025-06-21 13:47:45,247 - google_search_web - INFO - Starting web server on 0.0.0.0:5000 (debug=False)
+2025-06-21 13:47:45,260 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.81.81.231:5000
+2025-06-21 13:47:45,261 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-21 13:47:45,506 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000243A530DF90>: Failed to resolve 'nealpasricha.com' ([Errno 11001] getaddrinfo failed)")': /
+2025-06-21 13:47:45,514 - blog_crawler - ERROR - Request error fetching https://www.ribbonfarm.com/: 403 Client Error: Forbidden for url: https://www.ribbonfarm.com/
+2025-06-21 13:47:46,521 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000243A530F110>: Failed to resolve 'nealpasricha.com' ([Errno 11001] getaddrinfo failed)")': /
+2025-06-21 13:47:48,522 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000243A6A16E90>: Failed to resolve 'nealpasricha.com' ([Errno 11001] getaddrinfo failed)")': /
+2025-06-21 13:47:48,523 - blog_crawler - ERROR - Request error fetching https://nealpasricha.com/: HTTPSConnectionPool(host='nealpasricha.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000243A530F750>: Failed to resolve 'nealpasricha.com' ([Errno 11001] getaddrinfo failed)"))
+2025-06-21 13:47:48,763 - blog_crawler - ERROR - Request error fetching https://fs.blog/?memberful_endpoint=auth: 401 Client Error: Unauthorized for url: https://farnamstreet.memberful.com/oauth?response_type=code&client_id=tpTN2TsHx7KijiM6hm2792Wa&redirect_to=https%3A%2F%2Ffs.blog
+2025-06-21 13:47:55,109 - blog_crawler - ERROR - Request error fetching https://www.facebook.com/share.php?u=https%3A%2F%2Fwww.raptitude.com%2F2025%2F04%2Fhow-to-stop-eating-candy-for-breakfast%2F: 400 Client Error: Bad Request for url: https://www.facebook.com/share.php?u=https%3A%2F%2Fwww.raptitude.com%2F2025%2F04%2Fhow-to-stop-eating-candy-for-breakfast%2F
+2025-06-21 13:47:55,112 - blog_crawler - ERROR - Request error fetching https://www.facebook.com/share.php?u=https%3A%2F%2Fwww.raptitude.com%2F2025%2F05%2Fhow-to-walk-through-walls%2F: 400 Client Error: Bad Request for url: https://www.facebook.com/share.php?u=https%3A%2F%2Fwww.raptitude.com%2F2025%2F05%2Fhow-to-walk-through-walls%2F
+2025-06-21 13:47:56,462 - blog_crawler - ERROR - Request error fetching https://www.facebook.com/share.php?u=https%3A%2F%2Fwww.raptitude.com%2F2025%2F03%2Fhow-to-start-doing-the-things-you-daydream-about%2F: 400 Client Error: Bad Request for url: https://www.facebook.com/share.php?u=https%3A%2F%2Fwww.raptitude.com%2F2025%2F03%2Fhow-to-start-doing-the-things-you-daydream-about%2F
+2025-06-21 13:48:06,800 - fast_tfidf_search - INFO - Loaded 12 seed URLs from config
+2025-06-21 13:48:06,803 - search_engine - INFO - Starting search engine on 0.0.0.0:5000
+2025-06-21 13:48:06,803 - google_search_web - INFO - Found 20 pre-crawled blogs in cache
+2025-06-21 13:48:06,803 - google_search_web - INFO - Starting web server on 0.0.0.0:5000 (debug=False)
+2025-06-21 13:48:06,814 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.81.81.231:5000
+2025-06-21 13:48:06,814 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-21 13:48:08,878 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:48:08] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-21 13:48:08,879 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:48:08] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-21 13:48:10,754 - fast_tfidf_search - INFO - Using cached results for query: productivity tips for developers
+2025-06-21 13:48:10,755 - google_search_web - INFO - Google search query: 'productivity tips for developers', found 30 results in 0.00 seconds
+2025-06-21 13:48:10,755 - google_search_web - INFO - Result 1: 3-2-1 Thursday newsletter - James Clear - https://jamesclear.com/3-2-1 - Discovered Blog
+2025-06-21 13:48:10,755 - google_search_web - INFO - Result 2: Farnam Street Blog (Articles) - https://fs.blog/blog/ - Discovered Blog
+2025-06-21 13:48:10,755 - google_search_web - INFO - Result 3: Blog | Manas J. Saloi - https://manassaloi.com/posts/ - Discovered Blog
+2025-06-21 13:48:10,755 - google_search_web - INFO - Result 4: The Beginner's Guide to Deliberate Practice - James Clear - https://jamesclear.com/beginners-guide-deliberate-practice - Discovered Blog
+2025-06-21 13:48:10,755 - google_search_web - INFO - Result 5: The Clear Habit Journal - James Clear - https://jamesclear.com/habit-journal - Discovered Blog
+2025-06-21 13:48:10,756 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:48:10] "GET /search?q=productivity+tips+for+developers HTTP/1.1" 200 -
+2025-06-21 13:48:10,779 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:48:10] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-21 13:48:10,779 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:48:10] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-21 13:48:12,592 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:48:12] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-21 13:48:12,593 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:48:12] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-21 13:49:10,593 - fast_tfidf_search - INFO - Searching Google for: learning to code
+2025-06-21 13:49:10,593 - fast_tfidf_search - INFO - Enhanced query: 'learning to code' -> 'learning to code blogs articles'
+2025-06-21 13:49:12,858 - fast_tfidf_search - ERROR - Invalid URL format: /search?num=62
+2025-06-21 13:49:14,984 - fast_tfidf_search - ERROR - Request error fetching https://www.springboard.com/blog/software-engineering/how-to-learn-programming/: 403 Client Error: Forbidden for url: https://www.springboard.com/blog/software-engineering/how-to-learn-programming/
+2025-06-21 13:49:15,069 - fast_tfidf_search - ERROR - Request error fetching https://www.datacamp.com/blog: 403 Client Error: Forbidden for url: https://www.datacamp.com/blog
+2025-06-21 13:49:16,041 - fast_tfidf_search - ERROR - Request error fetching https://www.toptal.com/developers/blog: 403 Client Error: Forbidden for url: https://www.toptal.com/developers/blog
+2025-06-21 13:49:16,481 - fast_tfidf_search - ERROR - Request error fetching https://begin.com/blog/posts/2023-03-14-my-experience-learning-to-code: 404 Client Error: Not Found for url: https://begin.com/blog/posts/2023-03-14-my-experience-learning-to-code
+2025-06-21 13:49:24,076 - fast_tfidf_search - INFO - Filtered results from 60 to 2 based on allowed domains
+2025-06-21 13:49:24,077 - fast_tfidf_search - INFO - Filtered results from 80 to 54 based on allowed domains
+2025-06-21 13:49:24,088 - fast_tfidf_search - INFO - TF-IDF validation completed in 0.00 seconds
+2025-06-21 13:49:24,089 - google_search_web - INFO - Google search query: 'learning to code', found 30 results in 13.50 seconds
+2025-06-21 13:49:24,089 - google_search_web - INFO - Result 1: 3-2-1 Thursday newsletter - James Clear - https://jamesclear.com/3-2-1 - Discovered Blog
+2025-06-21 13:49:24,089 - google_search_web - INFO - Result 2: Farnam Street Blog (Articles) - https://fs.blog/blog/ - Discovered Blog
+2025-06-21 13:49:24,090 - google_search_web - INFO - Result 3: Blog | Manas J. Saloi - https://manassaloi.com/posts/ - Discovered Blog
+2025-06-21 13:49:24,090 - google_search_web - INFO - Result 4: The Beginner's Guide to Deliberate Practice - James Clear - https://jamesclear.com/beginners-guide-deliberate-practice - Discovered Blog
+2025-06-21 13:49:24,091 - google_search_web - INFO - Result 5: The Clear Habit Journal - James Clear - https://jamesclear.com/habit-journal - Discovered Blog
+2025-06-21 13:49:24,092 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:49:24] "GET /search?q=learning+to+code HTTP/1.1" 200 -
+2025-06-21 13:49:24,127 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:49:24] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-21 13:49:24,127 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 13:49:24] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-21 14:26:08,166 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 14:26:08] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-21 14:26:08,166 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 14:26:08] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-21 14:26:26,637 - fast_tfidf_search - INFO - Searching Google for: Google vs Nvidia
+2025-06-21 14:26:26,637 - fast_tfidf_search - INFO - Enhanced query: 'Google vs Nvidia' -> 'Google vs Nvidia blogs articles'
+2025-06-21 14:26:29,641 - fast_tfidf_search - ERROR - Request error fetching https://www.comparably.com/competitors/google-vs-nvidia: 403 Client Error: Forbidden for url: https://www.comparably.com/competitors/google-vs-nvidia
+2025-06-21 14:26:29,814 - fast_tfidf_search - ERROR - Request error fetching https://www.marketwatch.com/story/the-blogger-who-helped-spark-nvidias-600-billion-stock-collapse-and-a-panic-in-silicon-valley-52aba340: 401 Client Error: HTTP Forbidden for url: https://www.marketwatch.com/story/the-blogger-who-helped-spark-nvidias-600-billion-stock-collapse-and-a-panic-in-silicon-valley-52aba340
+2025-06-21 14:26:29,922 - fast_tfidf_search - ERROR - Request error fetching https://www.ddn.com/blog/: 403 Client Error: Forbidden for url: https://www.ddn.com/blog/
+2025-06-21 14:26:31,008 - fast_tfidf_search - ERROR - Request error fetching https://www.fierceelectronics.com/ai/nvidia-google-strengthen-ai-ties-google-custom-chips-advance: 403 Client Error: Forbidden for url: https://www.fierceelectronics.com/ai/nvidia-google-strengthen-ai-ties-google-custom-chips-advance
+2025-06-21 14:26:34,999 - fast_tfidf_search - ERROR - Request error fetching https://marekfiser.com/blog/internship-at-NVIDIA-2014: HTTPSConnectionPool(host='marekfiser.com', port=443): Max retries exceeded with url: /blog/internship-at-NVIDIA-2014 (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1018)')))
+2025-06-21 14:26:37,830 - fast_tfidf_search - ERROR - Request error fetching https://www.eetindia.co.in/blog-google-and-nvidia-break-ai-records/: HTTPSConnectionPool(host='www.eetindia.co.in', port=443): Read timed out. (read timeout=10)
+2025-06-21 14:26:40,868 - fast_tfidf_search - ERROR - Request error fetching https://www.hpcwire.com/2024/10/30/role-reversal-google-teases-nvidias-blackwell-as-it-softens-tpu-rivalry/: 403 Client Error: Forbidden for url: https://www.hpcwire.com/2024/10/30/role-reversal-google-teases-nvidias-blackwell-as-it-softens-tpu-rivalry/
+2025-06-21 14:26:41,837 - fast_tfidf_search - INFO - Filtered results from 60 to 0 based on allowed domains
+2025-06-21 14:26:41,837 - fast_tfidf_search - INFO - Filtered results from 80 to 54 based on allowed domains
+2025-06-21 14:26:41,843 - fast_tfidf_search - INFO - TF-IDF validation completed in 0.00 seconds
+2025-06-21 14:26:41,844 - google_search_web - INFO - Google search query: 'Google vs Nvidia', found 30 results in 15.21 seconds
+2025-06-21 14:26:41,844 - google_search_web - INFO - Result 1: 3-2-1 Thursday newsletter - James Clear - https://jamesclear.com/3-2-1 - Discovered Blog
+2025-06-21 14:26:41,845 - google_search_web - INFO - Result 2: Farnam Street Blog (Articles) - https://fs.blog/blog/ - Discovered Blog
+2025-06-21 14:26:41,845 - google_search_web - INFO - Result 3: Blog | Manas J. Saloi - https://manassaloi.com/posts/ - Discovered Blog
+2025-06-21 14:26:41,845 - google_search_web - INFO - Result 4: The Beginner's Guide to Deliberate Practice - James Clear - https://jamesclear.com/beginners-guide-deliberate-practice - Discovered Blog
+2025-06-21 14:26:41,846 - google_search_web - INFO - Result 5: The Clear Habit Journal - James Clear - https://jamesclear.com/habit-journal - Discovered Blog
+2025-06-21 14:26:41,846 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 14:26:41] "GET /search?q=Google+vs+Nvidia HTTP/1.1" 200 -
+2025-06-21 14:26:41,899 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 14:26:41] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-21 14:26:41,900 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 14:26:41] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-21 14:27:01,341 - fast_tfidf_search - INFO - Using cached results for query: Google vs Nvidia
+2025-06-21 14:27:01,341 - google_search_web - INFO - Google search query: 'Google vs Nvidia', found 30 results in 0.00 seconds
+2025-06-21 14:27:01,342 - google_search_web - INFO - Result 1: 3-2-1 Thursday newsletter - James Clear - https://jamesclear.com/3-2-1 - Discovered Blog
+2025-06-21 14:27:01,342 - google_search_web - INFO - Result 2: Farnam Street Blog (Articles) - https://fs.blog/blog/ - Discovered Blog
+2025-06-21 14:27:01,342 - google_search_web - INFO - Result 3: Blog | Manas J. Saloi - https://manassaloi.com/posts/ - Discovered Blog
+2025-06-21 14:27:01,342 - google_search_web - INFO - Result 4: The Beginner's Guide to Deliberate Practice - James Clear - https://jamesclear.com/beginners-guide-deliberate-practice - Discovered Blog
+2025-06-21 14:27:01,342 - google_search_web - INFO - Result 5: The Clear Habit Journal - James Clear - https://jamesclear.com/habit-journal - Discovered Blog
+2025-06-21 14:27:01,343 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 14:27:01] "GET /search?q=Google%20vs%20Nvidia&page=2 HTTP/1.1" 200 -
+2025-06-21 14:27:01,368 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 14:27:01] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-21 14:27:01,369 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 14:27:01] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-21 14:27:11,784 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 14:27:11] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-21 14:27:11,785 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 14:27:11] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-21 14:27:11,893 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 14:27:11] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-06-21 14:27:11,910 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 14:27:11] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-06-21 14:27:30,853 - fast_tfidf_search - INFO - Loaded 12 seed URLs from config
+2025-06-21 14:27:30,855 - search_engine - INFO - Starting search engine on 0.0.0.0:5000
+2025-06-21 14:27:30,856 - google_search_web - INFO - Found 20 pre-crawled blogs in cache
+2025-06-21 14:27:30,856 - google_search_web - INFO - Starting web server on 0.0.0.0:5000 (debug=False)
+2025-06-21 14:27:30,868 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.81.81.231:5000
+2025-06-21 14:27:30,868 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-21 14:27:33,215 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 14:27:33] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-21 14:27:33,220 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 14:27:33] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-21 14:27:43,251 - fast_tfidf_search - INFO - Searching Google for: Most popular Cricketer
+2025-06-21 14:27:43,252 - fast_tfidf_search - INFO - Enhanced query: 'Most popular Cricketer' -> 'Most popular Cricketer blogs articles'
+2025-06-21 14:27:47,094 - fast_tfidf_search - ERROR - Request error fetching https://www.espncricinfo.com/: 403 Client Error: Forbidden for url: https://www.espncricinfo.com/
+2025-06-21 14:27:57,315 - fast_tfidf_search - INFO - TF-IDF validation completed in 0.01 seconds
+2025-06-21 14:27:57,316 - google_search_web - INFO - Google search query: 'Most popular Cricketer', found 30 results in 14.06 seconds
+2025-06-21 14:27:57,316 - google_search_web - INFO - Result 1: How to Become a Cricketer - A Guide to Start a Career in Cricket - https://pushsports.in/blog/how-to-become-a-cricketer-a-guide-to-start-a-career-in-cricket/ - Google Search
+2025-06-21 14:27:57,316 - google_search_web - INFO - Result 2: The most insightful stories about Cricket - Medium - https://medium.com/tag/cricket - Google Search
+2025-06-21 14:27:57,317 - google_search_web - INFO - Result 3: Most Popular Cricketer in the World: 2025 Ranking - https://probo.in/blog/most-popular-cricketer-in-the-world/ - Google Search
+2025-06-21 14:27:57,317 - google_search_web - INFO - Result 4: Top 20 Cricket Influencers in 2025 - Favikon - https://www.favikon.com/blog/top-cricket-influencers - Google Search
+2025-06-21 14:27:57,317 - google_search_web - INFO - Result 5: Blog | Cricket Matters - https://www.cricketmatters.com/blog/ - Google Search
+2025-06-21 14:27:57,324 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 14:27:57] "GET /search?q=Most+popular+Cricketer HTTP/1.1" 200 -
+2025-06-21 14:27:57,356 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 14:27:57] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-21 14:27:57,357 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 14:27:57] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-21 14:28:06,980 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 14:28:06] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-21 14:28:06,981 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 14:28:06] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-21 14:44:18,918 - fast_tfidf_search - INFO - Loaded 12 seed URLs from config
+2025-06-21 14:44:18,920 - search_engine - INFO - Starting search engine on 0.0.0.0:5000
+2025-06-21 14:44:18,920 - google_search_web - INFO - Found 20 pre-crawled blogs in cache
+2025-06-21 14:44:18,921 - google_search_web - INFO - Starting web server on 0.0.0.0:5000 (debug=False)
+2025-06-21 14:44:18,931 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.81.81.231:5000
+2025-06-21 14:44:18,931 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-21 14:44:24,297 - werkzeug - INFO - 10.81.81.231 - - [21/Jun/2025 14:44:24] "GET / HTTP/1.1" 200 -
+2025-06-21 14:44:24,389 - werkzeug - INFO - 10.81.81.231 - - [21/Jun/2025 14:44:24] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-06-21 14:44:24,390 - werkzeug - INFO - 10.81.81.231 - - [21/Jun/2025 14:44:24] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-06-21 14:44:24,576 - werkzeug - INFO - 10.81.81.231 - - [21/Jun/2025 14:44:24] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-06-21 14:44:35,526 - fast_tfidf_search - INFO - Searching Google for: Best AI chatbot
+2025-06-21 14:44:35,527 - fast_tfidf_search - INFO - Enhanced query: 'Best AI chatbot' -> 'Best AI chatbot blogs articles'
+2025-06-21 14:44:36,365 - fast_tfidf_search - ERROR - Request error fetching https://www.pcmag.com/picks/the-best-ai-chatbots: 403 Client Error: Forbidden for url: https://www.pcmag.com/picks/the-best-ai-chatbots
+2025-06-21 14:44:36,424 - fast_tfidf_search - ERROR - Request error fetching https://technologyadvice.com/blog/voip/ai-chatbot-examples/: 403 Client Error: Forbidden for url: https://technologyadvice.com/blog/voip/ai-chatbot-examples/
+2025-06-21 14:44:38,142 - fast_tfidf_search - ERROR - Request error fetching https://www.tableau.com/learn/articles/blogs-about-machine-learning-artificial-intelligence: 403 Client Error: Forbidden for url: https://www.tableau.com/learn/articles/blogs-about-machine-learning-artificial-intelligence
+2025-06-21 14:44:38,433 - fast_tfidf_search - ERROR - Request error fetching https://sinch.com/blog/ai-chatbots-in-e-commerce/: 403 Client Error: Forbidden for url: https://sinch.com/blog/ai-chatbots-in-e-commerce/
+2025-06-21 14:44:39,921 - fast_tfidf_search - ERROR - Request error fetching https://technologyadvice.com/blog/voip/best-ai-chatbot/: 403 Client Error: Forbidden for url: https://technologyadvice.com/blog/voip/best-ai-chatbot/
+2025-06-21 14:44:47,164 - fast_tfidf_search - ERROR - Request error fetching https://arisedigitalsolutions.in/top7AIchatbotblog.html: 404 Client Error: Not Found for url: https://arisedigitalsolutions.in/top7AIchatbotblog.html
+2025-06-21 14:44:56,683 - fast_tfidf_search - INFO - TF-IDF validation completed in 0.01 seconds
+2025-06-21 14:44:56,684 - google_search_web - INFO - Google search query: 'Best AI chatbot', found 30 results in 21.16 seconds
+2025-06-21 14:44:56,684 - google_search_web - INFO - Result 1: AI Agent & Chatbot Building Tips | LivePerson Blog Category - https://www.liveperson.com/blog/chatbot-building/ - Google Search
+2025-06-21 14:44:56,684 - google_search_web - INFO - Result 2: How Do AI Chatbots Work? An Ultimate Guide | Blog Miquido - https://www.miquido.com/blog/how-do-ai-chatbots-work/ - Google Search
+2025-06-21 14:44:56,685 - google_search_web - INFO - Result 3: 9 Best AI Chatbot Platforms: A Comprehensive Guide (2025) - https://botpress.com/blog/9-best-ai-chatbot-platforms - Google Search
+2025-06-21 14:44:56,685 - google_search_web - INFO - Result 4: Looking For The Best Blog About AI and Chatbots? - BotsCrew Blog - https://botscrew.com/blog/ - Google Search
+2025-06-21 14:44:56,686 - google_search_web - INFO - Result 5: Botsify - Read the blog posts from Botsify around the topics of AI Chatbots, and best practices to follow when building AI chatbot services. - https://botsify.com/blog/ - Google Search
+2025-06-21 14:44:56,696 - werkzeug - INFO - 10.81.81.231 - - [21/Jun/2025 14:44:56] "GET /search?q=Best+AI+chatbot HTTP/1.1" 200 -
+2025-06-21 14:44:56,724 - werkzeug - INFO - 10.81.81.231 - - [21/Jun/2025 14:44:56] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-21 14:44:56,725 - werkzeug - INFO - 10.81.81.231 - - [21/Jun/2025 14:44:56] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-21 18:30:02,607 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 18:30:02] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-21 18:30:02,608 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 18:30:02] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-21 18:30:26,228 - fast_tfidf_search - INFO - Searching Google for: Cursor with a rise
+2025-06-21 18:30:26,228 - fast_tfidf_search - INFO - Enhanced query: 'Cursor with a rise' -> 'Cursor with a rise blogs articles'
+2025-06-21 18:30:27,779 - fast_tfidf_search - ERROR - Request error fetching https://blogs.oracle.com/connect/post/working-with-cursors: 403 Client Error: Forbidden for url: https://blogs.oracle.com/connect/post/working-with-cursors
+2025-06-21 18:30:29,263 - fast_tfidf_search - ERROR - Request error fetching https://blog.iconlogic.com/weblog/2016/05/articulate-storyline-all-about-the-cursor.html: 403 Client Error: Forbidden for url: https://blog.iconlogic.com/weblog/2016/05/articulate-storyline-all-about-the-cursor.html
+2025-06-21 18:30:29,578 - fast_tfidf_search - ERROR - Request error fetching https://stackoverflow.com/questions/58141/why-is-it-considered-bad-practice-to-use-cursors-in-sql-server: 403 Client Error: Forbidden for url: https://stackoverflow.com/questions/58141/why-is-it-considered-bad-practice-to-use-cursors-in-sql-server
+2025-06-21 18:30:29,656 - fast_tfidf_search - ERROR - Request error fetching https://dzone.com/articles/types-of-cursors-available-in-oracle-plsql: 403 Client Error: Forbidden for url: https://dzone.com/articles/types-of-cursors-available-in-oracle-plsql
+2025-06-21 18:30:29,778 - fast_tfidf_search - ERROR - Request error fetching https://blog.iconlogic.com/weblog/2022/07/techsmith-camtasia-2022-cursor-path-creator.html: 403 Client Error: Forbidden for url: https://blog.iconlogic.com/weblog/2022/07/techsmith-camtasia-2022-cursor-path-creator.html
+2025-06-21 18:30:30,162 - fast_tfidf_search - ERROR - Request error fetching https://catalog.bensbites.com/blog/getting-started-with-cursor-a-beginners-guide: 403 Client Error: Forbidden for url: https://catalog.bensbites.com/blog/getting-started-with-cursor-a-beginners-guide
+2025-06-21 18:30:30,407 - fast_tfidf_search - ERROR - Request error fetching https://peerlist.io/blog/commentary/what-is-cursor-ai: 403 Client Error: Forbidden for url: https://peerlist.io/blog/commentary/what-is-cursor-ai
+2025-06-21 18:30:40,363 - fast_tfidf_search - INFO - TF-IDF validation completed in 0.01 seconds
+2025-06-21 18:30:40,363 - google_search_web - INFO - Google search query: 'Cursor with a rise', found 30 results in 14.14 seconds
+2025-06-21 18:30:40,364 - google_search_web - INFO - Result 1: How to Customize Blogger Cursor - https://www.c-sharpcorner.com/article/how-to-customize-blogger-cursor/ - Google Search
+2025-06-21 18:30:40,364 - google_search_web - INFO - Result 2: Cursor Insight - https://www.cursorinsight.com/blog/3 - Google Search
+2025-06-21 18:30:40,365 - google_search_web - INFO - Result 3: A guide to custom cursors in Webflow | Webflow Blog - https://webflow.com/blog/custom-cursors-guide - Google Search
+2025-06-21 18:30:40,366 - google_search_web - INFO - Result 4: Cursor vs Windsurf: Who's the Best AI Coding IDE? - https://huggingface.co/blog/lynn-mikami/cursor-vs-windsurf - Google Search
+2025-06-21 18:30:40,366 - google_search_web - INFO - Result 5: Blog - SQLServerFast - https://sqlserverfast.com/blog/ - Google Search
+2025-06-21 18:30:40,368 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 18:30:40] "GET /search?q=Cursor+with+a+rise HTTP/1.1" 200 -
+2025-06-21 18:30:40,420 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 18:30:40] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-21 18:30:40,422 - werkzeug - INFO - 127.0.0.1 - - [21/Jun/2025 18:30:40] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-23 08:57:37,916 - fast_tfidf_search - INFO - Loaded 11 seed URLs from config
+2025-06-23 08:57:37,919 - search_engine - INFO - Starting search engine on 0.0.0.0:5000
+2025-06-23 08:57:37,919 - google_search_web - INFO - Found 20 pre-crawled blogs in cache
+2025-06-23 08:57:37,919 - google_search_web - INFO - Starting web server on 0.0.0.0:5000 (debug=False)
+2025-06-23 08:57:37,943 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.81.80.130:5000
+2025-06-23 08:57:37,943 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-23 08:57:40,739 - werkzeug - INFO - 127.0.0.1 - - [23/Jun/2025 08:57:40] "GET / HTTP/1.1" 200 -
+2025-06-23 08:57:41,303 - werkzeug - INFO - 127.0.0.1 - - [23/Jun/2025 08:57:41] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-23 08:57:41,304 - werkzeug - INFO - 127.0.0.1 - - [23/Jun/2025 08:57:41] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-23 08:57:41,612 - werkzeug - INFO - 127.0.0.1 - - [23/Jun/2025 08:57:41] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-06-23 08:57:57,198 - fast_tfidf_search - INFO - Searching Google for: wrestling
+2025-06-23 08:57:57,198 - fast_tfidf_search - INFO - Enhanced query: 'wrestling' -> 'wrestling blogs articles'
+2025-06-23 08:57:58,256 - fast_tfidf_search - ERROR - Invalid URL format: /search?num=62
+2025-06-23 08:58:00,277 - fast_tfidf_search - ERROR - Request error fetching https://www.ndtv.com/blog/blog-metoo-in-wrestling-its-not-just-about-sports-3712739: 403 Client Error: Forbidden for url: https://www.ndtv.com/blog/blog-metoo-in-wrestling-its-not-just-about-sports-3712739
+2025-06-23 08:58:00,281 - fast_tfidf_search - ERROR - Request error fetching https://www.tandfonline.com/doi/full/10.1080/19392397.2024.2303296: 403 Client Error: Forbidden for url: https://www.tandfonline.com/doi/full/10.1080/19392397.2024.2303296
+2025-06-23 08:58:00,576 - fast_tfidf_search - ERROR - Request error fetching https://www.facebook.com/LetsTalkWrestleBlog/: 400 Client Error: Bad Request for url: https://www.facebook.com/LetsTalkWrestleBlog/
+2025-06-23 08:58:00,600 - fast_tfidf_search - ERROR - Request error fetching https://www.facebook.com/p/Articles-About-Wrestling-100063210221475/: 400 Client Error: Bad Request for url: https://www.facebook.com/p/Articles-About-Wrestling-100063210221475/
+2025-06-23 08:58:00,986 - fast_tfidf_search - ERROR - Request error fetching https://www.fiverr.com/drelopro/write-an-article-or-opinion-piece-on-wwe-or-tna-for-your-wrestling-blog-or-website: 403 Client Error: Forbidden for url: https://www.fiverr.com/drelopro/write-an-article-or-opinion-piece-on-wwe-or-tna-for-your-wrestling-blog-or-website
+2025-06-23 08:58:02,056 - fast_tfidf_search - ERROR - Request error fetching https://www.webnovel.com/ask/t341446301168707: 403 Client Error: Forbidden for url: https://www.webnovel.com/ask/t341446301168707
+2025-06-23 08:58:31,620 - fast_tfidf_search - INFO - TF-IDF validation completed in 0.01 seconds
+2025-06-23 08:58:31,620 - google_search_web - INFO - Google search query: 'wrestling', found 30 results in 34.42 seconds
+2025-06-23 08:58:31,621 - google_search_web - INFO - Result 1: How To Start A Wrestling Blog: A Step By Step Guide For 2025 - https://commission.academy/blog/how-to-start-a-wrestling-blog/ - Google Search
+2025-06-23 08:58:31,621 - google_search_web - INFO - Result 2: Wrestling — The Sporting Blog - The best Sports blog on the internet — The Sporting Blog - https://thesporting.blog/blog/tag/Wrestling - Google Search
+2025-06-23 08:58:31,622 - google_search_web - INFO - Result 3: Wrestling | Bradcat's Blog - https://bradcatblog.wordpress.com/category/wrestling/ - Google Search
+2025-06-23 08:58:31,622 - google_search_web - INFO - Result 4: Pro-Wrestling Super Blog | a blog about wrestling! - https://prowrestlingsuperblog.wordpress.com/ - Google Search
+2025-06-23 08:58:31,623 - google_search_web - INFO - Result 5: Wrestling Blog | Latest WWE News & Updates - fightingspiritmagazine.co.uk - https://www.fightingspiritmagazine.co.uk/blog/ - Google Search
+2025-06-23 08:58:31,634 - werkzeug - INFO - 127.0.0.1 - - [23/Jun/2025 08:58:31] "GET /search?q=wrestling HTTP/1.1" 200 -
+2025-06-23 08:58:31,675 - werkzeug - INFO - 127.0.0.1 - - [23/Jun/2025 08:58:31] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-23 08:58:31,675 - werkzeug - INFO - 127.0.0.1 - - [23/Jun/2025 08:58:31] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-23 08:59:09,946 - fast_tfidf_search - INFO - Using cached results for query: wrestling
+2025-06-23 08:59:09,946 - google_search_web - INFO - Google search query: 'wrestling', found 30 results in 0.00 seconds
+2025-06-23 08:59:09,946 - google_search_web - INFO - Result 1: How To Start A Wrestling Blog: A Step By Step Guide For 2025 - https://commission.academy/blog/how-to-start-a-wrestling-blog/ - Google Search
+2025-06-23 08:59:09,946 - google_search_web - INFO - Result 2: Wrestling — The Sporting Blog - The best Sports blog on the internet — The Sporting Blog - https://thesporting.blog/blog/tag/Wrestling - Google Search
+2025-06-23 08:59:09,947 - google_search_web - INFO - Result 3: Wrestling | Bradcat's Blog - https://bradcatblog.wordpress.com/category/wrestling/ - Google Search
+2025-06-23 08:59:09,947 - google_search_web - INFO - Result 4: Pro-Wrestling Super Blog | a blog about wrestling! - https://prowrestlingsuperblog.wordpress.com/ - Google Search
+2025-06-23 08:59:09,947 - google_search_web - INFO - Result 5: Wrestling Blog | Latest WWE News & Updates - fightingspiritmagazine.co.uk - https://www.fightingspiritmagazine.co.uk/blog/ - Google Search
+2025-06-23 08:59:09,948 - werkzeug - INFO - 127.0.0.1 - - [23/Jun/2025 08:59:09] "GET /search?q=wrestling&page=2 HTTP/1.1" 200 -
+2025-06-23 08:59:09,989 - werkzeug - INFO - 127.0.0.1 - - [23/Jun/2025 08:59:09] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-23 08:59:09,989 - werkzeug - INFO - 127.0.0.1 - - [23/Jun/2025 08:59:09] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-23 08:59:20,878 - fast_tfidf_search - INFO - Using cached results for query: wrestling
+2025-06-23 08:59:20,879 - google_search_web - INFO - Google search query: 'wrestling', found 30 results in 0.00 seconds
+2025-06-23 08:59:20,879 - google_search_web - INFO - Result 1: How To Start A Wrestling Blog: A Step By Step Guide For 2025 - https://commission.academy/blog/how-to-start-a-wrestling-blog/ - Google Search
+2025-06-23 08:59:20,879 - google_search_web - INFO - Result 2: Wrestling — The Sporting Blog - The best Sports blog on the internet — The Sporting Blog - https://thesporting.blog/blog/tag/Wrestling - Google Search
+2025-06-23 08:59:20,879 - google_search_web - INFO - Result 3: Wrestling | Bradcat's Blog - https://bradcatblog.wordpress.com/category/wrestling/ - Google Search
+2025-06-23 08:59:20,879 - google_search_web - INFO - Result 4: Pro-Wrestling Super Blog | a blog about wrestling! - https://prowrestlingsuperblog.wordpress.com/ - Google Search
+2025-06-23 08:59:20,879 - google_search_web - INFO - Result 5: Wrestling Blog | Latest WWE News & Updates - fightingspiritmagazine.co.uk - https://www.fightingspiritmagazine.co.uk/blog/ - Google Search
+2025-06-23 08:59:20,881 - werkzeug - INFO - 127.0.0.1 - - [23/Jun/2025 08:59:20] "GET /search?q=wrestling&page=1 HTTP/1.1" 200 -
+2025-06-23 08:59:20,907 - werkzeug - INFO - 127.0.0.1 - - [23/Jun/2025 08:59:20] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-23 08:59:20,908 - werkzeug - INFO - 127.0.0.1 - - [23/Jun/2025 08:59:20] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-23 08:59:44,912 - fast_tfidf_search - INFO - Searching Google for: Puma Footwear 
+2025-06-23 08:59:44,913 - fast_tfidf_search - INFO - Enhanced query: 'Puma Footwear ' -> 'Puma Footwear  blogs articles'
+2025-06-23 08:59:45,910 - fast_tfidf_search - ERROR - Request error fetching https://en.wikipedia.org/wiki/Puma_(brand): 429 Client Error: Too Many Requests for url: https://en.wikipedia.org/wiki/Puma_(brand)
+2025-06-23 08:59:45,953 - fast_tfidf_search - ERROR - Request error fetching https://sustainabilitymag.com/articles/pumas-journey-towards-more-sustainable-footwear: 403 Client Error: Forbidden for url: https://sustainabilitymag.com/articles/pumas-journey-towards-more-sustainable-footwear
+2025-06-23 08:59:46,922 - fast_tfidf_search - ERROR - Request error fetching https://www.wynsors.com/blog/ultimate-guide-to-puma-shoes/?srsltid=AfmBOopDd4fQO7VDBBTQU9cvqfxhAXJvL46ilc_q6zUlScd3YZrwIRt6: 403 Client Error: Forbidden for url: https://www.wynsors.com/blog/ultimate-guide-to-puma-shoes/?srsltid=AfmBOopDd4fQO7VDBBTQU9cvqfxhAXJvL46ilc_q6zUlScd3YZrwIRt6
+2025-06-23 08:59:47,420 - fast_tfidf_search - ERROR - Request error fetching https://www.indianretailer.com/article/tag/puma: 403 Client Error: Forbidden for url: https://www.indianretailer.com/article/tag/puma
+2025-06-23 08:59:47,614 - fast_tfidf_search - ERROR - Request error fetching https://www.ajio.com/puma-caven-colourblock-lace-up-shoes/p/469249908_white?srsltid=AfmBOoplXRh9prlgyDxJw7PualVlIzuForTx72WJ5VbO2EhSBHlRQ2K5: 403 Client Error: Forbidden for url: https://www.ajio.com/puma-caven-colourblock-lace-up-shoes/p/469249908_white?srsltid=AfmBOoplXRh9prlgyDxJw7PualVlIzuForTx72WJ5VbO2EhSBHlRQ2K5
+2025-06-23 08:59:48,015 - fast_tfidf_search - ERROR - Request error fetching https://www.side-step.co.za/blog/category/puma.html: 406 Client Error: Not Acceptable for url: https://www.side-step.co.za/blog/category/puma.html
+2025-06-23 08:59:48,278 - fast_tfidf_search - ERROR - Request error fetching https://blog.gotopac.com/2025/03/10/introducing-puma-esd-shoes/: 403 Client Error: Forbidden for url: https://blog.gotopac.com/2025/03/10/introducing-puma-esd-shoes/
+2025-06-23 08:59:48,563 - fast_tfidf_search - ERROR - Request error fetching https://blog.footdistrict.com/en/behind-the-puma-palermo-a-talk-with-designers/: 403 Client Error: Forbidden for url: https://blog.footdistrict.com/en/behind-the-puma-palermo-a-talk-with-designers/
+2025-06-23 08:59:49,272 - fast_tfidf_search - ERROR - Request error fetching https://www.universityoffashion.com/blog/pandemic-pollution-a-fashion-industry-wake-up-call/puma-shoes-photo-courtesy-of-puma/: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2025-06-23 08:59:50,021 - fast_tfidf_search - ERROR - Request error fetching https://www.side-step.co.za/blog/the-ultimate-guide-to-puma-sneakers-for-every-lifestyle.html: 406 Client Error: Not Acceptable for url: https://www.side-step.co.za/blog/the-ultimate-guide-to-puma-sneakers-for-every-lifestyle.html
+2025-06-23 08:59:50,133 - fast_tfidf_search - ERROR - Request error fetching https://rcj.org/en/bebcdrshop/article/puma-website-shoes: 404 Client Error: Not Found for url: https://rcj.org/en/bebcdrshop/article/puma-website-shoes
+2025-06-23 08:59:51,652 - fast_tfidf_search - ERROR - Request error fetching https://mail.aspennigeria.com/bfdcdzshop/article/puma-shoes-men: 404 Client Error: Category not found for url: https://mail.aspennigeria.com/bfdcdzshop/article/puma-shoes-men
+2025-06-23 08:59:58,899 - fast_tfidf_search - ERROR - Request error fetching https://www.logodesignvalley.com/blog/what-are-the-different-variants-of-puma-shoes-and-where-are-puma-shoes-made/: HTTPSConnectionPool(host='www.logodesignvalley.com', port=443): Read timed out. (read timeout=10)
+2025-06-23 09:00:16,720 - fast_tfidf_search - INFO - TF-IDF validation completed in 0.02 seconds
+2025-06-23 09:00:16,721 - google_search_web - INFO - Google search query: 'Puma Footwear ', found 30 results in 31.81 seconds
+2025-06-23 09:00:16,721 - google_search_web - INFO - Result 1: Puma – jamiepang: Blog - https://jamiepangblog.wordpress.com/tag/puma/ - Google Search
+2025-06-23 09:00:16,722 - google_search_web - INFO - Result 2: Puma SWOT Analysis - The Strategy Story - https://thestrategystory.com/blog/puma-swot-analysis/ - Google Search
+2025-06-23 09:00:16,722 - google_search_web - INFO - Result 3: Blog – Tag – Shoebacca - https://www.shoebacca.com/blogs/blog/tagged/puma-shoes - Google Search
+2025-06-23 09:00:16,723 - google_search_web - INFO - Result 4: PUMA launches Archives Blog Size - size? blog - https://blog.size.co.uk/category/size-launches/puma/ - Google Search
+2025-06-23 09:00:16,723 - google_search_web - INFO - Result 5: Puma Blog Posts - https://www.soleretriever.com/news/tags/puma - Google Search
+2025-06-23 09:00:16,725 - werkzeug - INFO - 127.0.0.1 - - [23/Jun/2025 09:00:16] "GET /search?q=Puma+Footwear+ HTTP/1.1" 200 -
+2025-06-23 09:00:16,763 - werkzeug - INFO - 127.0.0.1 - - [23/Jun/2025 09:00:16] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-23 09:00:16,763 - werkzeug - INFO - 127.0.0.1 - - [23/Jun/2025 09:00:16] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-06-23 09:00:26,655 - fast_tfidf_search - INFO - Using cached results for query: Puma Footwear 
+2025-06-23 09:00:26,656 - google_search_web - INFO - Google search query: 'Puma Footwear ', found 30 results in 0.00 seconds
+2025-06-23 09:00:26,656 - google_search_web - INFO - Result 1: Puma – jamiepang: Blog - https://jamiepangblog.wordpress.com/tag/puma/ - Google Search
+2025-06-23 09:00:26,656 - google_search_web - INFO - Result 2: Puma SWOT Analysis - The Strategy Story - https://thestrategystory.com/blog/puma-swot-analysis/ - Google Search
+2025-06-23 09:00:26,656 - google_search_web - INFO - Result 3: Blog – Tag – Shoebacca - https://www.shoebacca.com/blogs/blog/tagged/puma-shoes - Google Search
+2025-06-23 09:00:26,656 - google_search_web - INFO - Result 4: PUMA launches Archives Blog Size - size? blog - https://blog.size.co.uk/category/size-launches/puma/ - Google Search
+2025-06-23 09:00:26,657 - google_search_web - INFO - Result 5: Puma Blog Posts - https://www.soleretriever.com/news/tags/puma - Google Search
+2025-06-23 09:00:26,657 - werkzeug - INFO - 127.0.0.1 - - [23/Jun/2025 09:00:26] "GET /search?q=Puma%20Footwear%20&page=2 HTTP/1.1" 200 -
+2025-06-23 09:00:26,685 - werkzeug - INFO - 127.0.0.1 - - [23/Jun/2025 09:00:26] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-06-23 09:00:26,685 - werkzeug - INFO - 127.0.0.1 - - [23/Jun/2025 09:00:26] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -

@@ -1,14 +1,14 @@
-# Google Search Blog Engine Implementation Summary
+# Enhanced Search Engine Implementation Summary
 
-This module provides a standalone implementation of Google search integration with TF-IDF validation for blog and article search, featuring a modern and responsive interface.
+This module provides a standalone implementation of Google search integration with advanced BM25 and semantic similarity validation for blog and article search, featuring a modern and responsive interface.
 
 ## Components
 
 ### Core Search Functionality (`scripts/`)
 
 - **fast_google_search.py**: Optimized search functionality that prioritizes speed
-- **fast_tfidf_search.py**: Fast implementation with TF-IDF validation
-- **tfidf_validator.py**: TF-IDF based validation for determining blogs/articles
+- **fast_tfidf_search.py**: Enhanced implementation with BM25 and semantic validation
+- **tfidf_validator.py**: Advanced BM25 and semantic similarity for determining blogs/articles 
 - **blog_crawler.py**: Blog crawling functionality for pre-indexing content
 - **crawl_seed_urls.py**: Script to crawl seed URLs for building blog database
 
@@ -29,16 +29,17 @@ This module provides a standalone implementation of Google search integration wi
 
 1. **Google Search Integration**
    - Fetches relevant blog and article results from Google
-   - Enhances queries with blog/article keywords
-   - Extracts metadata (title, description) from search results
+   - Smart query expansion based on topic detection
+   - Extracts metadata (title, description, publication date) from search results
    - Provides search time metrics for performance analysis
 
-2. **TF-IDF Validation**
-   - Fast validation without requiring API keys
-   - Uses TF-IDF to identify genuine blog/article content
-   - URL pattern analysis for blog detection
-   - Domain-based scoring for popular blog platforms
-   - Relevance scoring for better ranking
+2. **Advanced Ranking Algorithm**
+   - **BM25 Algorithm**: Significantly better than TF-IDF for text relevance
+   - **Semantic Similarity**: Uses BERT-based sentence embeddings where available
+   - **Result Diversity**: Prevents similar domains from dominating results
+   - URL pattern analysis and domain-based scoring
+   - Content quality heuristics for better ranking
+   - Multi-factor scoring with weighted components
 
 3. **Pre-crawling System**
    - Crawls seed blogs to build a knowledge base
@@ -55,8 +56,41 @@ This module provides a standalone implementation of Google search integration wi
 
 5. **Performance Optimizations**
    - Result caching to reduce API calls (in `google_cache/`)
-   - Fast TF-IDF processing for quick validation
-   - Parallelized metadata fetching for improved speed
+   - Parallel processing for metadata extraction
+   - Optimized BM25 implementation for quick validation
+   - Efficient token preprocessing with stop word removal
+
+## Technical Improvements
+
+### 1. BM25 Algorithm Implementation
+BM25 (Best Matching 25) is a ranking function used by search engines to rank matching documents according to their relevance to a given search query. It's a significant improvement over the TF-IDF algorithm by addressing key limitations:
+
+- Better handling of term frequency saturation
+- Document length normalization
+- Improved relevance scoring
+- Term frequency boosting
+
+### 2. Semantic Similarity with Sentence Transformers
+When available, the engine uses sentence transformers to calculate semantic similarity between queries and documents:
+
+- BERT-based embeddings capture semantic meaning beyond keyword matching
+- Works well even when exact keywords aren't present but content is relevant
+- Gracefully falls back to BM25 when unavailable
+
+### 3. Smart Query Expansion
+The engine now employs an intelligent query expansion system:
+
+- Topic detection based on query terms
+- Contextual term addition from relevant domains
+- Content type qualification for better targeting
+- Term filtration to avoid query dilution
+
+### 4. Result Diversity Algorithm
+A diversity algorithm ensures users see a variety of sources:
+
+- Domain-based grouping and selection
+- Multi-pass ranking to balance diversity and relevance
+- Prevention of single-domain result domination
 
 ## Usage
 
@@ -81,14 +115,15 @@ python precrawl.py
 3. Each result includes:
    - Title and URL
    - Content snippet or description
-   - Relevance score
+   - Relevance score with component breakdown
    - Blog/Article confidence indicator
 
 ## Technical Implementation
 
 The engine uses a multi-step process:
-1. Query enhancement to focus on blogs/articles
+1. Smart query expansion to focus on blogs/articles
 2. Google search to find relevant results
-3. TF-IDF validation to ensure each result is a genuine blog/article
-4. Ranking by relevance and displaying with explanations
-5. Supplementing results with pre-crawled blog data 
+3. BM25 + semantic validation to ensure each result is a genuine blog/article
+4. Multi-factor ranking with content quality assessment
+5. Diversity algorithm application for varied results
+6. Supplementing results with pre-crawled blog data 
