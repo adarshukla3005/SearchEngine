@@ -10,5 +10,4 @@ transformers
 torch
 python-dotenv
 googlesearch-python
-jinja2
-google-generativeai 
+jinja2 
