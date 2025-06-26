@@ -30,7 +30,13 @@ static_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'web', 'st
 app = Flask(__name__, template_folder=template_dir, static_folder=static_dir)
 
 # Initialize search indexer
-indexer = SearchIndexer(INDEXER_CONFIG)
+try:
+    indexer = SearchIndexer(INDEXER_CONFIG)
+    indexer.load_index()
+    logger.info(f"Index loaded with {len(indexer.document_map)} documents and {len(indexer.inverted_index)} terms.")
+except Exception as e:
+    logger.error(f"Error loading index: {e}")
+    indexer = None
 
 @app.route('/')
 def home():
@@ -61,13 +67,13 @@ def search():
     
     # Get index results
     try:
-        index_results = indexer.search(query, top_k=results_per_page * 2)
-        logger.info(f"Index search query: '{query}', found {len(index_results)} results")
-        
-        # Add source to results
-        for result in index_results:
-            result["source"] = "Local Index"
+        if indexer:
+            index_results = indexer.search(query, top_k=results_per_page * 2)
+            logger.info(f"Index search query: '{query}', found {len(index_results)} results")
             
+            # Add source to results
+            for result in index_results:
+                result["source"] = "Local Index"
     except Exception as e:
         logger.error(f"Error with index search: {e}")
         index_results = []
@@ -122,14 +128,15 @@ def api_search():
     
     # Search the index
     try:
-        index_results = indexer.search(query, top_k=limit)
-        
-        # Add source
-        for result in index_results:
-            result["source"] = "Local Index"
+        if indexer:
+            index_results = indexer.search(query, top_k=limit)
             
-        results.extend(index_results)
-            
+            # Add source
+            for result in index_results:
+                result["source"] = "Local Index"
+                
+            results.extend(index_results)
+                
     except Exception as e:
         logger.error(f"Error with index search API: {e}")
     
@@ -145,24 +152,6 @@ def main():
     """
     Main function to run the web interface
     """
-    # Load the index
-    try:
-        indexer.load_index()
-        logger.info(f"Index loaded with {len(indexer.document_map)} documents and {len(indexer.inverted_index)} terms.")
-        
-        # Log some sample document IDs for debugging
-        sample_docs = list(indexer.document_map.keys())[:5]
-        logger.info(f"Sample document IDs: {sample_docs}")
-        
-        # Log some sample terms from the index
-        sample_terms = list(indexer.inverted_index.keys())[:10]
-        logger.info(f"Sample index terms: {sample_terms}")
-        
-    except Exception as e:
-        logger.error(f"Error loading index: {e}")
-        logger.error("Make sure to run the indexer first!")
-        sys.exit(1)
-    
     # Run the app
     app.run(
         host=WEB_CONFIG["host"],
