@@ -1,103 +1,91 @@
 # Personal Blog Search Engine
 
-A custom search engine for personal blogs and tech content.
+A custom search engine that prioritizes authentic personal blogs and articles over SEO-optimized corporate content, with the option to use Google search with Gemini AI validation.
 
 ## Features
 
-- Web crawler for collecting blog content
-- Content classification
-- Full-text search indexing
-- Web interface for searching
+- Web crawler to collect content from across the internet
+- Content classifier using Gemma-3 1B to identify authentic personal blogs
+- Search indexing system for efficient retrieval
+- Google search integration with Gemini AI for query enhancement and result validation
+- Web interface for searching content
 
 ## Project Structure
 
-- `search_engine/`: Core search engine components
-  - `crawler/`: Web crawler implementation
-  - `classifier/`: Content classifier
-  - `indexer/`: Search indexer
-- `utils/`: Utility functions and configuration
-- `web/`: Web interface templates and static files
-- `app.py`: Main application entry point
-- `data/`: Data storage directories
-  - `crawled_pages/`: Storage for crawled pages
-  - `classified_pages/`: Storage for classified content
-  - `index/`: Search index files
+- `crawler/`: Web crawling components
+- `classifier/`: Content classification using Gemma-3 1B
+- `indexer/`: Search indexing and retrieval
+- `web/`: Flask web interface
+- `utils/`: Utility functions for text processing
+- `google_search/`: Google search integration components with Gemini AI validation
 
-## Setup and Installation
+## Setup
 
-1. Clone the repository:
-```
-git clone https://github.com/adarshukla3005/SearchEngine.git
-cd SearchEngine
-```
+1. Install dependencies:
+   ```
+   pip install -r requirements.txt
+   ```
 
-2. Create and activate a virtual environment:
-```
-python -m venv myenv
-source myenv/bin/activate  # On Windows: myenv\Scripts\activate
-```
+2. For Google search with Gemini AI:
+   - Get a Gemini API key from [Google AI Studio](https://aistudio.google.com/app/apikey)
+   - Create a `.env` file with your API key:
+     ```
+     GEMINI_API_KEY=your_gemini_api_key_here
+     ```
 
-3. Install dependencies:
-```
-pip install -r requirements.txt
-```
+3. Choose one of the following options:
 
-4. Run the crawler to collect data:
-```
-python -m search_engine.crawler.crawler
-```
+   ### Option 1: Run with local crawling and indexing
+   ```
+   # Run the crawler to collect data
+   python crawler/run_crawler.py
+   
+   # Build the search index
+   python indexer/build_index.py
+   
+   # Start the web interface
+   python web/app.py
+   ```
 
-5. Run the classifier to categorize content:
-```
-python -m search_engine.classifier.classifier
-```
+   ### Option 2: Run with Google search integration
+   ```
+   # Start the web interface with Google search
+   python run_google_search.py
+   
+   # To skip local index fallback
+   python run_google_search.py --skip-index
+   
+   # To combine Google search with local index results
+   python run_google_search.py --combine-results
+   
+   # To use Gemini validation (slower but more accurate)
+   python run_google_search.py --use-validation
+   ```
 
-6. Build the search index:
-```
-python -m search_engine.indexer.indexer
-```
-
-7. Start the web interface:
-```
-python app.py
-```
-
-8. Open your browser and go to `http://localhost:5000`
+4. Access the search engine at http://localhost:5000
 
 ## Configuration
 
-Configuration settings are in `utils/config.py`:
+Edit `config.py` to customize crawler behavior, classification thresholds, Google search settings, and other options.
 
-- `CRAWLER_CONFIG`: Settings for the web crawler
-- `CLASSIFIER_CONFIG`: Settings for the content classifier
-- `INDEXER_CONFIG`: Settings for the search indexer
-- `WEB_CONFIG`: Settings for the web interface
+## How It Works
 
-## Deployment on Vercel
+### Local Search Mode
+1. Crawls the web starting from seed URLs
+2. Classifies content to identify personal blogs
+3. Indexes the content for efficient retrieval
+4. Provides search functionality through a web interface
 
-This project is configured for deployment on Vercel:
+### Google Search Mode
+1. Takes user query and enhances it using Gemini AI
+2. Searches Google for relevant blogs and articles
+3. Validates results using Gemini AI to ensure they're blogs/articles
+4. Displays results with relevance scores and explanations
 
-1. Fork or clone this repository
-2. Sign up for a [Vercel account](https://vercel.com/signup)
-3. Install Vercel CLI:
-```
-npm install -g vercel
-```
-4. Login to Vercel:
-```
-vercel login
-```
-5. Deploy the project:
-```
-vercel
-```
+## Google Search Components
 
-### Important Notes for Vercel Deployment
+The `google_search/` directory contains the following components:
 
-- The search functionality requires pre-built index files
-- You may need to adjust the configuration in `utils/config.py` for production use
-- Large data files should be stored separately and not included in the deployment
-
-## License
-
-MIT 
+- `fast_google_search.py`: Optimized version of Google search that prioritizes speed
+- `google_search.py`: Full-featured Google search with Gemini validation
+- `run_google_search.py`: CLI tool to run the search engine with Google integration 
