@@ -30,13 +30,14 @@ static_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'web', 'st
 app = Flask(__name__, template_folder=template_dir, static_folder=static_dir)
 
 # Initialize search indexer
+indexer = None
 try:
     indexer = SearchIndexer(INDEXER_CONFIG)
     indexer.load_index()
     logger.info(f"Index loaded with {len(indexer.document_map)} documents and {len(indexer.inverted_index)} terms.")
 except Exception as e:
     logger.error(f"Error loading index: {e}")
-    indexer = None
+    logger.info("Running in demo mode without index.")
 
 @app.route('/')
 def home():
@@ -74,6 +75,16 @@ def search():
             # Add source to results
             for result in index_results:
                 result["source"] = "Local Index"
+        else:
+            # Demo results when no index is available
+            index_results = [
+                {
+                    "title": "Demo Result: No index available",
+                    "url": "#",
+                    "snippet": "This is a demo result. The search index is not available in this deployment. Please build and load the index locally.",
+                    "source": "Demo"
+                }
+            ]
     except Exception as e:
         logger.error(f"Error with index search: {e}")
         index_results = []
@@ -136,6 +147,16 @@ def api_search():
                 result["source"] = "Local Index"
                 
             results.extend(index_results)
+        else:
+            # Demo results when no index is available
+            results = [
+                {
+                    "title": "Demo Result: No index available",
+                    "url": "#",
+                    "snippet": "This is a demo result. The search index is not available in this deployment. Please build and load the index locally.",
+                    "source": "Demo"
+                }
+            ]
                 
     except Exception as e:
         logger.error(f"Error with index search API: {e}")

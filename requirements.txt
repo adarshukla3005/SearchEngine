@@ -2,7 +2,9 @@ flask==2.0.1
 beautifulsoup4==4.9.3
 requests==2.26.0
 tqdm==4.62.3
-lxml==4.6.3
+lxml==4.6.3; platform_system != "Linux"
+lxml==4.6.3; platform_system == "Linux" and platform_machine != "aarch64"
+lxml==4.6.3; platform_system == "Linux" and platform_machine == "aarch64" --only-binary=lxml
 nltk==3.6.3
 scikit-learn==1.0
 numpy==1.21.3
