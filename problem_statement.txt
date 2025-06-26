@@ -1,0 +1,31 @@
+## 2. Search Engine which only shows Personal Blogs and Articles
+
+### Overview
+
+Ready to escape generic, SEO‑filled search results?
+Create a **custom search engine** that surfaces deep-dive personal blogs and insightful articles, authentic voices only.
+
+### Problem Statement
+
+- While most of the great content we read is not recommended by Google, it is always some senior advice or some blog recommendation on X.
+- Suppose if I search on Google **"how to get job as a product manager"** , all you get are these corporation websites which are heavily SEO’d, and do not have any meaningful content just the generic advice which you already know. Below is an image for your reference.
+    
+    But Google will never show you this great article by manas salaoi on how to become a product manager or the waitbutwhy post on “procastination”
+    Examples: 
+    [How I became a Product Manager](https://manassaloi.com/2018/03/30/how-i-became-pm.html)
+    
+    [Why Procrastinators Procrastinate — Wait But Why](https://waitbutwhy.com/2013/10/why-procrastinators-procrastinate.html)
+    
+    so the objective is to create a search engine which only shows these types of personal blogs and article.
+    
+    Things to take care of 
+    
+    - can deploy project using IP address no need of purchasing domain
+    - Minimize classification cost and inference time - this is primarily an AI/ML cost optimization challenge
+    - Avoid large LLM APIs as they defeat the cost optimization objective
+    - Use small, efficient models like Gemma-3 1B for classification
+    - Implement hierarchical classification approach: start
+    with domain analysis, escalate to headers/footers only if model is
+    uncertain ( this is my idea , you can have your own ideas like this to cut cost and time )
+
+How to do this project and go through of it 

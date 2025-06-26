@@ -1,0 +1,338 @@
+/* Global styles */
+:root {
+    --primary-color: #4a6fa5;
+    --secondary-color: #166088;
+    --accent-color: #4fc3f7;
+    --text-color: #333;
+    --light-text: #666;
+    --background-color: #f9f9f9;
+    --card-background: #fff;
+    --border-color: #e0e0e0;
+    --snippet-background: #f5f8fa;
+    --google-color: #4285F4;
+    --gemini-color: #8E24AA;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: calc(100vh - 60px);
+}
+
+a {
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Home page styles */
+.search-container {
+    text-align: center;
+    margin: 100px auto 50px;
+    max-width: 700px;
+}
+
+.search-container h1 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.tagline {
+    font-size: 1.2rem;
+    color: var(--light-text);
+    margin-bottom: 30px;
+}
+
+.search-form {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+#search-input {
+    flex: 1;
+    padding: 12px 20px;
+    font-size: 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 30px 0 0 30px;
+    outline: none;
+}
+
+#search-input:focus {
+    border-color: var(--accent-color);
+}
+
+#search-button {
+    padding: 12px 25px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 0 30px 30px 0;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+#search-button:hover {
+    background-color: var(--secondary-color);
+}
+
+.examples {
+    margin-top: 30px;
+}
+
+.examples p {
+    margin-bottom: 10px;
+    color: var(--light-text);
+}
+
+.examples ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.examples li a {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #e8f1f8;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+}
+
+.examples li a:hover {
+    background-color: #d0e5f5;
+    text-decoration: none;
+}
+
+.about {
+    max-width: 700px;
+    margin: 50px auto;
+    text-align: center;
+    padding: 20px;
+    background-color: var(--card-background);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.about h2 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.about p {
+    margin-bottom: 15px;
+}
+
+/* Search results page styles */
+header {
+    background-color: var(--primary-color);
+    padding: 15px 0;
+    margin-bottom: 30px;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header h1 {
+    font-size: 1.5rem;
+}
+
+header h1 a {
+    color: white;
+    text-decoration: none;
+}
+
+.header-search {
+    max-width: 600px;
+    flex: 1;
+    margin-left: 20px;
+}
+
+.results-info {
+    margin-bottom: 20px;
+    padding: 0 10px;
+}
+
+.search-results {
+    margin-bottom: 30px;
+}
+
+.result-item {
+    background-color: var(--card-background);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border-left: 4px solid var(--primary-color);
+    transition: transform 0.2s ease-in-out;
+}
+
+.result-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.result-item h2 {
+    margin-bottom: 5px;
+    font-size: 1.3rem;
+}
+
+.result-url {
+    color: #2e7d32;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    word-break: break-all;
+}
+
+.result-description {
+    margin-bottom: 15px;
+    color: var(--text-color);
+    line-height: 1.5;
+    font-style: italic;
+}
+
+.result-snippet {
+    background-color: var(--snippet-background);
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    border-left: 3px solid var(--accent-color);
+}
+
+.result-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    font-size: 0.8rem;
+    color: var(--light-text);
+}
+
+.result-score {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.confidence {
+    color: var(--secondary-color);
+    font-weight: 600;
+}
+
+.method {
+    color: var(--accent-color);
+}
+
+.reason {
+    color: var(--light-text);
+    font-style: italic;
+}
+
+.search-source {
+    background-color: var(--google-color);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.source {
+    font-weight: 600;
+}
+
+.source:contains("Google Search") {
+    color: var(--google-color);
+}
+
+.source:contains("Local Index") {
+    color: var(--primary-color);
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    gap: 15px;
+}
+
+.page-link {
+    padding: 8px 15px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.page-link:hover {
+    background-color: var(--secondary-color);
+    text-decoration: none;
+}
+
+.page-info {
+    color: var(--light-text);
+}
+
+.no-results {
+    text-align: center;
+    padding: 40px 0;
+}
+
+/* Footer styles */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .search-container {
+        margin: 50px auto 30px;
+    }
+    
+    .header-content {
+        flex-direction: column;
+    }
+    
+    .header-search {
+        margin-left: 0;
+        margin-top: 15px;
+        width: 100%;
+    }
+    
+    .examples ul {
+        flex-direction: column;
+        align-items: center;
+    }
+} 

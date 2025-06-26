@@ -1,0 +1,12 @@
+requests
+beautifulsoup4
+lxml
+numpy
+scikit-learn
+flask
+transformers
+torch
+tqdm
+python-dotenv
+googlesearch-python
+google-generativeai 

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ query }} - Personal Blog Search Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .highlight {
+            background-color: #ffffcc;
+            font-weight: bold;
+        }
+        .result-item {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        .result-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .result-url {
+            color: #006621;
+            font-size: 14px;
+            margin-bottom: 5px;
+            word-break: break-all;
+        }
+        .result-description {
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+        .result-snippet {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 4px;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+        .result-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            font-size: 12px;
+            color: #666;
+        }
+        .result-meta span {
+            background-color: #f0f0f0;
+            padding: 3px 8px;
+            border-radius: 10px;
+        }
+        .search-source {
+            font-weight: bold;
+            color: #1a73e8;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+            gap: 15px;
+        }
+        .page-link {
+            padding: 8px 16px;
+            background-color: #1a73e8;
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
+        .page-link:hover {
+            background-color: #1558b3;
+        }
+        .page-info {
+            font-size: 14px;
+            color: #666;
+        }
+        .no-results {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1><a href="/">Personal Blog Search</a></h1>
+                <form action="/search" method="get" class="search-form header-search">
+                    <input type="text" name="q" id="search-input" value="{{ query }}" required>
+                    <button type="submit" id="search-button">Search</button>
+                </form>
+            </div>
+        </header>
+        
+        <main>
+            <div class="results-info">
+                <p>Found {{ total_results }} results for <strong>"{{ query }}"</strong> via <span class="search-source">{{ search_source }}</span></p>
+            </div>
+            
+            <div class="search-results">
+                {% if results %}
+                    {% for result in results %}
+                        <div class="result-item">
+                            <h2><a href="{{ result.url }}" target="_blank">{{ result.title }}</a></h2>
+                            <p class="result-url">{{ result.url }}</p>
+                            
+                            {% if result.description %}
+                                <p class="result-description">{{ result.description }}</p>
+                            {% endif %}
+                            
+                            {% if result.content_snippet %}
+                                <div class="result-snippet">
+                                    <p>{{ result.content_snippet }}</p>
+                                </div>
+                            {% endif %}
+                            
+                            <div class="result-meta">
+                                {% if result.source is defined %}
+                                    <span class="source">Source: {{ result.source }}</span>
+                                {% endif %}
+                                
+                                {% if result.score is defined %}
+                                    <span class="result-score">Relevance: {{ "%.2f"|format(result.score) }}</span>
+                                {% endif %}
+                                
+                                {% if result.confidence is defined %}
+                                    <span class="confidence">Confidence: {{ "%.2f"|format(result.confidence * 100) }}%</span>
+                                {% endif %}
+                                
+                                {% if result.method is defined %}
+                                    <span class="method">Method: {{ result.method }}</span>
+                                {% endif %}
+                                
+                                {% if result.reason is defined %}
+                                    <span class="reason">{{ result.reason }}</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                    
+                    {% if pagination.total_pages > 1 %}
+                        <div class="pagination">
+                            {% if pagination.has_prev %}
+                                <a href="/search?q={{ query }}&page={{ pagination.prev_page }}" class="page-link">&laquo; Previous</a>
+                            {% endif %}
+                            
+                            <span class="page-info">Page {{ pagination.current_page }} of {{ pagination.total_pages }}</span>
+                            
+                            {% if pagination.has_next %}
+                                <a href="/search?q={{ query }}&page={{ pagination.next_page }}" class="page-link">Next &raquo;</a>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                {% else %}
+                    <div class="no-results">
+                        <p>No blog results found for your query.</p>
+                        <p>Try a different search term or check out our <a href="/">example searches</a>.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </main>
+    </div>
+    
+    <footer>
+        <p>Personal Blog Search Engine - Finding relevant blogs and articles using advanced indexing and BM25 ranking</p>
+    </footer>
+    
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script>
+        // Highlight search terms in results
+        document.addEventListener('DOMContentLoaded', function() {
+            const query = "{{ query }}";
+            const terms = query.toLowerCase().split(/\s+/).filter(term => term.length > 2);
+            
+            if (terms.length > 0) {
+                const snippets = document.querySelectorAll('.result-description, .result-snippet');
+                
+                snippets.forEach(snippet => {
+                    let html = snippet.innerHTML;
+                    
+                    terms.forEach(term => {
+                        const regex = new RegExp('(' + term + ')', 'gi');
+                        html = html.replace(regex, '<span class="highlight">$1</span>');
+                    });
+                    
+                    snippet.innerHTML = html;
+                });
+            }
+        });
+    </script>
+</body>
+</html> 
