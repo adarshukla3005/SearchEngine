@@ -2,9 +2,10 @@
   "name": "personal-blog-search-engine",
   "version": "1.0.0",
   "description": "A custom search engine for personal blogs and tech content",
-  "main": "index.js",
+  "main": "netlify.js",
   "scripts": {
-    "build": "pip install -r requirements.txt"
+    "build": "npm install && node netlify.js && pip install -r requirements.txt",
+    "dev": "python app.py"
   },
   "keywords": [
     "search-engine",
@@ -15,6 +16,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "fs-extra": "^10.1.0",
     "netlify-lambda": "^2.0.15",
     "serverless-http": "^3.1.1"
   }

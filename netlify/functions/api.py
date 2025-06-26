@@ -2,6 +2,7 @@ import os
 import sys
 import json
 import math
+import re
 from jinja2 import Environment, FileSystemLoader
 
 # Add the root directory to the path
@@ -10,8 +11,17 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../.."))
 from utils.config import WEB_CONFIG
 
 # Set up Jinja2 environment
-template_dir = os.path.join(os.path.dirname(__file__), "../../web/templates")
+template_dir = os.path.join(os.path.dirname(__file__), "../../web")
 env = Environment(loader=FileSystemLoader(template_dir))
+
+# Custom filter to mimic url_for
+def url_for(endpoint, **kwargs):
+    if endpoint == 'static':
+        return f"/static/{kwargs.get('filename', '')}"
+    return "/"
+
+# Add the filter to the Jinja environment
+env.filters['url_for'] = url_for
 
 def handler(event, context):
     """
@@ -88,6 +98,35 @@ def handler(event, context):
                 'total': len(results)
             })
         }
+    elif path.startswith("static/"):
+        # Serve static files
+        file_path = os.path.join(os.path.dirname(__file__), "../../web", path)
+        if os.path.exists(file_path) and os.path.isfile(file_path):
+            with open(file_path, 'rb') as f:
+                content = f.read()
+            
+            content_type = "text/plain"
+            if path.endswith(".css"):
+                content_type = "text/css"
+            elif path.endswith(".js"):
+                content_type = "application/javascript"
+            elif path.endswith(".png"):
+                content_type = "image/png"
+            elif path.endswith(".jpg") or path.endswith(".jpeg"):
+                content_type = "image/jpeg"
+            
+            return {
+                "statusCode": 200,
+                "headers": {
+                    "Content-Type": content_type
+                },
+                "body": content.decode('utf-8') if content_type.startswith("text") else content.decode('latin1')
+            }
+        else:
+            return {
+                "statusCode": 404,
+                "body": "File not found"
+            }
     else:
         # Not found
         return {
@@ -103,7 +142,14 @@ def render_template(template_name, context=None):
         context = {}
     
     template = env.get_template(template_name)
-    return template.render(**context)
+    
+    # Render the template
+    html = template.render(**context)
+    
+    # Replace Flask's url_for with our static path
+    html = re.sub(r'{{ url_for\(\'static\', filename=\'(.*?)\'\) }}', r'/static/\1', html)
+    
+    return html
 
 def get_demo_results(query):
     """
