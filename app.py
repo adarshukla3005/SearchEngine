@@ -141,37 +141,20 @@ def api_search():
         'total': len(results)
     })
 
-def main():
-    """
-    Main function to run the web interface
-    """
-    # Load the index
+if __name__ == "__main__":
     try:
+        # Load the index
         indexer.load_index()
         logger.info(f"Index loaded with {len(indexer.document_map)} documents and {len(indexer.inverted_index)} terms.")
-        
-        # Log some sample document IDs for debugging
-        sample_docs = list(indexer.document_map.keys())[:5]
-        logger.info(f"Sample document IDs: {sample_docs}")
-        
-        # Log some sample terms from the index
-        sample_terms = list(indexer.inverted_index.keys())[:10]
-        logger.info(f"Sample index terms: {sample_terms}")
-        
     except Exception as e:
         logger.error(f"Error loading index: {e}")
         logger.error("Make sure to run the indexer first!")
         sys.exit(1)
-    
-    # Get port from environment variable for production deployment
-    port = int(os.environ.get("PORT", WEB_CONFIG["port"]))
-    
-    # Run the app
-    app.run(
-        host="0.0.0.0",  # Listen on all available interfaces
-        port=port,
-        debug=False  # Disable debug mode in production
-    )
 
-if __name__ == "__main__":
-    main() 
+    # Get port from environment variable with a default of 3000 (common for web services)
+    port = int(os.environ.get("PORT", 3000))
+    app.run(
+        host="0.0.0.0",
+        port=port,
+        debug=False
+    ) 
