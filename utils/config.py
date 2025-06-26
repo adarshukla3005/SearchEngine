@@ -1,6 +1,7 @@
 """
 Configuration settings for the Personal Blog Search Engine
 """
+import os
 
 # Crawler settings
 CRAWLER_CONFIG = {
@@ -79,4 +80,16 @@ WEB_CONFIG = {
     "port": 5000,
     "debug": True,
     "results_per_page": 15,  # Increased number of results per page
-} 
+}
+
+# Deployment settings
+DEPLOYMENT_CONFIG = {
+    "is_production": os.environ.get("PRODUCTION", "false").lower() == "true",
+    "optimized_index_dir": "data/optimized_index/",
+}
+
+# Override settings for production environment
+if DEPLOYMENT_CONFIG["is_production"]:
+    WEB_CONFIG["debug"] = False
+    # Use optimized index in production
+    INDEXER_CONFIG["index_dir"] = DEPLOYMENT_CONFIG["optimized_index_dir"] 

@@ -10,7 +10,7 @@ from flask import Flask, render_template, request, jsonify
 # Add the current directory to the path to find modules
 sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 
-from search_engine.indexer.indexer import SearchIndexer
+from search_engine.indexer.optimized_indexer import OptimizedSearchIndexer
 from utils.config import WEB_CONFIG, INDEXER_CONFIG
 
 # Set up logging
@@ -29,8 +29,10 @@ template_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'web', '
 static_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'web', 'static')
 app = Flask(__name__, template_folder=template_dir, static_folder=static_dir)
 
-# Initialize search indexer
-indexer = SearchIndexer(INDEXER_CONFIG)
+# Initialize optimized search indexer with modified config for deployment
+optimized_config = INDEXER_CONFIG.copy()
+optimized_config["index_dir"] = os.path.join(os.path.dirname(INDEXER_CONFIG["index_dir"]), "optimized_index")
+indexer = OptimizedSearchIndexer(optimized_config)
 
 @app.route('/')
 def home():
@@ -143,12 +145,12 @@ def api_search():
 
 if __name__ == "__main__":
     try:
-        # Load the index
-        indexer.load_index()
+        # Load the optimized index
+        indexer.load_optimized_index()
         logger.info(f"Index loaded with {len(indexer.document_map)} documents and {len(indexer.inverted_index)} terms.")
     except Exception as e:
         logger.error(f"Error loading index: {e}")
-        logger.error("Make sure to run the indexer first!")
+        logger.error("Make sure to run the indexer and optimize_index.py first!")
         sys.exit(1)
 
     # Get port from environment variable with a default of 3000 (common for web services)

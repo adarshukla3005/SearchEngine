@@ -26,15 +26,24 @@ ENV/
 env/
 myenv/
 
-# Data directories
+# Data directories - exclude most data but include optimized index
 data/crawled_pages/*
 data/classified_pages/*
 data/index/*
 data/model_cache/*
+data/google_cache/*
+
+# Keep directory structure
 !data/crawled_pages/.gitkeep
 !data/classified_pages/.gitkeep
 !data/index/.gitkeep
 !data/model_cache/.gitkeep
+!data/google_cache/.gitkeep
+
+# Include optimized index files for deployment
+!data/optimized_index/
+!data/optimized_index/*
+!data/stopwords.txt
 
 # Logs
 *.log

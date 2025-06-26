@@ -9,5 +9,4 @@ torch
 tqdm
 python-dotenv
 googlesearch-python
-google-generativeai
 gunicorn 
