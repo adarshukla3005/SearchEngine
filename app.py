@@ -5,7 +5,8 @@ import os
 import sys
 import math
 import logging
-from flask import Flask, render_template, request, jsonify
+import traceback
+from flask import Flask, render_template, request, jsonify, send_from_directory
 
 # Add the current directory to the path to find modules
 sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
@@ -28,10 +29,16 @@ logger = logging.getLogger("web")
 is_production = os.environ.get("PRODUCTION", "false").lower() == "true"
 logger.info(f"Running in {'production' if is_production else 'development'} mode")
 
+# Get absolute paths for templates and static files
+app_dir = os.path.dirname(os.path.abspath(__file__))
+template_dir = os.path.join(app_dir, 'web', 'templates')
+static_dir = os.path.join(app_dir, 'web', 'static')
+
+logger.info(f"Template directory: {template_dir}")
+logger.info(f"Static directory: {static_dir}")
+
 # Initialize Flask app with the correct template folder
-template_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'web', 'templates')
-static_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'web', 'static')
-app = Flask(__name__, template_folder=template_dir, static_folder=static_dir)
+app = Flask(__name__, template_folder=template_dir, static_folder=static_dir, static_url_path='/static')
 
 # Initialize optimized search indexer with modified config for deployment
 optimized_config = INDEXER_CONFIG.copy()
@@ -42,6 +49,21 @@ if is_production:
 else:
     logger.info(f"Using development index from {optimized_config['index_dir']}")
 
+# Log directory structure without listing all files
+try:
+    logger.info("Checking directory structure:")
+    for root, dirs, files in os.walk("data"):
+        logger.info(f"Directory: {root} - {len(files)} files")
+except Exception as e:
+    logger.error(f"Error checking directories: {e}")
+
+# Add explicit static file route to ensure they're served properly
+@app.route('/static/<path:filename>')
+def serve_static(filename):
+    logger.info(f"Serving static file: {filename}")
+    return send_from_directory(static_dir, filename)
+
+# Initialize indexer
 indexer = OptimizedSearchIndexer(optimized_config)
 
 # Flag to enable hybrid search (BM25 + BERT)
@@ -49,11 +71,14 @@ USE_HYBRID_SEARCH = os.environ.get("USE_HYBRID_SEARCH", "true").lower() == "true
 
 # Load the index at startup
 try:
+    logger.info("Starting to load optimized index...")
     indexer.load_optimized_index(use_hybrid_search=USE_HYBRID_SEARCH)
     logger.info(f"Index loaded with {len(indexer.document_map)} documents and {len(indexer.inverted_index)} terms.")
     logger.info(f"Search mode: {'Hybrid BM25+BERT' if USE_HYBRID_SEARCH else 'BM25 only'}")
 except Exception as e:
-    logger.error(f"Error loading index: {e}")
+    error_msg = f"Error loading index: {e}"
+    logger.error(error_msg)
+    logger.error(traceback.format_exc())  # Log the full traceback
     logger.error("Make sure to run the indexer and prepare_for_deployment.py first!")
     # Don't exit in production as this would prevent the app from starting
     if not is_production:
@@ -109,6 +134,7 @@ def search():
             
     except Exception as e:
         logger.error(f"Error with index search: {e}")
+        logger.error(traceback.format_exc())  # Log the full traceback
         index_results = []
     
     all_results = index_results
@@ -145,7 +171,8 @@ def search():
         search_source=search_source
     )
 
-@app.route('/api/search')
+# Ensure API endpoints work properly
+@app.route('/api/search', methods=['GET'])
 def api_search():
     """
     API endpoint for search
@@ -165,7 +192,9 @@ def api_search():
     
     # Search the index
     try:
+        logger.info(f"API search request for query: '{query}'")
         index_results = indexer.search(query, top_k=limit * 2)  # Get more results for filtering
+        logger.info(f"API search found {len(index_results)} results")
         
         # Filter out excluded domains and add source
         for result in index_results:
@@ -179,6 +208,7 @@ def api_search():
             
     except Exception as e:
         logger.error(f"Error with index search API: {e}")
+        logger.error(traceback.format_exc())  # Log the full traceback
     
     # Limit to requested number
     results = results[:limit]
@@ -187,6 +217,30 @@ def api_search():
         'results': results,
         'total': len(results)
     })
+
+# Add a health check endpoint
+@app.route('/health')
+@app.route('/api/health')
+def health_check():
+    """
+    Health check endpoint for monitoring
+    """
+    try:
+        # Check if indexer is loaded
+        doc_count = len(indexer.document_map)
+        term_count = len(indexer.inverted_index)
+        return jsonify({
+            'status': 'healthy',
+            'document_count': doc_count,
+            'term_count': term_count,
+            'mode': 'production' if is_production else 'development',
+            'search_mode': 'hybrid' if USE_HYBRID_SEARCH else 'bm25'
+        })
+    except Exception as e:
+        return jsonify({
+            'status': 'unhealthy',
+            'error': str(e)
+        }), 500
 
 if __name__ == "__main__":
     # Get port from environment variable with a default of 3000 (common for web services)
