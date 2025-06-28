@@ -68,11 +68,26 @@ def main():
             # Copy stopwords file to optimized index directory for deployment
             shutil.copy(stopwords_file, os.path.join(optimized_index_dir, "stopwords.txt"))
             logger.info(f"Copied stopwords file to {optimized_index_dir}")
+        else:
+            logger.warning(f"Stopwords file not found at {stopwords_file}")
+            # Create an empty stopwords file if it doesn't exist
+            with open(os.path.join(optimized_index_dir, "stopwords.txt"), 'w') as f:
+                logger.info("Created empty stopwords file in optimized index directory")
         
         logger.info("Deployment preparation completed successfully!")
         logger.info("Your optimized index is ready for deployment.")
         logger.info(f"Make sure to set the PRODUCTION environment variable to 'true' in your deployment environment.")
         
+        # Test loading the optimized index
+        try:
+            logger.info("Testing optimized index loading...")
+            test_indexer = OptimizedSearchIndexer(optimized_config)
+            test_indexer.load_optimized_index()
+            logger.info(f"Successfully loaded optimized index with {len(test_indexer.document_map)} documents")
+        except Exception as e:
+            logger.error(f"Error testing optimized index: {e}")
+            logger.error("The optimized index may not load correctly in production.")
+            
     except Exception as e:
         logger.error(f"Error preparing for deployment: {e}")
         sys.exit(1)

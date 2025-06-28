@@ -120,6 +120,48 @@ Access the web interface at http://localhost:3000 and enter your search query.
 
 4. Access the search engine at http://localhost:5000
 
+## Deployment on Render
+
+### Preparing for Deployment
+
+1. Run the prepare_for_deployment.py script to create an optimized index:
+   ```
+   python prepare_for_deployment.py
+   ```
+
+2. Verify deployment readiness:
+   ```
+   python check_deployment.py
+   ```
+
+3. Make sure the following files are included in your repository:
+   - All application code
+   - `requirements.txt`
+   - `runtime.txt` (specifies Python version)
+   - `gunicorn.conf.py` (web server configuration)
+   - The optimized index files in `data/optimized_index/`
+
+### Deploying to Render
+
+1. Create a new Web Service on Render
+2. Connect your GitHub repository
+3. Configure the service:
+   - **Name**: Your choice (e.g., custom-search-engine)
+   - **Environment**: Python
+   - **Build Command**: `pip install -r requirements.txt`
+   - **Start Command**: `gunicorn app:app`
+   - **Environment Variables**:
+     - `PRODUCTION`: true
+     - `USE_HYBRID_SEARCH`: true (or false if you prefer BM25-only for better performance)
+
+4. Click "Create Web Service"
+
+The deployment process will:
+1. Install dependencies
+2. Start the application with gunicorn
+3. Load the optimized index
+4. Make your search engine available at your Render URL
+
 ## Configuration
 
 Edit `config.py` to customize crawler behavior, classification thresholds, Google search settings, and other options.

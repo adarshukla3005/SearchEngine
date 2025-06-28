@@ -24,6 +24,10 @@ logging.basicConfig(
 )
 logger = logging.getLogger("web")
 
+# Set production flag based on environment variable
+is_production = os.environ.get("PRODUCTION", "false").lower() == "true"
+logger.info(f"Running in {'production' if is_production else 'development'} mode")
+
 # Initialize Flask app with the correct template folder
 template_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'web', 'templates')
 static_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'web', 'static')
@@ -31,11 +35,29 @@ app = Flask(__name__, template_folder=template_dir, static_folder=static_dir)
 
 # Initialize optimized search indexer with modified config for deployment
 optimized_config = INDEXER_CONFIG.copy()
-optimized_config["index_dir"] = DEPLOYMENT_CONFIG["optimized_index_dir"]
+# Always use optimized index in production environment
+if is_production:
+    optimized_config["index_dir"] = DEPLOYMENT_CONFIG["optimized_index_dir"]
+    logger.info(f"Using optimized index from {DEPLOYMENT_CONFIG['optimized_index_dir']}")
+else:
+    logger.info(f"Using development index from {optimized_config['index_dir']}")
+
 indexer = OptimizedSearchIndexer(optimized_config)
 
 # Flag to enable hybrid search (BM25 + BERT)
 USE_HYBRID_SEARCH = os.environ.get("USE_HYBRID_SEARCH", "true").lower() == "true"
+
+# Load the index at startup
+try:
+    indexer.load_optimized_index(use_hybrid_search=USE_HYBRID_SEARCH)
+    logger.info(f"Index loaded with {len(indexer.document_map)} documents and {len(indexer.inverted_index)} terms.")
+    logger.info(f"Search mode: {'Hybrid BM25+BERT' if USE_HYBRID_SEARCH else 'BM25 only'}")
+except Exception as e:
+    logger.error(f"Error loading index: {e}")
+    logger.error("Make sure to run the indexer and prepare_for_deployment.py first!")
+    # Don't exit in production as this would prevent the app from starting
+    if not is_production:
+        sys.exit(1)
 
 @app.route('/')
 def home():
@@ -167,16 +189,6 @@ def api_search():
     })
 
 if __name__ == "__main__":
-    try:
-        # Load the optimized index with hybrid search if enabled
-        indexer.load_optimized_index(use_hybrid_search=USE_HYBRID_SEARCH)
-        logger.info(f"Index loaded with {len(indexer.document_map)} documents and {len(indexer.inverted_index)} terms.")
-        logger.info(f"Search mode: {'Hybrid BM25+BERT' if USE_HYBRID_SEARCH else 'BM25 only'}")
-    except Exception as e:
-        logger.error(f"Error loading index: {e}")
-        logger.error("Make sure to run the indexer and optimize_index.py first!")
-        sys.exit(1)
-
     # Get port from environment variable with a default of 3000 (common for web services)
     port = int(os.environ.get("PORT", 3000))
     app.run(
