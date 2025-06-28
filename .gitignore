@@ -32,6 +32,7 @@ data/classified_pages/*
 data/index/*
 data/model_cache/*
 data/google_cache/*
+data/bert_cache/*
 
 # Keep directory structure
 !data/crawled_pages/.gitkeep

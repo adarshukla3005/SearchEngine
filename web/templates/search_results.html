@@ -97,69 +97,55 @@
         </header>
         
         <main>
-            <div class="results-info">
-                <p>Found {{ total_results }} results for <strong>"{{ query }}"</strong> via <span class="search-source">{{ search_source }}</span></p>
-            </div>
-            
-            <div class="search-results">
+            <div class="search-results-container">
+                <div class="search-info">
+                    <p>Found {{ total_results }} results for "{{ query }}" ({{ search_source }})</p>
+                </div>
+                
                 {% if results %}
+                <div class="search-results">
                     {% for result in results %}
-                        <div class="result-item">
-                            <h2><a href="{{ result.url }}" target="_blank">{{ result.title }}</a></h2>
-                            <p class="result-url">{{ result.url }}</p>
-                            
-                            {% if result.description %}
-                                <p class="result-description">{{ result.description }}</p>
+                    <div class="search-result">
+                        <h3><a href="{{ result.url }}" target="_blank">{{ result.title }}</a></h3>
+                        <div class="result-url">{{ result.url }}</div>
+                        {% if result.description %}
+                        <div class="result-description">{{ result.description }}</div>
+                        {% elif result.content_snippet %}
+                        <div class="result-description">{{ result.content_snippet }}</div>
+                        {% endif %}
+                        <div class="result-meta">
+                            <span class="result-score">Relevance: {{ "%.0f"|format(result.score * 100) }}%</span>
+                            {% if result.main_terms_matched is defined %}
+                            <!-- <span class="main-terms-matched">Main terms matched: {{ result.main_terms_matched }}</span>
                             {% endif %}
-                            
-                            {% if result.content_snippet %}
-                                <div class="result-snippet">
-                                    <p>{{ result.content_snippet }}</p>
-                                </div>
-                            {% endif %}
-                            
-                            <div class="result-meta">
-                                {% if result.source is defined %}
-                                    <span class="source">Source: {{ result.source }}</span>
-                                {% endif %}
-                                
-                                {% if result.score is defined %}
-                                    <span class="result-score">Relevance: {{ "%.2f"|format(result.score) }}</span>
-                                {% endif %}
-                                
-                                {% if result.confidence is defined %}
-                                    <span class="confidence">Confidence: {{ "%.2f"|format(result.confidence * 100) }}%</span>
-                                {% endif %}
-                                
-                                {% if result.method is defined %}
-                                    <span class="method">Method: {{ result.method }}</span>
-                                {% endif %}
-                                
-                                {% if result.reason is defined %}
-                                    <span class="reason">{{ result.reason }}</span>
-                                {% endif %}
-                            </div>
+                            <span class="result-source">Source: {{ result.source }}</span>
+                            {% if result.search_method is defined %}
+                            <span class="search-method">Method: {{ result.search_method }}</span>
+                            {% endif %} -->
                         </div>
-                    {% endfor %}
-                    
-                    {% if pagination.total_pages > 1 %}
-                        <div class="pagination">
-                            {% if pagination.has_prev %}
-                                <a href="/search?q={{ query }}&page={{ pagination.prev_page }}" class="page-link">&laquo; Previous</a>
-                            {% endif %}
-                            
-                            <span class="page-info">Page {{ pagination.current_page }} of {{ pagination.total_pages }}</span>
-                            
-                            {% if pagination.has_next %}
-                                <a href="/search?q={{ query }}&page={{ pagination.next_page }}" class="page-link">Next &raquo;</a>
-                            {% endif %}
-                        </div>
-                    {% endif %}
-                {% else %}
-                    <div class="no-results">
-                        <p>No blog results found for your query.</p>
-                        <p>Try a different search term or check out our <a href="/">example searches</a>.</p>
                     </div>
+                    {% endfor %}
+                </div>
+                
+                {% if pagination.total_pages > 1 %}
+                <div class="pagination">
+                    {% if pagination.has_prev %}
+                    <a href="?q={{ query }}&page={{ pagination.prev_page }}" class="pagination-link">&laquo; Previous</a>
+                    {% endif %}
+                    
+                    <span class="pagination-info">Page {{ pagination.current_page }} of {{ pagination.total_pages }}</span>
+                    
+                    {% if pagination.has_next %}
+                    <a href="?q={{ query }}&page={{ pagination.next_page }}" class="pagination-link">Next &raquo;</a>
+                    {% endif %}
+                </div>
+                {% endif %}
+                
+                {% else %}
+                <div class="no-results">
+                    <p>No results found for "{{ query }}"</p>
+                    <p>Try using different keywords or simplifying your search query.</p>
+                </div>
                 {% endif %}
             </div>
         </main>

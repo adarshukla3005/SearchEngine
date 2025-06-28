@@ -11,7 +11,7 @@ from flask import Flask, render_template, request, jsonify
 sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 
 from search_engine.indexer.optimized_indexer import OptimizedSearchIndexer
-from utils.config import WEB_CONFIG, INDEXER_CONFIG
+from utils.config import WEB_CONFIG, INDEXER_CONFIG, DEPLOYMENT_CONFIG
 
 # Set up logging
 logging.basicConfig(
@@ -31,8 +31,11 @@ app = Flask(__name__, template_folder=template_dir, static_folder=static_dir)
 
 # Initialize optimized search indexer with modified config for deployment
 optimized_config = INDEXER_CONFIG.copy()
-optimized_config["index_dir"] = os.path.join(os.path.dirname(INDEXER_CONFIG["index_dir"]), "optimized_index")
+optimized_config["index_dir"] = DEPLOYMENT_CONFIG["optimized_index_dir"]
 indexer = OptimizedSearchIndexer(optimized_config)
+
+# Flag to enable hybrid search (BM25 + BERT)
+USE_HYBRID_SEARCH = os.environ.get("USE_HYBRID_SEARCH", "true").lower() == "true"
 
 @app.route('/')
 def home():
@@ -59,16 +62,28 @@ def search():
     
     index_results = []
     all_results = []
-    search_source = "Local Index"
+    search_source = "Hybrid BM25+BERT" if USE_HYBRID_SEARCH else "BM25"
+    
+    # Domains to exclude (e.g., Spotify blogs)
+    excluded_domains = {"open.spotify.com", "spotify.com", "podcasts.apple.com", "podcasts.google.com"}
     
     # Get index results
     try:
-        index_results = indexer.search(query, top_k=results_per_page * 2)
-        logger.info(f"Index search query: '{query}', found {len(index_results)} results")
+        index_results = indexer.search(query, top_k=results_per_page * 3)  # Get more results for filtering
+        logger.info(f"Index search query: '{query}', found {len(index_results)} results using {search_source}")
         
-        # Add source to results
+        # Add source to results and filter out excluded domains
+        filtered_results = []
         for result in index_results:
-            result["source"] = "Local Index"
+            # Skip results from excluded domains
+            url = result.get("url", "").lower()
+            if any(domain in url for domain in excluded_domains):
+                continue
+                
+            result["source"] = search_source
+            filtered_results.append(result)
+            
+        index_results = filtered_results
             
     except Exception as e:
         logger.error(f"Error with index search: {e}")
@@ -81,7 +96,7 @@ def search():
     
     # Log first few results
     for i, result in enumerate(all_results[:5]):  # Log first 5 results
-        logger.info(f"Result {i+1}: {result.get('title', 'No title')} - {result.get('url', 'No URL')} ({result.get('source', 'Local Index')})")
+        logger.info(f"Result {i+1}: {result.get('title', 'No title')} - {result.get('url', 'No URL')} ({result.get('search_method', search_source)})")
     
     # Paginate results
     paginated_results = all_results[start_idx:start_idx + results_per_page]
@@ -121,16 +136,24 @@ def api_search():
         return jsonify({'results': [], 'total': 0})
     
     results = []
+    search_source = "Hybrid BM25+BERT" if USE_HYBRID_SEARCH else "BM25"
+    
+    # Domains to exclude (e.g., Spotify blogs)
+    excluded_domains = {"open.spotify.com", "spotify.com", "podcasts.apple.com", "podcasts.google.com"}
     
     # Search the index
     try:
-        index_results = indexer.search(query, top_k=limit)
+        index_results = indexer.search(query, top_k=limit * 2)  # Get more results for filtering
         
-        # Add source
+        # Filter out excluded domains and add source
         for result in index_results:
-            result["source"] = "Local Index"
-            
-        results.extend(index_results)
+            # Skip results from excluded domains
+            url = result.get("url", "").lower()
+            if any(domain in url for domain in excluded_domains):
+                continue
+                
+            result["source"] = search_source
+            results.append(result)
             
     except Exception as e:
         logger.error(f"Error with index search API: {e}")
@@ -145,9 +168,10 @@ def api_search():
 
 if __name__ == "__main__":
     try:
-        # Load the optimized index
-        indexer.load_optimized_index()
+        # Load the optimized index with hybrid search if enabled
+        indexer.load_optimized_index(use_hybrid_search=USE_HYBRID_SEARCH)
         logger.info(f"Index loaded with {len(indexer.document_map)} documents and {len(indexer.inverted_index)} terms.")
+        logger.info(f"Search mode: {'Hybrid BM25+BERT' if USE_HYBRID_SEARCH else 'BM25 only'}")
     except Exception as e:
         logger.error(f"Error loading index: {e}")
         logger.error("Make sure to run the indexer and optimize_index.py first!")

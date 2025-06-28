@@ -158,4 +158,64 @@ def expand_query(query: str) -> str:
             expanded_query.append(phrase)
     
     # Join the tokens back into a string
-    return " ".join(expanded_query) 
+    return " ".join(expanded_query)
+
+def identify_main_terms(query: str, stopwords: Set[str]) -> List[str]:
+    """
+    Identify the main terms in a query that should receive higher importance
+    Uses heuristics like word length, position, and frequency
+    """
+    if not query:
+        return []
+        
+    # Clean and tokenize
+    query = query.lower().strip()
+    tokens = tokenize(query)
+    
+    # Additional common words to ignore beyond stopwords
+    additional_ignore_words = {
+        "for", "with", "about", "from", "into", "during", "after", "before", 
+        "without", "under", "over", "between", "through", "against", "among",
+        "throughout", "towards", "upon", "concerning", "of", "to", "in", "on",
+        "at", "by", "as", "via", "onto", "into", "within", "among", "along"
+    }
+    
+    # Combined set of words to ignore
+    ignore_words = stopwords.union(additional_ignore_words)
+    
+    # Filter out stopwords and common prepositions/conjunctions
+    non_stop_tokens = [t for t in tokens if t not in ignore_words]
+    
+    # If we have no tokens after filtering, return original tokens
+    if not non_stop_tokens:
+        return tokens
+    
+    # Identify potential main terms based on length (longer words tend to be more important)
+    main_terms = []
+    
+    # First, check for longer words (5+ chars) which are likely more important
+    for token in non_stop_tokens:
+        if len(token) >= 5:
+            main_terms.append(token)
+    
+    # If we don't have any long words, consider medium length words (4+ chars)
+    if not main_terms:
+        for token in non_stop_tokens:
+            if len(token) >= 4:
+                main_terms.append(token)
+    
+    # If we still don't have main terms, use all non-ignored words
+    if not main_terms:
+        main_terms = non_stop_tokens
+    
+    # Prioritize first and last non-ignored terms in the query (often more important)
+    first_non_ignored = next((t for t in tokens if t not in ignore_words), None)
+    last_non_ignored = next((t for t in reversed(tokens) if t not in ignore_words), None)
+    
+    if first_non_ignored and first_non_ignored not in main_terms:
+        main_terms.append(first_non_ignored)
+    
+    if last_non_ignored and last_non_ignored not in main_terms:
+        main_terms.append(last_non_ignored)
+    
+    return main_terms 
