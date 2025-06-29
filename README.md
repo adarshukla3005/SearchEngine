@@ -3,7 +3,7 @@
 A specialized search engine focused on high-quality blog content with advanced relevance ranking.
 
 <p align="left">
-  <img src="https://github.com/user-attachments/assets/fcabc4e9-a400-4473-9de6-c426089c96b0" />
+  <img src="https://github.com/user-attachments/assets/e5462319-6f0d-4ecc-a111-b0cbe18dae35" />
 </p>
 
 ## Core Components
