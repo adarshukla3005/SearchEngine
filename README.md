@@ -2,35 +2,55 @@
 
 A specialized search engine focused on high-quality blog content with advanced relevance ranking.
 
-## Features
+## Core Components
 
-- Focused web crawler that targets specific blogs and websites
-- Content classification to identify relevant pages
-- Advanced indexing with BM25-based ranking
-- Optimized search with main term identification and proximity boosting
-- Hybrid BM25+BERT search for improved semantic understanding
-- Web interface for easy searching
+### Crawler
+- **Purpose**: Collects blog content from specified websites
+- **Features**:
+  - Focused crawling based on seed URLs (currently configured for 3 primary sources)
+  - Smart URL filtering to target article and blog content
+  - Respects robots.txt and implements rate limiting
+  - Skips previously crawled pages to avoid duplication
+  - Currently configured to crawl up to **1000 pages**
+  - Stores raw HTML and extracted text content
+  - Tracks domain statistics and crawl progress
 
-## Hybrid Search Architecture
+### Classifier
+- **Purpose**: Identifies relevant high-quality blog content
+- **Features**:
+  - Uses the Gemma-2b model for content classification
+  - Evaluates pages based on content quality, formatting, and topic relevance
+  - Applies configurable threshold settings for classification
+  - Separates personal blog content from commercial/marketing content
 
-This search engine implements a hybrid approach combining the strengths of both BM25 and BERT:
+### Indexer
+- **Purpose**: Creates optimized search indexes for fast retrieval
+- **Features**:
+  - Implements BM25 algorithm for relevance ranking
+  - Handles stemming and stopword removal
+  - Creates inverted index structure for efficient searching
+  - Computes document statistics like term frequency and document length
+  - Supports field boosting for title and meta description
+  - Optimized index format for reduced memory usage and faster searching
 
-1. **BM25 (Lexical Matching)**
-   - Provides fast, token-based matching
-   - Handles term frequency and document length normalization
-   - Excellent for exact keyword matching
-   - Computationally efficient
+### Semantic Search
+- **Purpose**: Enhances search with semantic understanding
+- **Features**:
+  - Uses sentence-transformers/all-MiniLM-L6-v2 BERT model
+  - Generates document embeddings for vector search
+  - Combines with BM25 for hybrid search capabilities
+  - Configurable weighting between lexical and semantic search (70/30 by default)
 
-2. **BERT (Semantic Understanding)**
-   - Captures semantic meaning and context
-   - Understands synonyms and related concepts
-   - Trained on vast text corpora
-   - Uses all-MiniLM-L6-v2 model for speed and efficiency
+### Web Interface
+- Simple, responsive interface with light/dark mode
+- Search results include title, description, and content snippets
+- Relevance indicators and pagination support
 
-3. **Hybrid Scoring**
-   - Combines BM25 and BERT scores with configurable weights (default: 70% BM25, 30% BERT)
-   - Normalizes both scores for fair comparison
-   - Provides better results than either method alone
+## Statistics
+
+- **Pages Crawled**: Up to 1000 pages from configured seed URLs
+- **Index Size**: Optimized for efficient storage and lookup
+- **Response Time**: Fast search results with hybrid ranking
 
 ## Query Processing and Ranking
 
@@ -75,22 +95,41 @@ The search engine uses an advanced query processing pipeline:
 
 ## Usage
 
-Access the web interface at http://localhost:3000 and enter your search query.
+Access the web interface at http://localhost:5000 and enter your search query. Switch between light and dark modes using the theme toggle in the upper right corner.
 
 ## Environment Variables
 
 - `USE_HYBRID_SEARCH`: Set to "true" (default) to enable hybrid search, or "false" to use BM25 only
-- `PORT`: Port for the web server (default: 3000)
+- `PORT`: Port for the web server (default: 5000)
 - `PRODUCTION`: Set to "true" for production mode (default: "false")
 
 ## Project Structure
 
 - `crawler/`: Web crawling components
-- `classifier/`: Content classification using Gemma-3 1B
-- `indexer/`: Search indexing and retrieval
-- `web/`: Flask web interface
+  - `crawler.py`: Core crawler implementation
+  - `run_crawler.py`: Script to initiate crawling
+  - `query_crawler.py`: Alternative crawler for query-based crawling
+- `classifier/`: Content classification components
+  - `classifier.py`: Implementation of the classification system
+  - `run_classifier.py`: Script to run classification on crawled content
+- `indexer/`: Search indexing and retrieval components
+  - `indexer.py`: Core indexing functionality
+  - `optimized_indexer.py`: Optimized version for faster search
+  - `build_index.py`: Script to build the initial index
+  - `optimize_index.py`: Script to create the optimized index format
+  - `bert_embeddings.py`: Functionality for semantic embeddings
+  - `generate_bert_embeddings.py`: Script to create and store embeddings
+- `web/`: Flask web interface with templates and static assets
 - `utils/`: Utility functions for text processing
-- `google_search/`: Google search integration components with Gemini AI validation
+  - `config.py`: Configuration settings for all components
+  - `text_processing.py`: Text processing utilities
+- `logs/`: Storage location for log files from all components
+- `data/`: Data storage directories
+  - `crawled_pages/`: Raw crawled content from websites
+  - `classified_pages/`: Content after classification
+  - `index/`: Initial search index
+  - `optimized_index/`: Final optimized search index format
+  - `embeddings/`: BERT embeddings for semantic search
 
 ## Setup
 
@@ -99,26 +138,28 @@ Access the web interface at http://localhost:3000 and enter your search query.
    pip install -r requirements.txt
    ```
 
-2. For Google search with Gemini AI:
-   - Get a Gemini API key from [Google AI Studio](https://aistudio.google.com/app/apikey)
-   - Create a `.env` file with your API key:
-     ```
-     GEMINI_API_KEY=your_gemini_api_key_here
-     ```
-
-3. Run with local crawling and indexing
+2. Run with local crawling and indexing
    ```
-   # Run the crawler to collect data
-   python crawler/run_crawler.py
+   # Run the crawler to collect data (up to 1000 pages)
+   python search_engine/crawler/run_crawler.py
+   
+   # Run the classifier to identify personal blogs
+   python search_engine/classifier/run_classifier.py
    
    # Build the search index
-   python indexer/build_index.py
+   python search_engine/indexer/build_index.py
+   
+   # Optimize the index for faster searching
+   python search_engine/indexer/optimize_index.py
+   
+   # Generate BERT embeddings for semantic search
+   python search_engine/indexer/generate_bert_embeddings.py
    
    # Start the web interface
-   python web/app.py
+   python app.py
    ```
 
-4. Access the search engine at http://localhost:5000
+3. Access the search engine at http://localhost:5000
 
 ## Deployment on Render
 
@@ -126,19 +167,19 @@ Access the web interface at http://localhost:3000 and enter your search query.
 
 1. Run the prepare_for_deployment.py script to create an optimized index:
    ```
-   python prepare_for_deployment.py
+   python web/utils/prepare_for_deployment.py
    ```
 
 2. Verify deployment readiness:
    ```
-   python check_deployment.py
+   python web/utils/check_deployment.py
    ```
 
 3. Make sure the following files are included in your repository:
    - All application code
    - `requirements.txt`
    - `runtime.txt` (specifies Python version)
-   - `gunicorn.conf.py` (web server configuration)
+   - `web/utils/gunicorn.conf.py` (web server configuration)
    - The optimized index files in `data/optimized_index/`
 
 ### Deploying to Render
@@ -156,20 +197,12 @@ Access the web interface at http://localhost:3000 and enter your search query.
 
 4. Click "Create Web Service"
 
-The deployment process will:
-1. Install dependencies
-2. Start the application with gunicorn
-3. Load the optimized index
-4. Make your search engine available at your Render URL
-
 ## Configuration
 
-Edit `config.py` to customize crawler behavior, classification thresholds, Google search settings, and other options.
+Edit `utils/config.py` to customize crawler behavior, classification thresholds, and other options. The current configuration is set to:
 
-## How It Works
-
-### Local Search Mode
-1. Crawls the web starting from seed URLs
-2. Classifies content to identify personal blogs
-3. Indexes the content for efficient retrieval
-4. Provides search functionality through a web interface
+- Crawl up to 1000 pages
+- Maximum depth of 5 from seed URLs
+- Rate limiting of 0.2 seconds between requests
+- Three primary seed URLs (with more available but commented out)
+- Skip previously crawled pages to avoid duplication

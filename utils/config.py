@@ -5,14 +5,15 @@ import os
 
 # Crawler settings
 CRAWLER_CONFIG = {
-    "max_pages": 2000,     # Maximum number of pages to crawl
+    "max_pages": 200,     # Maximum number of pages to crawl
     "max_depth": 5,        # Maximum depth to crawl from seed URLs
     "rate_limit": 0.2,     # Time to wait between requests (seconds)
     "user_agent": "PersonalBlogSearchBot/1.0",
     "timeout": 25,         # Request timeout in seconds
     "respect_robots": True,  # Whether to respect robots.txt
+    "skip_previously_crawled": True,  # Skip pages we've already crawled before
     "seed_urls": [
-        "https://manassaloi.com/posts/",
+        # "https://manassaloi.com/posts/",
         "https://waitbutwhy.com/",
         # "https://www.ribbonfarm.com/",
         # "https://www.brainpickings.org/",
@@ -27,13 +28,13 @@ CRAWLER_CONFIG = {
         # "https://blog.samaltman.com/",
         # "https://nav.al/",
         # "https://jamesclear.com/articles",
-        # "https://www.markmanson.net/",
+        "https://www.markmanson.net/",
         # "https://www.perell.com/blog",
         # "https://www.eugenewei.com/",
         # "https://andymatuschak.org/",
         # "https://sirupsen.com/",
         # "https://jvns.ca/",
-        # "https://overreacted.io/",
+        "https://overreacted.io/",
         # "https://blog.pragmaticengineer.com/",
         # "https://www.hanselman.com/blog/",
         # "https://www.joelonsoftware.com/",
@@ -48,9 +49,19 @@ CRAWLER_CONFIG = {
         # "https://web.dev/blog/",
         # "https://netflixtechblog.com/",
         "https://medium.com/",
-        # "https://medium.com/free-code-camp",
+        "https://medium.com/free-code-camp",
     ],
     "data_dir": "data/crawled_pages/",
+    "article_path_patterns": [
+        "/blog/",
+        "/article/",
+        "/post/",
+        "/posts/",
+        "/entry/",
+        "/entries/",
+        "/story/",
+        "/stories/",
+    ],
 }
 
 # Classification settings
@@ -65,11 +76,11 @@ CLASSIFIER_CONFIG = {
 
 # Indexer settings
 INDEXER_CONFIG = {
-    "index_dir": "data/index/",
+    "index_dir": "data/optimized_index/",  # Using optimized index by default
     "chunk_size": 500,  # Number of documents to process at once
     "min_token_length": 2,
     "max_token_length": 20,
-    "stopwords_file": "data/stopwords.txt",
+    "stopwords_file": "data/optimized_index/stopwords.txt",
     "title_boost": 5.0,   # Increased boost factor for terms in title
     "meta_boost": 3.0,    # Increased boost factor for terms in meta description
 }

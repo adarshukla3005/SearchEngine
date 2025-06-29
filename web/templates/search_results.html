@@ -5,22 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ query }} - Personal Blog Search Results</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         .highlight {
-            background-color: #ffffcc;
+            background-color: var(--highlight-color);
             font-weight: bold;
         }
         .result-item {
             padding: 15px;
             margin-bottom: 20px;
-            border: 1px solid #eee;
+            border: 1px solid var(--border-color);
             border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 5px var(--shadow-color);
             transition: transform 0.2s;
+            background-color: var(--card-background);
         }
         .result-item:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 8px var(--shadow-color);
         }
         .result-url {
             color: #006621;
@@ -31,29 +33,31 @@
         .result-description {
             line-height: 1.5;
             margin-bottom: 10px;
+            color: var(--text-color);
         }
         .result-snippet {
-            background-color: #f9f9f9;
+            background-color: var(--snippet-background);
             padding: 10px;
             border-radius: 4px;
             font-style: italic;
             margin-bottom: 10px;
+            color: var(--text-color);
         }
         .result-meta {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
             font-size: 12px;
-            color: #666;
+            color: var(--light-text);
         }
         .result-meta span {
-            background-color: #f0f0f0;
+            background-color: var(--snippet-background);
             padding: 3px 8px;
             border-radius: 10px;
         }
         .search-source {
             font-weight: bold;
-            color: #1a73e8;
+            color: var(--primary-color);
         }
         .pagination {
             display: flex;
@@ -64,31 +68,45 @@
         }
         .page-link {
             padding: 8px 16px;
-            background-color: #1a73e8;
+            background-color: var(--primary-color);
             color: white;
             border-radius: 4px;
             text-decoration: none;
             transition: background-color 0.2s;
         }
         .page-link:hover {
-            background-color: #1558b3;
+            background-color: var(--secondary-color);
         }
         .page-info {
             font-size: 14px;
-            color: #666;
+            color: var(--light-text);
         }
         .no-results {
             text-align: center;
             padding: 30px;
-            color: #666;
+            color: var(--light-text);
+        }
+        header {
+            background: var(--header-bg);
         }
     </style>
 </head>
 <body>
+    <div class="theme-toggle">
+        <span class="theme-toggle-label">Theme</span>
+        <label class="theme-switch">
+            <input type="checkbox" id="theme-toggle">
+            <span class="slider">
+                <i class="fas fa-sun icon sun"></i>
+                <i class="fas fa-moon icon moon"></i>
+            </span>
+        </label>
+    </div>
+
     <div class="container">
         <header>
             <div class="header-content">
-                <h1><a href="/">Personal Blog Search</a></h1>
+                <h1><a href="/"><i class="fas fa-search"></i> Personal Blog Search</a></h1>
                 <form action="/search" method="get" class="search-form header-search">
                     <input type="text" name="q" id="search-input" value="{{ query }}" required>
                     <button type="submit" id="search-button">Search</button>
@@ -97,62 +115,53 @@
         </header>
         
         <main>
-            <div class="search-results-container">
-                <div class="search-info">
-                    <p>Found {{ total_results }} results for "{{ query }}" ({{ search_source }})</p>
-                </div>
-                
-                {% if results %}
-                <div class="search-results">
-                    {% for result in results %}
-                    <div class="search-result">
-                        <h3><a href="{{ result.url }}" target="_blank">{{ result.title }}</a></h3>
-                        <div class="result-url">{{ result.url }}</div>
-                        {% if result.description %}
-                        <div class="result-description">{{ result.description }}</div>
-                        {% elif result.content_snippet %}
-                        <div class="result-description">{{ result.content_snippet }}</div>
-                        {% endif %}
-                        <div class="result-meta">
-                            <span class="result-score">Relevance: {{ "%.0f"|format(result.score * 100) }}%</span>
-                            {% if result.main_terms_matched is defined %}
-                            <!-- <span class="main-terms-matched">Main terms matched: {{ result.main_terms_matched }}</span>
-                            {% endif %}
-                            <span class="result-source">Source: {{ result.source }}</span>
-                            {% if result.search_method is defined %}
-                            <span class="search-method">Method: {{ result.search_method }}</span>
-                            {% endif %} -->
-                        </div>
+            <div class="search-info">
+                <p><i class="fas fa-info-circle"></i> Found {{ total_results }} results for "<strong>{{ query }}</strong>" <span class="search-source">({{ search_source }})</span></p>
+            </div>
+            
+            {% if results %}
+            <div class="search-results">
+                {% for result in results %}
+                <div class="search-result">
+                    <h3><a href="{{ result.url }}" target="_blank">{{ result.title }}</a></h3>
+                    <div class="result-url"><i class="fas fa-link"></i> {{ result.url }}</div>
+                    {% if result.description %}
+                    <div class="result-description">{{ result.description }}</div>
+                    {% elif result.content_snippet %}
+                    <div class="result-description">{{ result.content_snippet }}</div>
+                    {% endif %}
+                    <div class="result-meta">
+                        <span class="result-score"><i class="fas fa-chart-line"></i> Relevance: {{ "%.0f"|format(result.score * 100) }}%</span>
                     </div>
-                    {% endfor %}
                 </div>
-                
-                {% if pagination.total_pages > 1 %}
-                <div class="pagination">
-                    {% if pagination.has_prev %}
-                    <a href="?q={{ query }}&page={{ pagination.prev_page }}" class="pagination-link">&laquo; Previous</a>
-                    {% endif %}
-                    
-                    <span class="pagination-info">Page {{ pagination.current_page }} of {{ pagination.total_pages }}</span>
-                    
-                    {% if pagination.has_next %}
-                    <a href="?q={{ query }}&page={{ pagination.next_page }}" class="pagination-link">Next &raquo;</a>
-                    {% endif %}
-                </div>
+                {% endfor %}
+            </div>
+            
+            {% if pagination.total_pages > 1 %}
+            <div class="pagination">
+                {% if pagination.has_prev %}
+                <a href="?q={{ query }}&page={{ pagination.prev_page }}" class="page-link"><i class="fas fa-chevron-left"></i> Previous</a>
                 {% endif %}
                 
-                {% else %}
-                <div class="no-results">
-                    <p>No results found for "{{ query }}"</p>
-                    <p>Try using different keywords or simplifying your search query.</p>
-                </div>
+                <span class="page-info">Page {{ pagination.current_page }} of {{ pagination.total_pages }}</span>
+                
+                {% if pagination.has_next %}
+                <a href="?q={{ query }}&page={{ pagination.next_page }}" class="page-link">Next <i class="fas fa-chevron-right"></i></a>
                 {% endif %}
             </div>
+            {% endif %}
+            
+            {% else %}
+            <div class="no-results">
+                <p><i class="fas fa-exclamation-circle"></i> No results found for "{{ query }}"</p>
+                <p>Try using different keywords or simplifying your search query.</p>
+            </div>
+            {% endif %}
         </main>
     </div>
     
     <footer>
-        <p>Personal Blog Search Engine - Finding relevant blogs and articles using advanced indexing and BM25 ranking</p>
+        <p>Personal Blog Search Engine - Finding relevant blogs and articles using advanced indexing and BM25 ranking <i class="fas fa-code"></i></p>
     </footer>
     
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>

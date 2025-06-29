@@ -7,11 +7,12 @@ import time
 import hashlib
 import requests
 from urllib.parse import urljoin, urlparse
-from typing import Set, Dict, List, Optional
+from typing import Set, Dict, List, Optional, cast
 import logging
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Tag
 from tqdm import tqdm
 from collections import Counter
+import re
 
 from utils.text_processing import clean_text, extract_title_from_html, extract_meta_description
 
@@ -41,6 +42,9 @@ class Crawler:
         self.robots_cache: Dict[str, Set[str]] = {}
         self.domain_stats: Counter = Counter()
         self.verbose = config.get("verbose", False)
+        self.pages_crawled = 0
+        self.skip_previously_crawled = config.get("skip_previously_crawled", False)
+        self.article_path_patterns = self.config.get("article_path_patterns", [])
         
         # Create data directory if it doesn't exist
         os.makedirs(self.config["data_dir"], exist_ok=True)
@@ -82,7 +86,7 @@ class Crawler:
         """
         Check if URL should be crawled according to robots.txt
         """
-        if not self.config["respect_robots"]:
+        if not self.config.get("respect_robots_txt", True):
             return True
         
         parsed_url = urlparse(url)
@@ -124,6 +128,34 @@ class Crawler:
         
         return True
     
+    def _is_article_url(self, url: str) -> bool:
+        """
+        Check if URL looks like an article/blog post based on path patterns
+        """
+        # If no article patterns defined, don't filter
+        if not self.article_path_patterns:
+            return True
+            
+        path = urlparse(url).path.lower()
+        
+        # Check for path patterns that indicate articles/blog posts
+        for pattern in self.article_path_patterns:
+            if pattern.lower() in path:
+                return True
+                
+        # Also check for date patterns in URL which often indicate blog posts
+        date_patterns = [
+            r'/\d{4}/\d{2}/\d{2}/',  # /YYYY/MM/DD/
+            r'/\d{4}/\d{1,2}/',      # /YYYY/MM/
+            r'/\d{4}/'                # /YYYY/
+        ]
+        
+        for pattern in date_patterns:
+            if re.search(pattern, path):
+                return True
+                
+        return False
+    
     def _extract_links(self, url: str, html_content: str) -> List[str]:
         """
         Extract links from HTML content
@@ -132,18 +164,29 @@ class Crawler:
         base_url = url
         
         links = []
-        for a_tag in soup.find_all('a', href=True):
+        for a_tag in soup.find_all('a'):
+            # Make sure it's a Tag object and has href attribute
+            if not isinstance(a_tag, Tag) or not a_tag.has_attr('href'):
+                continue
+                
             href = a_tag['href']
-            full_url = urljoin(base_url, href)
-            
-            # Filter out non-HTTP URLs and fragments
-            parsed = urlparse(full_url)
-            if parsed.scheme in ('http', 'https') and parsed.netloc:
-                # Remove fragments
-                clean_url = f"{parsed.scheme}://{parsed.netloc}{parsed.path}"
-                if parsed.query:
-                    clean_url += f"?{parsed.query}"
-                links.append(clean_url)
+            if not isinstance(href, str):
+                continue
+                
+            try:
+                full_url = urljoin(base_url, href)
+                
+                # Filter out non-HTTP URLs and fragments
+                parsed = urlparse(full_url)
+                if parsed.scheme in ('http', 'https') and parsed.netloc:
+                    # Remove fragments
+                    clean_url = f"{parsed.scheme}://{parsed.netloc}{parsed.path}"
+                    if parsed.query:
+                        clean_url += f"?{parsed.query}"
+                    links.append(clean_url)
+            except Exception:
+                # Skip malformed URLs
+                continue
         
         return links
     
@@ -164,6 +207,17 @@ class Crawler:
         print("-" * 60)
         print(f"Total domains: {len(self.domain_stats)}")
     
+    def _is_previously_crawled_page(self, url: str) -> bool:
+        """
+        Check if we've already downloaded this page before
+        """
+        if not self.skip_previously_crawled:
+            return False
+            
+        url_hash = self._get_url_hash(url)
+        page_file = os.path.join(self.config["data_dir"], f"{url_hash}.json")
+        return os.path.exists(page_file)
+    
     def crawl(self):
         """
         Start the crawling process
@@ -172,11 +226,11 @@ class Crawler:
         for url in self.config["seed_urls"]:
             self.url_queue.append({"url": url, "depth": 0})
         
-        pages_crawled = 0
+        self.pages_crawled = 0
         start_time = time.time()
         
         with tqdm(total=self.config["max_pages"], desc="Crawling") as pbar:
-            while self.url_queue and pages_crawled < self.config["max_pages"]:
+            while self.url_queue and self.pages_crawled < self.config["max_pages"]:
                 # Get next URL from queue
                 item = self.url_queue.pop(0)
                 url = item["url"]
@@ -190,6 +244,13 @@ class Crawler:
                 
                 # Skip if already visited
                 if url in self.visited_urls:
+                    continue
+                    
+                # Skip if previously crawled and config says to skip
+                if self._is_previously_crawled_page(url):
+                    if self.verbose:
+                        logger.info(f"Skipping previously crawled: {url}")
+                    self.visited_urls.add(url)
                     continue
                 
                 # Check robots.txt
@@ -228,27 +289,33 @@ class Crawler:
                     
                     main_content = clean_text(soup.get_text())
                     
-                    # Save page data
-                    url_hash = self._get_url_hash(url)
-                    page_data = {
-                        "url": url,
-                        "title": title,
-                        "meta_description": meta_desc,
-                        "content": main_content,
-                        "html": html_content,
-                        "crawl_time": time.time()
-                    }
-                    
-                    with open(os.path.join(self.config["data_dir"], f"{url_hash}.json"), 'w', encoding='utf-8') as f:
-                        json.dump(page_data, f, ensure_ascii=False)
-                    
-                    # Update domain statistics
-                    domain = self._get_domain(url)
-                    self.domain_stats[domain] += 1
-                    
-                    # Log crawled page if verbose
-                    if self.verbose:
-                        logger.info(f"Crawled: {url} - {title}")
+                    # For article pages or if depth is 0 (seed URLs), save the content
+                    should_save = self._is_article_url(url) or depth == 0
+                    if should_save:
+                        # Save page data
+                        url_hash = self._get_url_hash(url)
+                        page_data = {
+                            "url": url,
+                            "title": title,
+                            "meta_description": meta_desc,
+                            "content": main_content,
+                            "html": html_content,
+                            "crawl_time": time.time()
+                        }
+                        
+                        with open(os.path.join(self.config["data_dir"], f"{url_hash}.json"), 'w', encoding='utf-8') as f:
+                            json.dump(page_data, f, ensure_ascii=False)
+                        
+                        # Update domain statistics
+                        domain = self._get_domain(url)
+                        self.domain_stats[domain] += 1
+                        
+                        # Log crawled page if verbose
+                        if self.verbose:
+                            logger.info(f"Crawled: {url} - {title}")
+                        
+                        self.pages_crawled += 1
+                        pbar.update(1)
                     
                     # Extract links if not at max depth
                     if depth < self.config["max_depth"]:
@@ -259,15 +326,13 @@ class Crawler:
                     
                     # Mark URL as visited
                     self.visited_urls.add(url)
-                    pages_crawled += 1
-                    pbar.update(1)
                     
                     # Save visited URLs periodically
-                    if pages_crawled % 10 == 0:
+                    if self.pages_crawled % 10 == 0:
                         self._save_visited_urls()
                         
                         # Show domain statistics periodically if verbose
-                        if self.verbose and pages_crawled % 20 == 0:
+                        if self.verbose and self.pages_crawled % 20 == 0:
                             self._print_domain_stats()
                     
                     # Rate limiting
@@ -283,7 +348,13 @@ class Crawler:
         
         # Print final statistics
         elapsed_time = time.time() - start_time
-        logger.info(f"Crawling completed. Crawled {pages_crawled} pages in {elapsed_time:.2f} seconds.")
+        logger.info(f"Crawling completed. Crawled {self.pages_crawled} pages in {elapsed_time:.2f} seconds.")
         
         # Print domain statistics
-        self._print_domain_stats() 
+        self._print_domain_stats()
+
+    def run(self):
+        """
+        Run the crawler
+        """
+        self.crawl() 

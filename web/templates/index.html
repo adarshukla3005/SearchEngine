@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal Blog Search Engine</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background-color: #f9f9f9;
+            color: var(--text-color);
+            background-color: var(--background-color);
         }
         
         .container {
@@ -22,7 +23,7 @@
         .search-container {
             text-align: center;
             padding: 60px 20px;
-            background-color: #fff;
+            background-color: var(--card-background);
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             margin-bottom: 30px;
@@ -31,12 +32,12 @@
         h1 {
             font-size: 2.5rem;
             margin-bottom: 10px;
-            color: #1a73e8;
+            color: var(--primary-color);
         }
         
         .tagline {
             font-size: 1.2rem;
-            color: #666;
+            color: var(--light-text);
             margin-bottom: 30px;
         }
         
@@ -50,19 +51,21 @@
             flex: 1;
             padding: 12px 20px;
             font-size: 16px;
-            border: 2px solid #ddd;
+            border: 2px solid var(--border-color);
             border-radius: 24px 0 0 24px;
             outline: none;
             transition: border-color 0.3s;
+            background-color: var(--card-background);
+            color: var(--text-color);
         }
         
         #search-input:focus {
-            border-color: #1a73e8;
+            border-color: var(--primary-color);
         }
         
         #search-button {
             padding: 12px 24px;
-            background-color: #1a73e8;
+            background-color: var(--primary-color);
             color: white;
             border: none;
             border-radius: 0 24px 24px 0;
@@ -72,7 +75,7 @@
         }
         
         #search-button:hover {
-            background-color: #1558b3;
+            background-color: var(--secondary-color);
         }
         
         .examples {
@@ -91,26 +94,27 @@
         .examples li a {
             display: inline-block;
             padding: 8px 16px;
-            background-color: #f0f7ff;
-            color: #1a73e8;
+            background-color: var(--snippet-background);
+            color: var(--primary-color);
             text-decoration: none;
             border-radius: 20px;
             transition: background-color 0.3s;
         }
         
         .examples li a:hover {
-            background-color: #d4e6ff;
+            background-color: var(--accent-color);
+            color: white;
         }
         
         .about {
-            background-color: #fff;
+            background-color: var(--card-background);
             padding: 30px;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
         
         .about h2 {
-            color: #1a73e8;
+            color: var(--primary-color);
             margin-bottom: 20px;
         }
         
@@ -133,13 +137,13 @@
         .feature {
             flex: 1;
             min-width: 250px;
-            background-color: #f8f9fa;
+            background-color: var(--snippet-background);
             padding: 20px;
             border-radius: 8px;
         }
         
         .feature h3 {
-            color: #1a73e8;
+            color: var(--primary-color);
             margin-bottom: 10px;
         }
         
@@ -147,15 +151,26 @@
             text-align: center;
             padding: 20px;
             margin-top: 40px;
-            color: #666;
+            color: var(--light-text);
             font-size: 14px;
         }
     </style>
 </head>
 <body>
+    <div class="theme-toggle">
+        <span class="theme-toggle-label">Theme</span>
+        <label class="theme-switch">
+            <input type="checkbox" id="theme-toggle">
+            <span class="slider">
+                <i class="fas fa-sun icon sun"></i>
+                <i class="fas fa-moon icon moon"></i>
+            </span>
+        </label>
+    </div>
+    
     <div class="container">
         <div class="search-container">
-            <h1>Personal Blog Search</h1>
+            <h1><i class="fas fa-search"></i> Personal Blog Search</h1>
             <p class="tagline">Find authentic personal blogs and articles with advanced search technology</p>
             
             <form action="/search" method="get" class="search-form">
@@ -166,11 +181,11 @@
             <div class="examples">
                 <p>Try searching for:</p>
                 <ul>
-                    <li><a href="/search?q=product+management">product management</a></li>
-                    <li><a href="/search?q=productivity+techniques">productivity techniques</a></li>
-                    <li><a href="/search?q=software+engineering+career">software engineering career</a></li>
-                    <li><a href="/search?q=machine+learning+beginners">machine learning beginners</a></li>
-                    <li><a href="/search?q=personal+finance+tips">personal finance tips</a></li>
+                    <li><a href="/search?q=product+management"><i class="fas fa-briefcase"></i> product management</a></li>
+                    <li><a href="/search?q=productivity+techniques"><i class="fas fa-tasks"></i> productivity techniques</a></li>
+                    <li><a href="/search?q=software+engineering+career"><i class="fas fa-code"></i> software engineering career</a></li>
+                    <li><a href="/search?q=machine+learning+beginners"><i class="fas fa-robot"></i> machine learning beginners</a></li>
+                    <li><a href="/search?q=personal+finance+tips"><i class="fas fa-coins"></i> personal finance tips</a></li>
                 </ul>
             </div>
         </div>
@@ -181,33 +196,33 @@
             
             <div class="features">
                 <div class="feature">
-                    <h3>Smart Crawling</h3>
+                    <h3><i class="fas fa-spider"></i> Smart Crawling</h3>
                     <p>Our crawler intelligently navigates the web, focusing on high-quality personal blogs and articles from trusted sources.</p>
                 </div>
                 
                 <div class="feature">
-                    <h3>Advanced Classification</h3>
+                    <h3><i class="fas fa-filter"></i> Advanced Classification</h3>
                     <p>Our content classifier identifies genuine personal blogs and articles, filtering out commercial content and spam.</p>
                 </div>
                 
                 <div class="feature">
-                    <h3>Intelligent Ranking</h3>
+                    <h3><i class="fas fa-sort-amount-up"></i> Intelligent Ranking</h3>
                     <p>Search results are ranked using the BM25 algorithm with title and description boosting for better relevance.</p>
                 </div>
             </div>
             
             <p>When you search:</p>
             <ol>
-                <li>Your query is expanded with related terms for better matching</li>
-                <li>Our index finds the most relevant blog posts and articles</li>
-                <li>Results are ranked by relevance with special emphasis on title matches</li>
-                <li>Content snippets help you quickly evaluate each result</li>
+                <li><i class="fas fa-expand-alt"></i> Your query is expanded with related terms for better matching</li>
+                <li><i class="fas fa-database"></i> Our index finds the most relevant blog posts and articles</li>
+                <li><i class="fas fa-sort"></i> Results are ranked by relevance with special emphasis on title matches</li>
+                <li><i class="fas fa-align-left"></i> Content snippets help you quickly evaluate each result</li>
             </ol>
         </div>
     </div>
     
     <footer>
-        <p>Personal Blog Search Engine - Finding relevant blogs and articles using advanced indexing and BM25 ranking</p>
+        <p>Personal Blog Search Engine - Finding relevant blogs and articles using advanced indexing and BM25 ranking <i class="fas fa-code"></i></p>
     </footer>
     
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
