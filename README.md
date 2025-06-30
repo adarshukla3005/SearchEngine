@@ -6,8 +6,7 @@ A specialized search engine focused on high-quality blog content with advanced r
 
 ## Workflow of the Project
 
-![image](https://github.com/user-attachments/assets/a31fd8d7-2ac3-41c8-8133-f425ef381de7)
-
+![image](https://github.com/user-attachments/assets/25a0b155-6e3d-4ace-bdd3-58fb2f96ef24)
 
 ## Core Components
 
