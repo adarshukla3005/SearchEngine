@@ -54,7 +54,7 @@ A specialized search engine focused on high-quality blog content with advanced r
 
 ## Statistics
 
-- **Pages Crawled**: Up to 1000 pages from configured seed URLs
+- **Pages Crawled**: Up to 10000 pages from configured seed URLs
 - **Index Size**: Optimized for efficient storage and lookup
 - **Response Time**: Fast search results with hybrid ranking
 
